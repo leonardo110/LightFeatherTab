@@ -1,0 +1,159 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+    font-size: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    width: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    overflow: hidden;
+}
+.pageClass{
+    /* height: 90%; */
+    border: 1px solid lightgrey;
+    margin: 10px;
+    border-radius: 5px;
+}
+.avatar{
+    width: 35px;
+}
+body .gptMain {
+    flex-grow: 1;
+    background-color: white;
+    height: calc(100% - 40px);
+    overflow-y: auto;
+}
+body .gptMain .container .response {
+  position: relative;
+  padding: 10px;
+}
+body .gptMain .container .response .answer {
+    display: inline-block;
+    white-space: pre-wrap;
+    left: 0;
+    max-width: 60%;
+    padding: 8px 15px;
+    background-color: #09bb8b;
+    color: white;
+    border-radius: 5px;
+    font-size: 15px;
+    margin-left: 40px;
+    z-index: 2;
+}
+.container:after {
+    content: "Chat GPT AI";
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: rgb(179 179 179 / 50%);
+    font-size: 2em;
+    font-weight: 100;
+    z-index: 0;
+}
+.avatar1 {
+    width: 30px;
+    height: 30px;
+    margin-left: 10px;
+    position: absolute;
+    right: 0px;
+}
+.avatar2 {
+    width: 30px;
+    height: 30px;
+    margin-right: 10px;
+    position: absolute;
+}
+.cursor {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #fff;
+    animation: blink 1s infinite;
+}
+  
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+body .gptMain .container .request {
+  position: relative;
+  margin: 10px;
+}
+body .gptMain .container .request .question {
+  display: inline-block;
+  white-space: pre-wrap;
+  position: absolute;
+  width: auto;
+  max-width: 60%;
+  right: 0;
+  padding: 8px 15px;
+  background-color: #409EFF;
+  color: white;
+  border-radius: 5px;
+  font-size: 15px;
+  margin-right: 40px;
+  z-index: 1;
+}
+body .gptFooter {
+  display: flex;
+}
+body .gptFooter .inputText {
+    font-size: 15px;
+    flex-grow: 1;
+    height: 40px;
+    line-height: 40px;
+    outline: none;
+    padding: 0px 10px;
+    border: 1px solid lightgrey;
+    border-left: none;
+    border-right: none;
+}
+.tipClass{
+    vertical-align: middle;
+    cursor: pointer;
+}
+body .gptFooter .sendCss {
+    position: relative;
+    right: 0px;
+    background: white;
+    width: 22px;
+}
+::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 3px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #409EFF;
+    background-image: -webkit-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px;
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}

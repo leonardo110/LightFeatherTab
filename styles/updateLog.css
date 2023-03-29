@@ -1,0 +1,111 @@
+.dialogHead{
+    line-height: 30px;
+    height: 30px;
+    padding: 5px 0px;
+}
+.logoCss {
+    width: 20px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.logTitle {
+    font-size: 14px;
+    padding-left: 35px;
+    color: #1c1b1b;
+    font-weight: 600;
+    display: inline-block;
+}
+.dialogContent{
+    padding: 0px 15px;
+    overflow-y: auto;
+    height: 380px;
+}
+.contentDiv{
+    margin-bottom: 5px;
+}
+.versionDiv{
+    font-size: 14px;
+    font-weight: 500;
+}
+.versionTime{
+    float: right;
+    font-size: 12px;
+    color: #898989;
+}
+.updateContent{
+    padding: 5px 0px;
+}
+.addSpan{
+    padding: 2px 4px;
+    background-color: #99d799;
+    color: white;
+    border-radius: 3px;
+}
+.optimizeSpan{
+    padding: 2px 4px;
+    background-color: #edc783;
+    color: white;
+    border-radius: 3px;
+}
+.titleSpan{
+    padding: 2px 4px;
+    background-color: #409EFF;
+    color: white;
+    border-radius: 3px;
+}
+.fixSpan{
+    padding: 2px 4px;
+    background-color: #ed8181;
+    color: white;
+    border-radius: 3px;
+}
+.attentionSpan{
+    color: #c73c3c;
+    font-weight: bold;
+    transform: scale(0.9);
+    margin-left: -10px;
+    display: inline-block;
+    padding-top: 10px;
+}
+.textStyle{
+    font-size: 12px;
+    padding: 4px 0px;
+    color: #535151;
+}
+.versionHead{
+    line-height: 21px;
+}
+.logLineBottomCss{
+    width: 100%;
+    display: inline-block;
+    height: 1px;
+    background: rgb(218 216 216);
+    margin-bottom: 10px;
+}
+::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 3px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #409EFF;
+    background-image: -webkit-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px;
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}

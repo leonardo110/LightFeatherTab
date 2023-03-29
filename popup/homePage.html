@@ -1,0 +1,410 @@
+<html lang="en">
+<!-- Copyright quancy -->
+<head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="../icons/yumao.png" />
+    <link rel="stylesheet" href="../styles/homePage.css" />
+    <link rel="stylesheet" href="../styles/updateLog.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>轻羽标签页</title>
+</head>
+<body>
+    <div class="homeBackGround" id="allPage">
+        <div id="backGroundImg" style="background-size: cover;"></div>
+        <div id="preBackGroundImg" style="background-size: cover;"></div>
+        <div id="mask"></div>
+        <div id="alertTip"></div>
+        <div id="shezhiView">
+            <h2 style="margin: 10px 0 0 0;font-size: 16px;">设置</h2>
+            <span class="shezhiTitle">面板主题</span>
+            <div class="themeCardDiv">
+                <div class="themeCard">
+                    <span class="cardSet" style="background-color: rgb(239 245 252);"></span>
+                    <span class="themeText">默认</span></span>
+                </div>
+                <div class="themeCard">
+                    <span class="cardSet" style="border: 1px solid #e6e5e5;"></span>
+                    <span class="themeText" >透明</span>
+                </div>
+                <div class="themeCard">
+                    <span class="cardSet" style="background-image: linear-gradient(45deg, #f7797d 0%, #c471ed 50%,  #12c2e9 100%)"></span>
+                    <span class="themeText">渐变色</span>
+                </div>
+                <img src="../icons/jiaobiao.svg" id="selectIcon" class="themeIcon">
+            </div>
+            <span class="shezhiTitle">搜索设置</span>
+            <div id="secondDiv" class="shezhiCard">
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">输入时展示历史搜索记录</span>
+                    <input class="mui-switch mui-switch-anim" id="checkHistory" type="checkbox" checked>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">在新标签页中打开链接</span>
+                    <input class="mui-switch mui-switch-anim" id="checkNewTab" type="checkbox" checked>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">搜索框圆角效果</span>
+                    <input type="range" max="20" min="0" id="inputRange">
+                </div>
+            </div>
+            <span class="shezhiTitle">页面效果</span>
+            <div id="firstDiv" class="shezhiCard">
+                <div class="labelDiv">
+                    <span style="vertical-align: middle;display: inline-block;" class="animate__animated animate__lightSpeedInRight">问候语</span>
+                    <img src="../icons/tip.svg" class="tipClass" title="打开新标签页时弹出问候语，清空则不提示" id="showTipIcon1">
+                    <img src="../icons/tishi.svg" class="tipClass" title="打开新标签页时弹出问候语，清空则不提示" id="showTipIcon2">
+                    <input type="text" id="greetingCss"></input>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">提示方式</span>
+                    <select id="noticeCss">
+                        <option value="pop">弹窗提示</option>
+                        <option value="notice">浏览器通知</option>
+                    </select>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">时间标题</span>
+                    <input class="mui-switch mui-switch-anim" id="checkTitle" type="checkbox" checked>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">摸鱼卡片</span>
+                    <input class="mui-switch mui-switch-anim" id="checkCard" type="checkbox" checked>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">樱花特效</span>
+                    <input class="mui-switch mui-switch-anim" id="checkSakura" type="checkbox" checked>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">一言诗词</span>
+                    <input class="mui-switch mui-switch-anim" id="checkPoem" type="checkbox" checked>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">音乐播放</span>
+                    <input class="mui-switch mui-switch-anim" id="checkMusic" type="checkbox" checked>
+                </div>
+                <span class="lineBottomCss"></span>
+                <div class="labelDiv">
+                    <span class="animate__animated animate__lightSpeedInRight displayClass">毛玻璃效果</span>
+                    <input type="range" max="20" min="0" id="glassRange">
+                </div>
+            </div>
+            <span class="shezhiTitle">背景设置</span>
+            <div id="thirdDiv" class="shezhiCard">
+                <span class="shezhiTitle" style="padding-left: 10px;">静态</span>
+                <div id="imgDiv">
+                    <span class="imgBack"><img class="jingtaiImg" src="../icons/firstPhoto.jpeg" /></span>
+                    <span class="imgBack"><img class="jingtaiImg" src="../icons/secondPhoto.jpg" /></span>
+                    <span class="imgBack"><img class="jingtaiImg" src="../icons/thirdPhoto.jpg" /></span>
+                    <span class="imgBack"><img class="jingtaiImg" src="../icons/fourPhoto.jpg" /></span>
+                </div>
+                <div id="imgDivCopy">
+                    <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
+                    <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
+                    <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
+                    <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
+                </div>
+                <span class="shezhiTitle" style="padding-left: 10px;">本地上传</span>
+                <div href="javascript:;" class="upload btnHoverCss">
+                    <span>选择文件</span>
+                    <input class="inputFile" id="inputFile" type="file" accept="image/*"/>
+                </div>
+                <span class="shezhiTitle" style="padding-left: 10px;">随机</span>
+                <div style="text-align: center;z-index: 5;position: relative;padding-bottom: 15px;">
+                    <button id="checkPhoto" class="btnHoverCss"><span>切换Bing壁纸</span></button>
+                </div>
+            </div>
+            <span class="shezhiTitle">智能聊天</span>
+            <img src="../icons/tip.svg" class="tipClass" title="由于国内运营商的屏蔽, 此功能需要挂载代理才可使用" id="showTipIcon3">
+            <img src="../icons/tishi.svg" class="tipClass" title="由于国内运营商的屏蔽, 此功能需要挂载代理才可使用" id="showTipIcon4">
+            <span class="betaClass">Beta</span>
+            <div id="chatDiv" class="shezhiCard">
+                <div class="labelDiv">
+                    <button id="chatgptBtn" class="btnHoverCss"><span>ChatGPT 智能聊天</span></button>
+                </div>
+            </div>
+            <h2 style="margin: 10px 0 0 0;font-size: 16px;">关于</h2>
+            <span class="shezhiTitle" id="addonsHref" style="display: inline-block;">轻羽标签页&nbsp;&nbsp;|&nbsp;&nbsp;Light Feather Tab</span><br/>
+            <span class="shezhiTitle">版本: v1.1.4</span><br/>
+            <span class="shezhiTitle" id="updateLog">更新日志</span><br/>
+            <span class="shezhiTitle">©Copyright&nbsp;&nbsp;<a href="./myself.html" target="_blank" id="myselfBlue">权朝阳</a></span>
+        </div>
+        <div id="timeContent">
+            <div id="showTime">
+                <div id="timeStr"></div>
+                <span id="dateStr"></span>
+            </div>
+            <div id="showTabName">
+                <img id="iconqingyu"/>
+            </div>
+        </div>
+        <div id="centerDiv">
+            <div id="shezhiIcon">
+                <img src="../icons/setting.svg" id="settingIcon"/>
+            </div>
+            <!-- <div id="shezhiIcon"><img src="../icons/chilun.svg" id="settingIcon"/></div> -->
+            <div id="searchTab">
+                <span id="searchTypeDiv">
+                    <img class="typeIcon">
+                </span>
+                <input type="text" id="inputStr" name="word" size="30" autocomplete="on">
+                <span id="sousuoDiv">
+                    <img src="../icons/sousuo.svg" id="sousuoIcon"/>
+                </span>
+                <img src="../icons/deleteIcon.svg" id="deleteIcon"></img>
+            </div>
+            <div id="typeSelect">
+                <div class="selectCss" class="123">
+                    <img src="../icons/baidulogo.svg" class="searchLogoClass">
+                    <span class="searchTypeText">百 度</span>
+                </div>
+                <div class="selectCss">
+                    <img src="../icons/binglogo.png" class="searchLogoClass">
+                    <span class="searchTypeText">必 应</span>
+                </div>
+                <div class="selectCss">
+                    <img src="../icons/googlelogo.PNG" class="searchLogoClass">
+                    <span class="searchTypeText">谷 歌</span>
+                </div>
+                <div class="selectCss">
+                    <img src="../icons/yahoologo.svg" class="searchLogoClass">
+                    <span class="searchTypeText">雅 虎</span>
+                </div>
+                <div class="selectCss">
+                    <img src="../icons/360logo.png" class="searchLogoClass" style="position: relative;left: -4px;">
+                    <span class="searchTypeText">360</span>
+                </div>
+                <div class="selectCss">
+                    <img src="../icons/sougoulogo.png" class="searchLogoClass">
+                    <span class="searchTypeText">搜 狗</span>
+                </div>
+                <div class="selectCss">
+                    <img src="../icons/kaifazhelogo.PNG" class="searchLogoClass">
+                    <span class="searchTypeText" style="padding-left: 0px;right: -6px;margin-left: -2px;position: relative;">开发者</span></span>
+                </div>
+            </div>
+            <div id="searchHistory">
+                <div id="historyText">
+                </div>
+            </div>
+        </div>
+        <div id="navBar">
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/aiqiyi.png');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/taobao.jpeg');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/bilibili.webp');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/jingdong.jpg');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/qqyinyue.PNG');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/wangyiyun.jpg');"></div>
+            <div class="navBarCard"  draggable="true" style="background-image: url('../icons/tengxun.png');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/douyin.PNG');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/zhihu.png');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/youtube.PNG');"></div>
+            <!-- <div id="navBarCardAdd">
+                <img src="../icons/jiahao.svg" style="position: relative;top: 13px;width: 35%;">
+            </div> -->
+        </div>
+        <div id="appDialog">
+            <div class="dialogHead">
+                <img src="../icons/yumao.png" class="logoCss">
+                <span class="logTitle animate__animated animate__lightSpeedInRight">更新日志</span>
+                <img src="../icons/guanbi.svg" id="logDialogDelete">
+            </div>
+            <span class="logLineBottomCss"></span>
+            <div class="dialogContent">
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.1.4</span>
+                        <span class="versionTime">2023-03-23</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 面板主题，可控制设置面板的颜色</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 提示方式，可选择 浏览器通知 或 自定义弹窗提示</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 提供 下载Bing壁纸 功能</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.1.3</span>
+                        <span class="versionTime">2023-03-17</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 开发者搜索 类型，程序员专享搜索方式</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> Chat GPT智能聊天 功能<span class="attentionSpan">注:此功能当前处于测试阶段，由于国内运营商的屏蔽，需要挂载代理才可使用。</span></div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 设置界面弹出卡顿问题、渐变色搭配</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.1.2</span>
+                        <span class="versionTime">2023-03-13</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 查询类型logo切换动画</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 搜索类型下拉框 样式，增加图标展示</div>
+                        <!-- <div class="textStyle">• <span class="optimizeSpan">优化</span> 按钮鼠标划入感知，柔化触感</div> -->
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 静态图片库，新增混色壁纸</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.1.1</span>
+                        <span class="versionTime">2023-03-02</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 摸鱼卡片 功能，在闲暇之余放松心情</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 问候语 提示功能，每次打开页签时弹出提示问候</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 搜索按钮样式 </div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 鼠标悬浮历史搜索记录 时动态效果 </div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.9</span>
+                        <span class="versionTime">2023-02-25</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 本地上传 图片功能</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.8</span>
+                        <span class="versionTime">2023-02-21</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 设置页面抽屉动画，纵享丝滑</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 本地上传 图片功能</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.7</span>
+                        <span class="versionTime">2023-02-10</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 点击查询类型 更换图标的功能</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 静态图片 选中效果</div>
+                        <!-- <div class="textStyle">• <span class="fixSpan">修复</span> 点击随机更换图片 按钮不生效的问题</div> -->
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.6</span>
+                        <span class="versionTime">2023-02-04</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 设置页弹出样式，去除 点击插件弹出设置 功能</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 首页 样式，增加搜索类型</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.5</span>
+                        <span class="versionTime">2023-01-18</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 音乐盒唱片 样式，更换为专辑封面</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 个人主页，增加 更换壁纸 功能</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 音乐 接口，更换为 网易云音乐 随机接口</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 搜索类型下拉框 样式</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.4</span>
+                        <span class="versionTime">2023-01-09</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 百度、谷歌、雅虎、必应、搜狗和360搜索六种搜索引擎</div>
+                        <!-- <div class="textStyle">• <span class="fixSpan">修复</span> 查询诗词 接口，样式优化</div> -->
+                        <div class="textStyle">• <span class="fixSpan">修复</span> 音乐模块点击上一首 功能不生效的问题</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.3</span>
+                        <span class="versionTime">2023-01-03</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 背景图片拍摄信息 模块</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.2</span>
+                        <span class="versionTime">2022-12-26</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 搜索框圆角效果 功能</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 背景图毛玻璃效果 功能</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.1</span>
+                        <span class="versionTime">2022-12-19</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 展示历史搜索记录 功能</div>
+                    </div>
+                </div>
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.0.0</span>
+                        <span class="versionTime">2022-12-12</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="titleSpan">轻羽标签页</span> 1.0.0版本正式起航！</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="chatgptDialog">
+            <div class="gptheadCss">
+                <img src="../icons/openai.webp" class="openaicss"/>
+                <img src="../icons/clearGpt.svg" id="cleargptCss" alt="" title="清空聊天内容">
+                <img src="../icons/guanbi.svg" id="dialogDelete">
+            </div>
+            <iframe src="./chatgpt.html" frameborder="0" width="100%" height="100%" id="gptIframe"></iframe>
+        </div>
+        <div id="poemContent">
+            <div id="poemTitle"></div>
+            <div id="author"></div>
+            <div style="margin-top: 10px;" class="animate__animated animate__bounceInLeft displayClass"><span id="jinrishici-sentence"></span></div>
+        </div>
+        <img id="startIcon" src="../icons/start.svg">
+        <img id="pauseIcon" src="../icons/pause.svg">
+        <div id="music">
+            <img id="gifDom">
+            <span id="musicDom">
+                <audio id="audioDom" controls></audio>
+                <span id="randomMusic">
+                    <img src="../icons/up.svg" id="musicSvgCssUp"/>
+                    <span id="musicName"></span>
+                    <img src="../icons/next.svg" id="musicSvgCssNext"/>
+                </span>
+            </span>
+        </div>
+        <footer class="brief">
+            <span id="photoPosition"></span>
+            <span id="prePhotoPosition"></span>
+            <span id="downloadPhoto">下载Bing壁纸</span>
+        </footer>
+        <div id="myselfDiv">
+            <span id="copyright">
+                <span>©Copyright&nbsp;2023&nbsp;</span>
+                <span id="myself">权朝阳</span>
+            </span>
+        </div>
+        <script src="../scripts/vanilla-tilt.js"></script>
+        <script src="../scripts/homePage.js"></script>
+    </div>
+</body>
+</html>

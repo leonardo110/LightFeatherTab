@@ -1,0 +1,469 @@
+.myselfCss{
+    display: inline-block;
+    top: -75px;
+    position: relative;
+    text-align: left;
+    margin-left: 20px;
+}
+.lineCss{
+    display: inline-block;
+    width: 1px;
+    margin-bottom: 65px;
+    height: 80px;
+    background-color: white;
+    opacity: 0.5;
+}
+.firstCss{
+    font-size: 30px;
+    color: #ffb501;
+    font-family: 'fontface__思源黑体Light__17__944703741718';
+}
+.secondCss{
+    font-size: 40px;
+    color: white;
+    font-family: 'fontface__思源黑体Light__17__944703741718';
+}
+#myselfGroundImg.loaded {
+    transform: scale(1);
+    opacity: 1;
+}
+#myselfGroundImg{
+    width: 100%;
+    height: 100%;
+    background: url('../icons/fanke.jpg') no-repeat;
+    z-index: -100;
+    position: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    transition: transform 1.5s,opacity 1s;
+}
+#skill{
+    position: relative;
+    top: 50%;
+    width: 100%;
+    height: 600px;
+    text-align: center;
+    transition: .25s;
+    background: url('../icons/bijiben.jpg') no-repeat;
+}
+.customModuleRowInner {
+    margin: 0 auto;
+    position: relative;
+    width: 70%;
+    height: 600px;
+}
+.ev-module-edit{
+    width: 300px;
+    height: 129px;
+    left: 0px;
+    top: 175px;
+    position: absolute;
+}
+.ev-module-photo{
+    width: 700px;
+    height: 470px;
+    right: 0;
+    top: 65px;
+    position: absolute;
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-around;
+    justify-content: space-around;
+}
+.baifenbi{
+    color: white;
+    margin: 20px 93px 0px 45px;
+    font-size: 55px;
+    font-weight: 700;
+}
+.kuangjiaIcon{
+    vertical-align: middle;
+    width: 55px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.lineDiv{
+    background-color: white;
+    width: 35px;
+    height: 5px;
+    left: 63px;
+    top: 120px;
+    position: absolute;
+}
+.divAll{
+    width: 330px;
+    height: 220px;
+    background-color: #353235;
+    position: relative;
+}
+.divAll:hover{
+    cursor: pointer;
+    /* transform: scale(1.03); */
+    transition-duration: 0.1s;
+    /* background: #ffb303; */
+    color: white;
+}
+.skillText{
+    font-size: 16px;
+    color: white;
+    bottom: 55px;
+    left: 63px;
+    position: absolute;
+}
+.ev-module-edit-box1{
+    width: 186px;
+    height: 42px;
+    left: 0px;
+    top: 0px;
+    font-size: 30px;
+    color: #FFFFFF;
+}
+.ev-module-edit-box2{
+    width: 60px;
+    height: 3px;
+    left: 20px;
+    top: 60px;
+    background: #ffb303;
+    position: absolute;
+}
+.ev-module-edit-box3{
+    width: 186px;
+    height: 42px;
+    position: absolute;
+    font-size: 30px;
+    color: #ffb303;
+    left: -15px;
+    top: 80px;
+}
+html, body { scroll-behavior:smooth; }
+body{
+    margin: 0;
+    overflow-x: hidden;
+}
+#navTopMenu.sticky, #navMenu {
+    background-color: rgb(255 255 255 / 80%);
+    -webkit-backdrop-filter: blur(30px) saturate(180%);
+    backdrop-filter: blur(30px) saturate(180%);
+}
+
+#navTopMenu.sticky {
+    z-index: 99;
+    position: absolute;
+    height: 82px;
+    box-shadow: rgb(0 0 0 / 10%) 0 5px 20px;
+}
+#navTopMenu {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 90px;
+    transition: .25s;
+}
+#navMenuDiv {
+    position: absolute;
+    top: 20px;
+    left: 100px;
+    font-size: 0;
+    transition: .25s;
+}
+#logoIcon, #logoContent {
+    display: inline-block;
+    height: 45px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: left center;
+    transition: .25s;
+}
+#logoIcon {
+    width: 45px;
+    height: 45px;
+    background: url('../icons/Qimg.jpg') no-repeat;
+    border-radius: 10px;
+    vertical-align: middle;
+}
+.quancy{
+    border-radius: 10px;
+    width: 100%;
+    height: 100%;
+}
+#logoContent {
+    font-size: 30px;
+    font-family: STLiti;
+    font-weight: 600;
+    color: white;
+    padding-left: 10px;
+    position: absolute;
+    line-height: 45px;
+}
+#moreBtn{
+    cursor: pointer;
+}
+#hrefDiv {
+    position: absolute;
+    right: 65px;
+    top: 30px;
+    white-space: nowrap;
+    transition: .25s;
+}
+#hrefDiv a:hover{
+    color: #ffb401;
+}
+#navTopMenu .hrefText {
+    margin: 0 10px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 15px;
+}
+.hrefText {
+    position: relative;
+    cursor: pointer;
+    transition: .25s;
+}
+#iconTheme {
+    padding: 5px;
+    border-radius: 50%;
+    border: 1px solid transparent;
+    color: #ffb501;
+    background-color: #fff;
+    transition: .25s;
+}
+i {
+    font-family: iconfont!important;
+    font-style: normal;
+    -webkit-font-smoothing: antialiased;
+    -webkit-text-stroke-width: 0;
+    -moz-osx-font-smoothing: grayscale;
+}
+a {
+    text-decoration: none;
+    transition: .25s;
+}
+#topTitle {
+    top: 30%;
+    text-align: center;
+    width: 100%;
+    padding-top: 15%;
+}
+h1 {
+    font-weight: 400;
+    font-size: 76px;
+    color: #fff;
+}
+.underline {
+    position: absolute;
+    left: 43%;
+    margin-top: 10px;
+    color: white;
+    font-family: math;
+    font-size: 18px;
+}
+h2 {
+    font-weight: 400;
+    font-size: 15px;
+    color: #fff;
+}
+h2 span {
+    color: rgba(255,255,255,.6);
+}
+.textColor{
+    color: #ffb501;
+    font-size: 18px;
+}
+#scrollDown {
+    position: absolute;
+    bottom: 100px;
+    width: 100%;
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
+#scrollDownIcon {
+    position: absolute;
+    top: 50px;
+    left: calc(50% - 10px);
+    border-right: 3px solid;
+    border-top: 3px solid;
+    border-color: rgba(255,255,255,.5);
+    border-radius: 2px;
+    box-sizing: unset;
+    height: 20px;
+    width: 20px;
+    -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    cursor: pointer;
+    transition: .25s;
+    animation: twinkle 2s 2s;
+}
+#tagContent {
+    background-color: white;
+}
+#welcome{
+    background-color: white;
+    height: 220px;
+    position: relative;
+    top: 50%;
+    width: 100%;
+    text-align: center;
+}
+.centerWel{
+    width: 60%;
+    height: 220px;
+    margin: auto;
+}
+.desc{
+    width: 33.3%;
+    text-align: center;
+    float: left;
+    height: 220px;
+    line-height: 220px;
+    color: rgb(106 106 106);
+    text-align: center;
+}
+.underlineCss{
+    width: 50px;
+    height: 3px;
+    background: #ffb401;
+    display: inline-block;
+    position: relative;
+    top: 20px;
+    right: 117px;
+}
+.zuoyouming{
+    width: 270px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+}
+.zuoyoumingText{
+    font-size: 18px;
+    display: inline-block;
+    padding-top: 10px;
+}
+.desc button{
+    width: 145px;
+    position: absolute;
+    height: 45px;
+    top: 15px;
+    border-radius: 25px;
+    margin-top: 10px;
+    bottom: 0;
+    border: 1px solid #ffb303;
+    margin: auto;
+    background: #ffb303;
+    color: white;
+    font-size: 18px;
+}
+#tagContent, footer {
+    position: relative;
+    top: 50%;
+    width: 100%;
+    padding-top: 80px;
+    padding-bottom: 100px;
+    text-align: center;
+    transition: .25s;
+}
+h3 {
+    font-size: 30px;
+    color: #000000;
+    transition: .25s;
+}
+.lineBottom {
+    position: absolute;
+    left: calc(50% - 25px);
+    margin-top: -10px;
+    width: 50px;
+    height: 3px;
+    background-color: #ffb501;
+}
+.curTag {
+    position: relative;
+    margin-top: 60px;
+    width: 100%;
+    font-size: small;
+}
+.curTag span {
+    background-color: #ffb303;
+    margin: 0 3px;
+    padding: 15px 65px;
+    border-radius: 5px;
+    color: white;
+    transition: .25s;
+    font-size: 16px;
+    font-weight: 600;
+    display: inline-block;
+}
+.curTag span:hover{
+    transform: scale(1.03);
+    cursor: pointer;
+}
+.aboutContent {
+    position: relative;
+    margin-top: 35px;
+    width: 100%;
+    color: rgb(0 0 0 / 80%);
+    font-size: 14px;
+}
+p {
+    transition: .25s;
+}
+footer div {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    vertical-align: top;
+    padding: 0 50px;
+}
+footer p {
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 10px;
+    color: #fff;
+}
+footer a {
+    position: relative;
+    border-bottom: 1px solid transparent;
+    color: #fff;
+    cursor: pointer;
+    font-size: 12px;
+    margin: 1px 0px;
+    display: inline-block;
+}
+footer a:hover{
+    text-decoration:underline;
+    color: #ffb501;
+}
+#copyright p {
+    font-size: 12px;
+    font-weight: initial;
+}
+::-webkit-scrollbar {
+    /*滚动条整体样式*/
+    width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 3px;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #ffb501;
+    background-image: -webkit-linear-gradient(
+        45deg,
+        rgba(255, 255, 255, 0.2) 25%,
+        transparent 25%,
+        transparent 50%,
+        rgba(255, 255, 255, 0.2) 50%,
+        rgba(255, 255, 255, 0.2) 75%,
+        transparent 75%,
+        transparent
+    );
+    /*滚动条里面小方块*/
+    border-radius: 10px;
+}
+::-webkit-scrollbar-track {
+    background: white;
+    border-radius: 10px;
+    /*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+}
