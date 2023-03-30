@@ -184,6 +184,8 @@ function registFunc () {
         if (!showDialog) {
             closeView()
         }
+        getEleById('searchTypeDiv').style.display = 'none'
+        getEleById('sousuoDiv').style.display = 'none'
     }
     // 输入框查询
     getEleById('sousuoDiv').onclick = () => {
@@ -229,6 +231,10 @@ function registFunc () {
     getEleById('inputStr').onfocus = (event) => {
         getEleById('typeSelect').style.display = 'none'
         getEleById('searchTab').style.opacity = 1
+        getEleById('inputStr').style.padding = '0px 45px'
+        getEleById('deleteIcon').style.right = '40px'
+        getEleById('searchTypeDiv').style.display = 'inline-block'
+        getEleById('sousuoDiv').style.display = 'inline-block'
         setTimeout(() => {
             if (handlerStorage('historyCheck') === 'true') {
                 let xx = getEleById('searchHistory')
@@ -244,6 +250,8 @@ function registFunc () {
         setTimeout(() => {
             getEleById('searchHistory').style.display = 'none'
             getEleById('deleteIcon').style.display = 'none'
+            getEleById('inputStr').style.padding = '0px 15px'
+            getEleById('deleteIcon').style.right = '15px'
         }, 100)
     }
     // 输入框改变事件
@@ -560,7 +568,7 @@ function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'
     if (!version) {
-        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>v1.1.4</span>" : " v1.1.4") + "版本", 5000)
+        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>v1.1.5</span>" : " v1.1.5") + "版本", 5000)
         handlerStorage('version', true)
     }
 }
@@ -603,13 +611,15 @@ function downloadIamge() {
     } else {
         image.src = backgroundImgUrl
     }
-    // image.src = handlerStorage('viewFlag') === 'false' ? preBackgroundImgUrl : backgroundImgUrl
 }
 /**
  * 主题设置
  */
 function setTheme () {
     const cardDomList = getEleByClass('cardSet')
+    if (handlerStorage('theme') === 'dark') {
+        cardDomList[3].style.border = '1px solid white'
+    }
     for(let v = 0;v < cardDomList.length; v++) {
         const temp = cardDomList[v]
         temp.onclick = () => {
@@ -617,8 +627,14 @@ function setTheme () {
                 handlerStorage('theme', 'default')
             } else if (v === 1) {
                 handlerStorage('theme', 'lucency')
-            } else {
+            } else if (v === 2) {
                 handlerStorage('theme', 'gradient')
+            } else {
+                temp.style.border = '1px solid white'
+                handlerStorage('theme', 'dark')
+            }
+            if ([0,1,2].includes(v)) {
+                cardDomList[3].style.border = '0px'
             }
             initTheme()
         }
@@ -645,7 +661,6 @@ function initTheme () {
     getEleById('addonsHref').style.color = themeVal === 'default' ? '#409eff' : '#ffe643'
     if (themeVal === 'default') {
         themeCardDiv.style.backgroundColor = 'white'
-        // noticeCardDiv.style.backgroundColor = 'white'
         for (let a = 0; a < shezhiCard.length; a++) {
             shezhiCard[a].style.backgroundColor = 'white'
         }
@@ -654,7 +669,7 @@ function initTheme () {
             btnHoverCss[b].style.color = '#409eff'
             btnHoverCss[b].style.background = 'white'
         }
-        iconDom.style.left = '52px'
+        iconDom.style.left = '39px'
         iconDom.style.bottom = '35px'
         shezhiView.style['backdrop-filter'] = ''
         shezhiView.style.backgroundColor = 'rgb(239 245 252)'
@@ -662,7 +677,6 @@ function initTheme () {
         shezhiView.removeAttribute('class', 'thirdTheme')
     } else {
         themeCardDiv.style.backgroundColor = ''
-        // noticeCardDiv.style.backgroundColor = ''
         for (let a = 0; a < shezhiCard.length; a++) {
             shezhiCard[a].style.backgroundColor = ''
         }
@@ -674,15 +688,21 @@ function initTheme () {
         shezhiView.style.backgroundColor = ''
         shezhiView.style.color = 'white'
         if (themeVal === 'lucency') {
-            iconDom.style.left = '157px'
+            iconDom.style.left = '118px'
             iconDom.style.bottom = '34px'
             shezhiView.style['backdrop-filter'] = 'blur(25px)'
             shezhiView.removeAttribute('class', 'thirdTheme')
-        } else {
-            iconDom.style.left = '262px'
+        } else if (themeVal === 'gradient') {
+            iconDom.style.left = '197px'
             iconDom.style.bottom = '36px'
             shezhiView.style['backdrop-filter'] = ''
             shezhiView.setAttribute('class', 'thirdTheme')
+        } else {
+            iconDom.style.left = '276px'
+            iconDom.style.bottom = '34px'
+            shezhiView.style['backdrop-filter'] = ''
+            shezhiView.style.backgroundColor = '#363636'
+            shezhiView.removeAttribute('class', 'thirdTheme')
         }
     }
 }

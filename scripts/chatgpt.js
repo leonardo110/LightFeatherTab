@@ -1,7 +1,6 @@
 const row = document.querySelector('.container')
 const input = document.querySelector('.inputText')
-const sk = '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'
-// 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
+const sk = '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'
 let inputDataStr
 let msgList = []
 // 获取sk内容
