@@ -572,9 +572,9 @@ function registFunc () {
 function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'
-    if (!version) {
+    if (version !== '1.1.5') {
         popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>v1.1.5</span>" : " v1.1.5") + "版本", 5000)
-        handlerStorage('version', true)
+        handlerStorage('version', '1.1.5')
     }
 }
 // 下载壁纸
