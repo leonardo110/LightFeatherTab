@@ -149,14 +149,14 @@ function registFunc () {
         element.innerHTML = ''
     }
     // 打开chatgpt窗口
-    getEleById('chatgptBtn').onclick = () => {
-        handlerStorage('clearGpt', false)
-        getEleById('chatgptDialog').style.display = 'block'
-        closeView()
-        setTimeout(() => {
-            changeGPT_height()
-        }, 0)
-    }
+    // getEleById('chatgptBtn').onclick = () => {
+    //     handlerStorage('clearGpt', false)
+    //     getEleById('chatgptDialog').style.display = 'block'
+    //     closeView()
+    //     setTimeout(() => {
+    //         changeGPT_height()
+    //     }, 0)
+    // }
     window.addEventListener('resize', () => {
         changeGPT_height()
     });
@@ -184,8 +184,11 @@ function registFunc () {
         if (!showDialog) {
             closeView()
         }
-        getEleById('searchTypeDiv').style.display = 'none'
-        getEleById('sousuoDiv').style.display = 'none'
+        const val =  getEleById('inputStr').value
+        if (!val) {
+            getEleById('searchTypeDiv').style.display = 'none'
+            getEleById('sousuoDiv').style.display = 'none'
+        }
     }
     // 输入框查询
     getEleById('sousuoDiv').onclick = () => {
@@ -250,8 +253,10 @@ function registFunc () {
         setTimeout(() => {
             getEleById('searchHistory').style.display = 'none'
             getEleById('deleteIcon').style.display = 'none'
-            getEleById('inputStr').style.padding = '0px 15px'
-            getEleById('deleteIcon').style.right = '15px'
+            if (!event.target.value) {
+                getEleById('inputStr').style.padding = '0px 15px'
+                getEleById('deleteIcon').style.right = '15px'
+            }
         }, 100)
     }
     // 输入框改变事件
@@ -653,8 +658,8 @@ function initTheme () {
     // tip图标
     getEleById('showTipIcon1').style.display = themeVal === 'default' ? 'none' : 'inline-block'
     getEleById('showTipIcon2').style.display = themeVal === 'default' ? 'inline-block' : 'none'
-    getEleById('showTipIcon3').style.display = themeVal === 'default' ? 'none' : 'inline-block'
-    getEleById('showTipIcon4').style.display = themeVal === 'default' ? 'inline-block' : 'none'
+    // getEleById('showTipIcon3').style.display = themeVal === 'default' ? 'none' : 'inline-block'
+    // getEleById('showTipIcon4').style.display = themeVal === 'default' ? 'inline-block' : 'none'
     // 切换字体颜色防止刺眼
     getEleById('myselfBlue').style.color = themeVal === 'default' ? '#409eff' : '#ffe643'
     getEleById('updateLog').style.color = themeVal === 'default' ? '#409eff' : '#ffe643'
