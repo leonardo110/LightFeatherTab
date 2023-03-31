@@ -564,6 +564,21 @@ function registFunc () {
         handlerStorage('searchType', 'baidu')
     }
 }
+
+// 进度条
+function progressFunc () {
+    const widthDom = getEleById('progress').style
+    let num = 0
+    let progress = setInterval(() => {
+        widthDom.width = num++ + '%'
+        if (num === 101) {
+            clearInterval(progress)
+        }
+    }, 20)
+}
+
+
+
 function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'

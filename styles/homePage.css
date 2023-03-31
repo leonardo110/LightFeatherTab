@@ -1,4 +1,9 @@
 
+#progress{
+    width: 0px;
+    height: 2px;
+    background-color: greenyellow;
+}
 #addonsHref{
     cursor: pointer;
 }
