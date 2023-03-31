@@ -5,8 +5,6 @@ let musicAuther = ''
 let musicIdList = []
 let upMusicId = ''
 let showDialog = false
-let backgroundImgUrl = ''
-let preBackgroundImgUrl = ''
 const musicTypeList = ['热歌榜', '飙升榜', '热歌榜', '原创']
 const typeList = [
     {
@@ -130,8 +128,7 @@ function registFunc () {
     }
     // 下载壁纸
     getEleById('downloadPhoto').onclick = () => {
-        const viewFlag = handlerStorage('viewFlag') || 'true'
-        downloadIamge(viewFlag === 'true' ? '#preBackGroundImg' : '#backGroundImg')
+        downloadImage()
     }
     // 清空聊天窗口内容
     getEleById('cleargptCss').onclick = () => {
@@ -363,7 +360,7 @@ function registFunc () {
         getEleById('shezhiView').style.display = 'block'
         setTimeout(() => {
             const dom = getEleById('glassRange')
-            dom.value = handlerStorage('glassCheck') || 10
+            dom.value = handlerStorage('glassCheck')
             const rangeDom = getEleById('inputRange')
             rangeDom.value = handlerStorage('inputRangeVal') || 20
             const searchTab = getEleById('searchTab')
@@ -533,7 +530,6 @@ function registFunc () {
     let photoDom = getEleById('checkPhoto')
     if (photoDom) {
         getEleById('checkPhoto').onclick = () => {
-            handlerStorage('imgObj', null)
             getEleById('downloadPhoto').style.display = 'inline-block'
             // 清除掉选中效果
             const length = getEleByClass('jingtaiImg').length
@@ -542,7 +538,6 @@ function registFunc () {
                 getEleByClass('imgBack')[y].style.filter = ''
             }
             getDataInfo('https://api.vvhan.com/api/bing?type=json&rand=sj', 'img');
-            // turnPhoto()
         }
     }
     // 是否新标签页打开
@@ -578,7 +573,7 @@ function updateVersionTip () {
     }
 }
 // 下载壁纸
-function downloadIamge() {
+function downloadImage() {
     var image = new Image()
     // 解决跨域 Canvas 污染问题
     // crossorigin 是HTML5中新增的<img>标签属性
@@ -607,15 +602,8 @@ function downloadIamge() {
         // 触发a的单击事件
         a.dispatchEvent(event);
     }
-    if (handlerStorage('viewFlag') === 'false') {
-        if (!preBackgroundImgUrl) {
-            image.src = backgroundImgUrl
-        } else {
-            image.src = preBackgroundImgUrl
-        }
-    } else {
-        image.src = backgroundImgUrl
-    }
+    const obj = JSON.parse(handlerStorage('imgObj'))
+    image.src = obj.url
 }
 /**
  * 主题设置
@@ -655,6 +643,10 @@ function initTheme () {
     // const noticeCardDiv = getEleByClass('noticeCardDiv')[0]
     const shezhiCard = getEleByClass('shezhiCard')
     const btnHoverCss = getEleByClass('btnHoverCss')
+    const uploadBlue = getEleById('uploadBlue').style
+    const uploadWhite = getEleById('uploadWhite').style
+    const refreshBlue = getEleById('refreshBlue').style
+    const refreshWhite = getEleById('refreshWhite').style
     // tip图标
     getEleById('showTipIcon1').style.display = themeVal === 'default' ? 'none' : 'inline-block'
     getEleById('showTipIcon2').style.display = themeVal === 'default' ? 'inline-block' : 'none'
@@ -680,6 +672,10 @@ function initTheme () {
         shezhiView.style.backgroundColor = 'rgb(239 245 252)'
         shezhiView.style.color = '#787878'
         shezhiView.removeAttribute('class', 'thirdTheme')
+        uploadBlue.display = 'inline-block'
+        uploadWhite.display = 'none'
+        refreshBlue.display = 'inline-block'
+        refreshWhite.display = 'none'
     } else {
         themeCardDiv.style.backgroundColor = ''
         for (let a = 0; a < shezhiCard.length; a++) {
@@ -692,6 +688,10 @@ function initTheme () {
         }
         shezhiView.style.backgroundColor = ''
         shezhiView.style.color = 'white'
+        uploadBlue.display = 'none'
+        uploadWhite.display = 'inline-block'
+        refreshBlue.display = 'none'
+        refreshWhite.display = 'inline-block'
         if (themeVal === 'lucency') {
             iconDom.style.left = '118px'
             iconDom.style.bottom = '34px'
@@ -909,7 +909,7 @@ function imgHandler(url, title) {
     const photoPosElem = viewFlag === 'true' ? prePhotoPos : photoPos;
     
     bgImgElem.style.backgroundImage = `url(${url})`;
-    photoPosElem.innerText = `拍摄于: ${title}`;
+    photoPosElem.innerText = ` : ${title}`;
     bgImgElem.style.backgroundSize = 'cover';
 }
 
@@ -1103,18 +1103,13 @@ function loadPhoto () {
                 getEleById('prePhotoPosition').innerText = ''
                 getEleById('downloadPhoto').style.display = 'none'
             } else {
-                getEleById('photoPosition').innerText = '拍摄于: ' + imgObj.title
+                getEleById('photoPosition').innerText = ' : ' + imgObj.title
             }
             // 如果是静态，则选中(效果)
             if (imgObj.url.indexOf('chrome-extension') !== -1) {
                 const index = getItem(imgObj.url).index
                 getEleByClass('greenRight')[index].style.zIndex = 1
                 getEleByClass('imgBack')[index].style.filter = 'blur(1px)'
-            } else {
-                setTimeout(() => {
-                    handlerStorage('viewFlag', false)
-                    getDataInfo('https://api.vvhan.com/api/bing?type=json&rand=sj', 'img');
-                },1500)
             }
         }
     } else {
@@ -1185,12 +1180,12 @@ function getDataInfo(urlStr, flag) {
             } else if (flag === 'img') {
                 // 背景图信息
                 imgHandler(parseJson.data.url, parseJson.data.title)
-                if (handlerStorage('viewFlag') === 'false') {
-                    backgroundImgUrl = parseJson.data.url
-                } else {
-                    preBackgroundImgUrl = parseJson.data.url
-                }
                 turnPhoto()
+                const obj = {
+                    url: parseJson.data.url,
+                    title: parseJson.data.title
+                }
+                handlerStorage('imgObj', JSON.stringify(obj))
             } else if (flag === 'poem') {
                 // 诗词信息
                 getEleById('jinrishici-sentence').innerText = parseJson.hitokoto
@@ -1342,9 +1337,9 @@ function backgroundGlass (event) {
     let curVal
     const num = Number(handlerStorage('glassCheck'))
     if (num === NaN) {
-        curVal = 10
+        curVal = 0 + ''
     }
-    curVal = event?.target?.value || num || 10
+    curVal = event?.target?.value || num + ''
     if (curVal > 0) {
         curBack1.style.transform = 'scale(1.1) translateX(0)';
         curBack1.style.filter = 'blur(' + curVal + 'px) brightness(0.8)';

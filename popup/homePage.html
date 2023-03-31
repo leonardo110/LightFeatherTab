@@ -117,12 +117,19 @@
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">本地上传</span>
                 <div href="javascript:;" class="upload btnHoverCss">
-                    <span>选择文件</span>
+                    <!-- <span>选择文件</span> -->
+                    <img src="../icons/uploadBlue.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="uploadBlue">
+                    <img src="../icons/uploadWhite.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="uploadWhite">
+                    &nbsp;选择文件
                     <input class="inputFile" id="inputFile" type="file" accept="image/*"/>
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">随机</span>
                 <div style="text-align: center;z-index: 5;position: relative;padding-bottom: 15px;">
-                    <button id="checkPhoto" class="btnHoverCss"><span>切换Bing壁纸</span></button>
+                    <button id="checkPhoto" class="btnHoverCss">
+                        <img src="../icons/refreshBlue.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="refreshBlue">
+                        <img src="../icons/refreshWhite.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="refreshWhite">
+                        <span>&nbsp;切换Bing壁纸</span>
+                    </button>
                 </div>
             </div>
             <!-- <span class="shezhiTitle">智能聊天</span>
@@ -407,6 +414,7 @@
             </span>
         </div>
         <footer class="brief">
+            <img src="../icons/shoot.svg" style="vertical-align: middle;margin-bottom: 3px;">
             <span id="photoPosition"></span>
             <span id="prePhotoPosition"></span>
             <span id="downloadPhoto">下载Bing壁纸</span>

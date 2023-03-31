@@ -622,6 +622,7 @@ header img{
     font-size: 12px;
 }
 #downloadPhoto {
+    margin-left: 10px;
     color: #ffe643;
 }
 #downloadPhoto:hover{
@@ -1000,16 +1001,15 @@ li {
     right: 20px;
 }
 #photoPosition{
-    backdrop-filter: blur(10px)!important;
-    padding: 5px 10px;
-    border-radius: 50px;
     display: inline-block;
 }
 #prePhotoPosition{
-    backdrop-filter: blur(10px)!important;
-    padding: 5px 10px;
-    border-radius: 50px;
     display: none;
+}
+.brief{
+    padding: 5px 10px;
+    backdrop-filter: blur(10px)!important;
+    border-radius: 50px;
 }
 .hans-container {
     height: 60px !important;
