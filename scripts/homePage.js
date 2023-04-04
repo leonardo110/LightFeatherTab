@@ -398,7 +398,7 @@ function registFunc () {
                 // 赋值给问候输入框
                 greetDom.value = handlerStorage('greetContent')
                 greetDom.onblur = (event) => {
-                    handlerStorage('greetContent', event.target.value)
+                    handlerStorage('greetContent', event.target.value.trim())
                 }
             }
             getEleById('navBar').style.zIndex = -1
@@ -531,6 +531,7 @@ function registFunc () {
     if (photoDom) {
         getEleById('checkPhoto').onclick = () => {
             getEleById('downloadPhoto').style.display = 'inline-block'
+            getEleById('shootIcon').style.display = 'inline-block'
             // 清除掉选中效果
             const length = getEleByClass('jingtaiImg').length
             for (let y = 0; y < length; y++) {
@@ -775,7 +776,7 @@ function createFunc () {
     // 初始化是否显示问候语
     setTimeout(() => {
         const greetVal = handlerStorage('greetContent')
-        if (greetVal) {
+        if (greetVal.trim()) {
             popTip((new Date().getHours() < 12 ? '上午好, ' : new Date().getHours() < 20 ? '下午好，' : '晚上好，') + greetVal)
         }
         // 版本更新提醒
@@ -1117,6 +1118,7 @@ function loadPhoto () {
             if (!imgObj.title) {
                 getEleById('prePhotoPosition').innerText = ''
                 getEleById('downloadPhoto').style.display = 'none'
+                getEleById('shootIcon').style.display = 'none'
             } else {
                 getEleById('photoPosition').innerText = ' : ' + imgObj.title
             }
@@ -1132,6 +1134,7 @@ function loadPhoto () {
         getEleById('backGroundImg').style.background = "url('../icons/firstPhoto.jpeg')";
         getEleById('backGroundImg').style.backgroundSize = "cover";
         getEleById('downloadPhoto').style.display = 'none'
+        getEleById('shootIcon').style.display = 'none'
         getEleByClass('greenRight')[0].style.zIndex = 1
         getEleByClass('imgBack')[0].style.filter = 'blur(1px)'
     }
