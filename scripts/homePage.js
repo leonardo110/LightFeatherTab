@@ -776,7 +776,7 @@ function createFunc () {
     // 初始化是否显示问候语
     setTimeout(() => {
         const greetVal = handlerStorage('greetContent')
-        if (greetVal.trim()) {
+        if (greetVal && greetVal.trim()) {
             popTip((new Date().getHours() < 12 ? '上午好, ' : new Date().getHours() < 20 ? '下午好，' : '晚上好，') + greetVal)
         }
         // 版本更新提醒
