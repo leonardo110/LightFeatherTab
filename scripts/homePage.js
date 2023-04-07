@@ -130,6 +130,49 @@ vanillaTiltFunc('.navBarCard')
 // 注册主题点击事件
 setTheme()
 
+
+function sendEmail () {
+    var templateParams = {
+        name: 'James',
+        message: 'Check this out!'
+    };
+    emailjs.send('service_1zz86vm', 'template_rky5kdc', templateParams, 'EQSAYp0RBmmQ4TNLQ')
+    .then(function(response) {
+        console.log('SUCCESS!', response.status, response.text);
+    }, function(error) {
+        console.log('FAILED...', error);
+    });
+}
+
+function sendEmailNew(urlStr) {
+    //第一步：建立所需的对象
+    let httpRequest = new XMLHttpRequest();
+    httpRequest.open('POST', urlStr, true);
+    httpRequest.setRequestHeader("Content-Type", "application/json")
+    httpRequest.setRequestHeader("accessToken", 'pvs-WoCFVPrHTVP2yXQ0a')
+    var data = {
+        service_id: 'service_1zz86vm',
+        template_id: 'template_rky5kdc',
+        user_id: '4TTOyipOWaFt3nIgq',
+        template_params: {
+            'from_name': 'James',
+            'from_message': '03AHJ_ASjnLA214KSNKFJAK12sfKASfehbmfd...'
+        }
+    };
+    httpRequest.onreadystatechange = () => {
+        if (httpRequest.readyState === 4) {
+            if (httpRequest.status === 200) {
+                var json = httpRequest.responseText; //获取到json字符串，还需解析
+                var parseJson = JSON.parse(json)
+            }
+        }
+    }
+    //第三步：发送请求
+    httpRequest.send(JSON.stringify(data));
+}
+// sendEmailNew('https://api.emailjs.com/api/v1.0/email/send')
+
+
 // 初始化注册各种鼠标事件
 function registFunc () {
     // 壁纸库
@@ -240,6 +283,7 @@ function registFunc () {
     }
     // 遮罩层点击事件
     getEleById('mask').onclick = () => {
+        // sendEmail()
         if (!showLogDialog && !showGallery) {
             closeView()
         }
@@ -628,8 +672,10 @@ function registFunc () {
     }
 }
 
+// 查询新一页或者新类型的图片数据
 function getGalleryPhoto () {
     const galleryBtnList = getEleByClass('galleryBtnCss')
+    const pageNo = getEleById('pageNum')
     for (let v = 0; v < galleryBtnList.length; v++) {
         const cur = galleryBtnList[v]
         cur.onclick = () => {
@@ -639,19 +685,21 @@ function getGalleryPhoto () {
             } else {
                 curPage > 1 && curPage--
             }
+            pageNo.innerText = `第 ${curPage} 页`
             xy !== curPage &&
             getDataInfo(`http://wp.birdpaper.com.cn/intf/GetListByCategory?cids=${photoTypeId}&pageno=${curPage}&count=16`, 'gallery')
         }
     }
+    pageNo.innerText = `第 ${curPage} 页`
     getDataInfo(`http://wp.birdpaper.com.cn/intf/GetListByCategory?cids=${photoTypeId}&pageno=${curPage}&count=16`, 'gallery')
 }
 // 进度条
 function progressFunc () {
     const widthDom = getEleById('progress').style
-    let num = 450
+    let num = 400
     let progress = setInterval(() => {
         widthDom.width = num++ + 'px'
-        if (num === 662) {
+        if (num === 663) {
             clearInterval(progress)
             widthDom.width = '0px'
             let content = getEleById('insideContent')
@@ -662,6 +710,7 @@ function progressFunc () {
     }, 5)
 }
 
+// 更新版本提示
 function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'
@@ -1569,7 +1618,12 @@ function createEle (ele) {
     return document.createElement(ele)
 }
 
-// 缓存获取与塞值
+/**
+ * 缓存获取与塞值
+ * @param {*} key 
+ * @param {*} value 
+ * @returns 
+ */
 function handlerStorage (key, value) {
     if (value === undefined) {
         return localStorage.getItem(key)
@@ -1577,7 +1631,11 @@ function handlerStorage (key, value) {
     return localStorage.setItem(key, value)
 }
 
-// 获取静态图片对象
+/**
+ * 获取静态图片对象
+ * @param {*} data 
+ * @returns 
+ */
 function getItem (data) {
     const obj = imgList.find((item) => {
         return data.indexOf(item.dis) !== -1
@@ -1585,6 +1643,10 @@ function getItem (data) {
     return obj
 }
 
+/**
+ * 组装图片库dom
+ * @param {} rsp 
+ */
 function setGalleryContent (rsp) {
     if (rsp && rsp.list) {
         galleryList = [...rsp.list]
@@ -1617,6 +1679,12 @@ function setGalleryContent (rsp) {
                 turnPhoto('gallery')
                 getEleById('downloadPhoto').style.display = 'inline-block'
                 getEleById('shootIcon').style.display = 'inline-block'
+                // 清除掉选中效果
+                const length = getEleByClass('jingtaiImg').length
+                for (let y = 0; y < length; y++) {
+                    getEleByClass('greenRight')[y].style.zIndex = -1
+                    getEleByClass('imgBack')[y].style.filter = ''
+                }
             }
         })
         content.style.display = 'none'
@@ -1624,7 +1692,11 @@ function setGalleryContent (rsp) {
 
 }
 
-// 调用相关接口进行查询
+/**
+ * 调用相关接口进行查询
+ * @param {*} urlStr 
+ * @param {*} flag 
+ */
 function getDataInfo(urlStr, flag) {
     //第一步：建立所需的对象
     let httpRequest = new XMLHttpRequest();

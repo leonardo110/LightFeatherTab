@@ -599,10 +599,13 @@ header img{
     transition-duration: 0.1s;
 }
 .lineBottomCss{
-    width: 100%;
+    width: 295px;
     display: inline-block;
     height: 1px;
-    background: #eeeef1;
+    left: 50%;
+    background: rgb(218 216 216);
+    position: relative;
+    transform: translateX(-50%);
 }
 #imgDiv{
     display: flex;

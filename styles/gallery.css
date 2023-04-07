@@ -42,7 +42,7 @@
     transform: scale(1.06);
     transition-duration: 0.3s;
 }
-.lineBottomCss{
+.galleryLineBottomCss{
     width: 660px;
     display: inline-block;
     height: 1px;
@@ -109,6 +109,13 @@
 }
 #gallerysSelectCss option{
     color: #5a5858;
+}
+.pageNumss{
+    display: inline-block;
+    float: right;
+    padding-right: 10px;
+    font-size: 14px;
+    padding-top: 15px;
 }
 .loading{
     width: 80px;
