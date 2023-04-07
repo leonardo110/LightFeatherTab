@@ -5,12 +5,12 @@
     <link rel="icon" href="../icons/titleLogo.png" />
     <link rel="stylesheet" href="../styles/homePage.css" />
     <link rel="stylesheet" href="../styles/updateLog.css" />
+    <link rel="stylesheet" href="../styles/gallery.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>轻羽标签页</title>
 </head>
 <body>
     <div class="homeBackGround" id="allPage">
-        <!-- <div id="progress"></div> -->
         <div id="backGroundImg" style="background-size: cover;"></div>
         <div id="preBackGroundImg" style="background-size: cover;"></div>
         <div id="mask"></div>
@@ -125,11 +125,19 @@
                     <input class="inputFile" id="inputFile" type="file" accept="image/*"/>
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">随机</span>
-                <div style="text-align: center;z-index: 5;position: relative;padding-bottom: 15px;">
+                <div style="text-align: center;z-index: 5;position: relative;">
                     <button id="checkPhoto" class="btnHoverCss">
-                        <img src="../icons/refreshBlue.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="refreshBlue">
-                        <img src="../icons/refreshWhite.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="refreshWhite">
-                        <span>&nbsp;切换Bing壁纸</span>
+                        <img src="../icons/refreshBlue.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshBlue">
+                        <img src="../icons/refreshWhite.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshWhite">
+                        <span>&nbsp;试试手气</span>
+                    </button>
+                </div>
+                <span class="shezhiTitle" style="padding-left: 10px;">图库</span>
+                <div style="text-align: center;z-index: 5;position: relative;padding-bottom: 15px;">
+                    <button id="galleryBtn" class="btnHoverCss">
+                        <img src="../icons/tukuBlue.svg" style="width: 15px;margin-top: -3px;vertical-align: middle;" id="tukuBlue">
+                        <img src="../icons/tukuWhite.svg" style="width: 15px;margin-top: -3px;vertical-align: middle;" id="tukuWhite">
+                        <span>&nbsp;&nbsp;壁纸库</span>
                     </button>
                 </div>
             </div>
@@ -144,7 +152,7 @@
             </div> -->
             <h2 style="margin: 10px 0 0 0;font-size: 16px;">关于</h2>
             <span class="shezhiTitle" id="addonsHref" style="display: inline-block;">轻羽标签页&nbsp;&nbsp;|&nbsp;&nbsp;Light Feather Tab</span><br/>
-            <span class="shezhiTitle">版本: v1.1.5</span><br/>
+            <span class="shezhiTitle">版本: v1.1.6</span><br/>
             <span class="shezhiTitle" id="updateLog">历史版本日志</span><br/>
             <span class="shezhiTitle">©Copyright&nbsp;&nbsp;<a href="./myself.html" target="_blank" id="myselfBlue">权朝阳</a></span>
         </div>
@@ -227,9 +235,19 @@
                 <img src="../icons/logo32.png" class="logoCss">
                 <span class="logTitle animate__animated animate__lightSpeedInRight">历史版本日志</span>
                 <img src="../icons/guanbi.svg" id="logDialogDelete">
+                <img src="../icons/guanbiWhite.svg" id="logDialogDeleteWhite">
             </div>
             <span class="logLineBottomCss"></span>
             <div class="dialogContent">
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.1.6</span>
+                        <span class="versionTime">2023-04-07</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 壁纸库，拥有多种分类可供选择</div>
+                    </div>
+                </div>
                 <div class="contentDiv">
                     <div class="versionHead">
                         <span class="versionDiv">v1.1.5</span>
@@ -401,6 +419,48 @@
             <div id="author"></div>
             <div style="margin-top: 10px;" class="animate__animated animate__bounceInLeft displayClass"><span id="jinrishici-sentence"></span></div>
         </div>
+        <div id="tukuDialog">
+            <div class="tukuDialogHead">
+                <img src="../icons/logo32.png" class="tukuLogoCss">
+                <span class="animate__animated animate__lightSpeedInRight" style="padding-left: 25px;font-size: 14px;">壁纸库</span>
+                <select id="gallerysSelectCss">
+                    <option value="36">4K专区</option>
+                    <option value="9">风景大片</option>
+                    <option value="15">清新淡雅</option>
+                    <option value="26">动漫卡通</option>
+                    <option value="11">明星风尚</option>
+                    <option value="14">萌宠动物</option>
+                    <option value="5">游戏壁纸</option>
+                    <option value="12">汽车天下</option>
+                    <option value="10">炫酷时尚</option>
+                    <option value="29">月历壁纸</option>
+                    <option value="7">影视剧照</option>
+                    <option value="13">节日美图</option>
+                    <option value="22">军事天地</option>
+                    <option value="16">劲爆体育</option>
+                    <option value="35">文字控</option>
+                </select>
+                <img src="../icons/guanbi.svg" id="galleryClose">
+                <img src="../icons/guanbiWhite.svg" id="galleryCloseWhite">
+            </div>
+            <span class="lineBottomCss"></span>
+            <div id="progress"></div>
+            <div class="galleryContent">
+                <div class="loading" id="gujiaScreen">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                <div id="insideContent"></div>
+            </div>
+            <span class="lineBottomCss"></span>
+            <div>
+                <button class="galleryBtnCss">下一页</button>
+                <button class="galleryBtnCss">上一页</button>
+            </div>
+        </div>
         <img id="startIcon" src="../icons/start.svg">
         <img id="pauseIcon" src="../icons/pause.svg">
         <div id="music">
@@ -428,6 +488,7 @@
         </div>
         <script src="../scripts/vanilla-tilt.js"></script>
         <script src="../scripts/homePage.js"></script>
+        <!-- <script src="../scripts/email.js"></script> -->
     </div>
 </body>
 </html>

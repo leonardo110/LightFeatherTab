@@ -1,0 +1,151 @@
+#tukuDialog{
+    width: 680px;
+    height: 495px;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%, -60%);
+    top: 52%;
+    border-radius: 10px;
+    z-index: 1;
+    padding: 10px;
+    display: none;
+    animation-name: tuku;
+    animation-duration: 0.4s;
+}
+@keyframes tuku {
+    from{opacity: 0.1};
+    to{opacity: 1}
+}
+.tukuDialogHead{
+    font-size: 16px;
+    padding: 0px 0px 10px 10px;
+}
+.galleryContent{
+    height: 415px;
+}
+.galleryPhotoCss{
+    width: 25%;
+    text-align: center;
+    float: left;
+}
+.grlleryCard{
+    width: 150px;
+    height: 84px;
+    border-radius: 5px;
+    line-height: 70px;
+    display: inline-block;
+    background-size: cover;
+    cursor: pointer;
+    margin: 10px;
+}
+.grlleryCard:hover{
+    transform: scale(1.06);
+    transition-duration: 0.3s;
+}
+.lineBottomCss{
+    width: 660px;
+    display: inline-block;
+    height: 1px;
+    margin: 0px 10px;
+    background: rgb(218 216 216);
+}
+.galleryBtnCss{
+    /* background-color: rgb(37, 133, 223); */
+    background: transparent;
+    /* color: white; */
+    outline: none;
+    /* border: 0px; */
+    margin: 10px;
+    float: right;
+    padding: 5px 15px;;
+    border-radius: 3px;
+    cursor: pointer;
+}
+.gujiaCss{
+    height: 415px;
+    text-align: center;
+    position: relative;
+    animation: gujia 0.9s infinite;
+}
+@keyframes gujia {
+    from {
+        opacity: 0.1;
+    }
+    to {
+        opacity: 0.9;
+    }
+}
+#galleryClose{
+    width: 15px;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    padding-top: 5px;
+}
+#galleryCloseWhite{
+    width: 15px;
+    float: right;
+    padding-right: 10px;
+    cursor: pointer;
+    padding-top: 5px;
+}
+.tukuLogoCss{
+    width: 20px;
+    position: absolute;
+    top: 12px;
+    left: 18px;
+}
+#gallerysSelectCss{
+    position: relative;
+    left: 5px;
+    width: 140px;
+    height: 25px;
+    border: 1px solid #dcdce2;
+    background: transparent;
+    border-radius: 5px;
+    color: #5a5858;
+    outline: none;
+    padding: 0 10px;
+}
+#gallerysSelectCss option{
+    color: #5a5858;
+}
+.loading{
+    width: 80px;
+    height: 40px;
+    position: relative;
+    left: 50%;
+    top: 45%;
+    transform: translate(-50%, -50%);
+}
+.loading span{
+    display: inline-block;
+    width: 8px;
+    height: 100%;
+    border-radius: 4px;
+    background: lightgreen;
+    -webkit-animation: load 1s ease infinite;
+}
+@-webkit-keyframes load{
+    0%,100%{
+        height: 40px;
+        background: lightgreen;
+    }
+    50%{
+        height: 70px;
+        margin: -15px 0;
+        background: lightblue;
+    }
+}
+.loading span:nth-child(2){
+    -webkit-animation-delay:0.2s;
+}
+.loading span:nth-child(3){
+    -webkit-animation-delay:0.4s;
+}
+.loading span:nth-child(4){
+    -webkit-animation-delay:0.6s;
+}
+.loading span:nth-child(5){
+    -webkit-animation-delay:0.8s;
+}

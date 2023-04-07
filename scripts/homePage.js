@@ -4,7 +4,11 @@ let musicName = ''
 let musicAuther = ''
 let musicIdList = []
 let upMusicId = ''
-let showDialog = false
+let showLogDialog = false
+let showGallery = false
+let curPage = 1
+let galleryList = []
+let photoTypeId = 36
 const musicTypeList = ['热歌榜', '飙升榜', '热歌榜', '原创']
 const typeList = [
     {
@@ -77,6 +81,22 @@ const cardUrlList = [
     'https://zhihu.com',
     'https://youtube.com'
 ]
+let imgTypeMap = new Map()
+imgTypeMap.set('36', '4K专区')
+imgTypeMap.set('9', '风景大片')
+imgTypeMap.set('15', '清新淡雅')
+imgTypeMap.set('26', '动漫卡通')
+imgTypeMap.set('11', '明星风尚')
+imgTypeMap.set('14', '萌宠动物')
+imgTypeMap.set('5', '游戏壁纸')
+imgTypeMap.set('12', '汽车天下')
+imgTypeMap.set('10', '炫酷时尚')
+imgTypeMap.set('29', '月历壁纸')
+imgTypeMap.set('7', '影视剧照')
+imgTypeMap.set('13', '节日美图')
+imgTypeMap.set('22', '军事天地')
+imgTypeMap.set('16', '劲爆体育')
+imgTypeMap.set('35', '文字控')
 // 动画效果
 const animationList = ['bounce', 'flash', 'pulse', 'rubberBand', 'shakeX', 'shakeY', 'headShake', 'swing', 'tada', 'wobble', 'jello', 'heartBeat', 'flip', 'hinge', 'jackInTheBox', 'rollIn']
 // 时间实时展示、初始化计算星期数
@@ -112,6 +132,22 @@ setTheme()
 
 // 初始化注册各种鼠标事件
 function registFunc () {
+    // 壁纸库
+    getEleById('galleryBtn').onclick = () => {
+        if (showLogDialog) {
+            getEleById('appDialog').style.display = 'none'
+            showLogDialog = false
+        }
+        getEleById('tukuDialog').style.display = 'inline-block'
+        getEleById('mask').style.opacity = 0.6
+        showGallery = true
+        getGalleryPhoto()
+        setGalleryTheme()
+    }
+    getEleById('gallerysSelectCss').onchange = (e) => {
+        photoTypeId = e.target.value
+        getDataInfo(`http://wp.birdpaper.com.cn/intf/GetListByCategory?cids=${photoTypeId}&pageno=${curPage}&count=16`, 'gallery')
+    }
     // 跳转至插件地址
     getEleById('addonsHref').onclick =() => {
         window.open('https://microsoftedge.microsoft.com/addons/detail/轻羽标签页/dcnpfefcbpeggaajgeffehpckpdjpckd', '_blank')
@@ -165,20 +201,46 @@ function registFunc () {
     // 关闭日志弹框
     getEleById('logDialogDelete').onclick = () => {
         getEleById('appDialog').style.display = 'none'
-        if (showDialog) {
+        if (showLogDialog) {
             getEleById('mask').style.opacity = 0.3
         }
-        showDialog = false
+        showLogDialog = false
+    }
+    getEleById('logDialogDeleteWhite').onclick = () => {
+        getEleById('appDialog').style.display = 'none'
+        if (showLogDialog) {
+            getEleById('mask').style.opacity = 0.3
+        }
+        showLogDialog = false
+    }
+    getEleById('galleryClose').onclick = () => {
+        getEleById('tukuDialog').style.display = 'none'
+        if (showGallery) {
+            getEleById('mask').style.opacity = 0.3
+        }
+        showGallery = false
+    }
+    getEleById('galleryCloseWhite').onclick = () => {
+        getEleById('tukuDialog').style.display = 'none'
+        if (showGallery) {
+            getEleById('mask').style.opacity = 0.3
+        }
+        showGallery = false
     }
     // 打开日志
     getEleById('updateLog').onclick = () => {
         getEleById('appDialog').style.display = 'block'
         getEleById('mask').style.opacity = 0.6
-        showDialog = true
+        showLogDialog = true
+        setDialogTheme()
+        if (showGallery) {
+            getEleById('tukuDialog').style.display = 'none'
+            showGallery = false
+        }
     }
     // 遮罩层点击事件
     getEleById('mask').onclick = () => {
-        if (!showDialog) {
+        if (!showLogDialog && !showGallery) {
             closeView()
         }
         const val =  getEleById('inputStr').value
@@ -360,7 +422,7 @@ function registFunc () {
         getEleById('shezhiView').style.display = 'block'
         setTimeout(() => {
             const dom = getEleById('glassRange')
-            dom.value = handlerStorage('glassCheck')
+            dom.value = handlerStorage('glassCheck') || 0
             const rangeDom = getEleById('inputRange')
             rangeDom.value = handlerStorage('inputRangeVal') || 20
             const searchTab = getEleById('searchTab')
@@ -566,26 +628,46 @@ function registFunc () {
     }
 }
 
+function getGalleryPhoto () {
+    const galleryBtnList = getEleByClass('galleryBtnCss')
+    for (let v = 0; v < galleryBtnList.length; v++) {
+        const cur = galleryBtnList[v]
+        cur.onclick = () => {
+            const xy = curPage
+            if (v === 0) {
+                curPage++
+            } else {
+                curPage > 1 && curPage--
+            }
+            xy !== curPage &&
+            getDataInfo(`http://wp.birdpaper.com.cn/intf/GetListByCategory?cids=${photoTypeId}&pageno=${curPage}&count=16`, 'gallery')
+        }
+    }
+    getDataInfo(`http://wp.birdpaper.com.cn/intf/GetListByCategory?cids=${photoTypeId}&pageno=${curPage}&count=16`, 'gallery')
+}
 // 进度条
 function progressFunc () {
     const widthDom = getEleById('progress').style
-    let num = 0
+    let num = 450
     let progress = setInterval(() => {
-        widthDom.width = num++ + '%'
-        if (num === 101) {
+        widthDom.width = num++ + 'px'
+        if (num === 662) {
             clearInterval(progress)
+            widthDom.width = '0px'
+            let content = getEleById('insideContent')
+            const gujiaScreen = getEleById('gujiaScreen')
+            gujiaScreen.style.display = 'none'
+            content.style.display = 'block'
         }
-    }, 20)
+    }, 5)
 }
-
-
 
 function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'
-    if (version !== '1.1.5') {
-        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>v1.1.5</span>" : " v1.1.5") + "版本", 5000)
-        handlerStorage('version', '1.1.5')
+    if (version !== '1.1.6') {
+        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>v1.1.6</span>" : " v1.1.6") + "版本", 5000)
+        handlerStorage('version', '1.1.6')
     }
 }
 // 下载壁纸
@@ -598,7 +680,7 @@ function downloadImage() {
     //use-credentials:这个同时会在跨域请求中带上cookie和其他的一些认证信息。在使用这两个值时都需要server端在response的header中带上Access-Control-Allow-Credentials属性。可以通过server的配置文件来开启这个属性：server开启Access-Control-Allow-Credentials
     image.setAttribute('crossOrigin', 'anonymous')
     image.onload = function () {
-        var canvas = document.createElement('canvas')
+        var canvas = createEle('canvas')
         canvas.width = image.width
         canvas.height = image.height
 
@@ -606,7 +688,7 @@ function downloadImage() {
         context.drawImage(image, 0, 0, image.width, image.height)
         var url = canvas.toDataURL('image/png')
         // 生成一个a元素
-        var a = document.createElement('a')
+        var a = createEle('a')
         // 创建一个单击事件
         var event = new MouseEvent('click')
 
@@ -642,6 +724,12 @@ function setTheme () {
                 temp.style.border = '1px solid white'
                 handlerStorage('theme', 'dark')
             }
+            if (showLogDialog) {
+                setDialogTheme()
+            }
+            if (showGallery) {
+                setGalleryTheme()
+            }
             if ([0,1,2].includes(v)) {
                 cardDomList[3].style.border = '0px'
             }
@@ -663,6 +751,10 @@ function initTheme () {
     const uploadWhite = getEleById('uploadWhite').style
     const refreshBlue = getEleById('refreshBlue').style
     const refreshWhite = getEleById('refreshWhite').style
+    const tukuBlue = getEleById('tukuBlue').style
+    const tukuWhite = getEleById('tukuWhite').style
+    const greetDom = getEleById('greetingCss').style
+    const noticeDom = getEleById('noticeCss').style
     // tip图标
     getEleById('showTipIcon1').style.display = themeVal === 'default' ? 'none' : 'inline-block'
     getEleById('showTipIcon2').style.display = themeVal === 'default' ? 'inline-block' : 'none'
@@ -692,6 +784,10 @@ function initTheme () {
         uploadWhite.display = 'none'
         refreshBlue.display = 'inline-block'
         refreshWhite.display = 'none'
+        tukuBlue.display = 'inline-block'
+        tukuWhite.display = 'none'
+        greetDom.color = '#5a5858'
+        noticeDom.color = '#5a5858'
     } else {
         themeCardDiv.style.backgroundColor = ''
         for (let a = 0; a < shezhiCard.length; a++) {
@@ -708,6 +804,12 @@ function initTheme () {
         uploadWhite.display = 'inline-block'
         refreshBlue.display = 'none'
         refreshWhite.display = 'inline-block'
+        tukuBlue.display = 'none'
+        tukuWhite.display = 'inline-block'
+        greetDom.color = 'white'
+        noticeDom.color = 'white'
+        // options[0].style.color = '#5a5858'
+        // options[1].style.color = '#5a5858'
         if (themeVal === 'lucency') {
             iconDom.style.left = '118px'
             iconDom.style.bottom = '34px'
@@ -727,6 +829,107 @@ function initTheme () {
         }
     }
 }
+
+// 日志弹框切换主题样式
+function setDialogTheme () {
+    // 日志弹框
+    const logTitle = getEleByClass('logTitle')[0].style
+    const versionTimeList = getEleByClass('versionTime')
+    const textStyle = getEleByClass('textStyle')
+    const appDialog = getEleById('appDialog')
+    const versionDiv = getEleByClass('versionDiv')
+    const logDialogDelete = getEleById('logDialogDelete').style
+    const logDialogDeleteWhite = getEleById('logDialogDeleteWhite').style
+    const themeVal = handlerStorage('theme') || 'default'
+    if (themeVal === 'default') {
+        // 日志
+        logTitle.color = '#1c1b1b'
+        for (let a = 0; a < versionTimeList.length; a++) {
+            versionTimeList[a].style.color = '#898989'
+            versionDiv[a].style.color = 'black'
+        }
+        for (let b = 0; b < textStyle.length; b++) {
+            textStyle[b].style.color = '#535151'
+        }
+        appDialog.style.border = ''
+        appDialog.style.background = 'white'
+        appDialog.removeAttribute('class', 'thirdTheme')
+        logDialogDelete.display = 'inline-block'
+        logDialogDeleteWhite.display = 'none'
+    } else {
+        logDialogDelete.display = 'none'
+        logDialogDeleteWhite.display = 'inline-block'
+        // 日志
+        logTitle.color = 'white'
+        for (let a = 0; a < versionTimeList.length; a++) {
+            versionTimeList[a].style.color = 'white'
+            versionDiv[a].style.color = 'white'
+        }
+        for (let b = 0; b < textStyle.length; b++) {
+            textStyle[b].style.color = 'white'
+        }
+        if (themeVal === 'lucency') {
+            appDialog.style.background = 'transparent'
+            appDialog.removeAttribute('class', 'thirdTheme')
+            appDialog.style.border = '1px solid white'
+            appDialog.style['backdrop-filter'] = 'blur(25px)'
+        } else if (themeVal === 'gradient') {
+            appDialog.style.background = ''
+            appDialog.setAttribute('class', 'thirdTheme')
+            appDialog.style.border = ''
+            appDialog.style['backdrop-filter'] = ''
+        } else {
+            appDialog.style.background = '#363636'
+            appDialog.style.border = ''
+            appDialog.style['backdrop-filter'] = ''
+            appDialog.removeAttribute('class', 'thirdTheme')
+        }
+    }
+}
+
+// 切换图库背景主题样式
+function setGalleryTheme () {
+    const tukuDialog = getEleById('tukuDialog')
+    const themeVal = handlerStorage('theme') || 'default'
+    const galleryClose = getEleById('galleryClose').style
+    const galleryCloseWhite = getEleById('galleryCloseWhite').style
+    const gallerysSelectCss = getEleById('gallerysSelectCss').style
+    const galleryBtnCss = getEleByClass('galleryBtnCss')
+    for (let a = 0; a < galleryBtnCss.length; a++) {
+        galleryBtnCss[a].style.border = themeVal === 'default' ? '1px solid #409eff' : '1px solid white'
+        galleryBtnCss[a].style.color = themeVal === 'default' ? '#409eff': 'white'
+    }
+    if (themeVal === 'default') {
+        tukuDialog.style.background = 'white'
+        tukuDialog.style.color = '#1c1b1b'
+        tukuDialog.removeAttribute('class', 'thirdTheme')
+        galleryClose.display = 'inline-block'
+        galleryCloseWhite.display = 'none'
+        gallerysSelectCss.color = '#5a5858'
+    } else {
+        tukuDialog.style.color = 'white'
+        galleryCloseWhite.display = 'inline-block'
+        galleryClose.display = 'none'
+        gallerysSelectCss.color = 'white'
+        if (themeVal === 'lucency') {
+            tukuDialog.style.background = 'transparent'
+            tukuDialog.removeAttribute('class', 'thirdTheme')
+            tukuDialog.style.border = '1px solid white'
+            tukuDialog.style['backdrop-filter'] = 'blur(35px)'
+        } else if (themeVal === 'gradient') {
+            tukuDialog.style.background = ''
+            tukuDialog.setAttribute('class', 'thirdTheme')
+            tukuDialog.style.border = ''
+            tukuDialog.style['backdrop-filter'] = ''
+        } else {
+            tukuDialog.style.background = '#363636'
+            tukuDialog.style.border = ''
+            tukuDialog.style['backdrop-filter'] = ''
+            tukuDialog.removeAttribute('class', 'thirdTheme')
+        }
+    }
+}
+
 // 优化gpt聊天窗口高度自适应问题
 function changeGPT_height () {
     const height = document.querySelector('#chatgptDialog').offsetHeight
@@ -931,7 +1134,7 @@ function imgHandler(url, title) {
 
 
 // 更换图片
-function turnPhoto() {
+function turnPhoto(flag) {
     const img1 = getEleById('backGroundImg');
     const img2 = getEleById('preBackGroundImg');
     const footer1 = getEleById('photoPosition');
@@ -956,7 +1159,7 @@ function turnPhoto() {
         img1.style.backgroundSize = 'cover';
         footer1.style.display = 'inline-block';
         footer2.style.display = 'none';
-        brief.style.display = footer1.innerText.endsWith(')') ? 'inline-block' : 'none';
+        brief.style.display = footer1.innerText.endsWith(')') || flag === 'gallery' ? 'inline-block' : 'none';
         handlerStorage('viewFlag', true)
     }
 }
@@ -1010,13 +1213,12 @@ function popTip (tip, time=3000) {
     } else {
         Notification.requestPermission();
         new Notification('', {
-            // image: "../icons/binglogo.png",
+            // image: "../icons/logo16.png",
             body: tip,
-            // body：通知的内容。
             // tag：代表通知的一个识别标签，相同tag时只会打开同一个通知窗口。
-            // icon：要在通知中显示的图标的URL。
+            icon: '../icons/logo128.png', //要在通知中显示的图标的URL。
             // image：要在通知中显示的图像的URL。
-            // data：想要和通知关联的任务类型的数据。
+            //data: '轻羽标签页'//想要和通知关联的任务类型的数据。
             // requireInteraction：通知保持有效不自动关闭，默认为false。
         });
     }
@@ -1180,50 +1382,6 @@ function showHistory (curVal) {
     }
 }
 
-// 调用相关接口进行查询
-function getDataInfo(urlStr, flag) {
-    //第一步：建立所需的对象
-    let httpRequest = new XMLHttpRequest();
-    //第二步：打开连接  将请求参数写在url中
-    httpRequest.open('GET', urlStr, true);
-    httpRequest.onreadystatechange = function () {
-      if (httpRequest.readyState === 4) {
-        if (httpRequest.status === 200) {
-            var json = httpRequest.responseText; //获取到json字符串，还需解析
-            var parseJson = JSON.parse(json)
-            if (flag === 'ip') {
-                // ip信息  --  运营商: parseJson.info.lsp
-                var testHtml = '<span>'+ parseJson.info.country + ' - ' + parseJson.info.prov + ' - ' + parseJson.info.city +'</span><br/>IP: ' + parseJson.ip + '<br/>'
-                getEleById('ipInfo').innerHTML = testHtml
-            } else if (flag === 'img') {
-                // 背景图信息
-                imgHandler(parseJson.data.url, parseJson.data.title)
-                turnPhoto()
-                const obj = {
-                    url: parseJson.data.url,
-                    title: parseJson.data.title
-                }
-                handlerStorage('imgObj', JSON.stringify(obj))
-            } else if (flag === 'poem') {
-                // 诗词信息
-                getEleById('jinrishici-sentence').innerText = parseJson.hitokoto
-                getEleById('poemTitle').innerText = '《' + parseJson.from +'》'
-                getEleById('author').innerText = parseJson.from_who
-            } else if (flag === 'music') {
-                if (parseJson.info.mp3url.indexOf('/404') === -1) {
-                    getEleById('gifDom').src = parseJson.info.picUrl + '?param=50y50'
-                    musicFunc(parseJson)
-                } else {
-                    getRandomMusic()
-                }
-            }
-        }
-      }
-    };
-    //第三步：发送请求
-    httpRequest.send(null);
-}
-
 // 加载樱花特效
 function loadSakuraScript () {
     if (handlerStorage('sakuraCheck') === 'true') {
@@ -1358,7 +1516,7 @@ function backgroundGlass (event) {
         curVal = 0 + ''
     }
     curVal = event?.target?.value || num + ''
-    if (curVal > 0) {
+    if (Number(curVal) > 0) {
         curBack1.style.transform = 'scale(1.1) translateX(0)';
         curBack1.style.filter = 'blur(' + curVal + 'px) brightness(0.8)';
         curBack2.style.transform = 'scale(1.1) translateX(0)';
@@ -1425,4 +1583,90 @@ function getItem (data) {
         return data.indexOf(item.dis) !== -1
     })
     return obj
+}
+
+function setGalleryContent (rsp) {
+    if (rsp && rsp.list) {
+        galleryList = [...rsp.list]
+        let content = getEleById('insideContent')
+        const gujiaScreen = getEleById('gujiaScreen')
+        const childs = content.childNodes;
+        for(var i = childs.length - 1; i >= 0; i--) { 
+            content.removeChild(childs[i]); 
+        }
+        gujiaScreen.style.display = 'inline-block'
+        rsp.list.forEach((item, index) => {
+            const contentDiv = createEle('div')
+            contentDiv.setAttribute('class', 'galleryPhotoCss')
+            const grlleryCard = createEle('img')
+            grlleryCard.setAttribute('class', 'grlleryCard')
+            grlleryCard.src = item.url
+            contentDiv.appendChild(grlleryCard)
+            content.appendChild(contentDiv)
+            grlleryCard.onclick = () => {
+                // 背景图信息
+                handlerStorage('viewFlag', false)
+                const type = document.getElementById('gallerysSelectCss').value
+                const temp = imgTypeMap.get(type)
+                const obj = {
+                    url: item.url,
+                    title: item.tag + ` (${temp})`
+                }
+                handlerStorage('imgObj', JSON.stringify(obj))
+                imgHandler(item.url, item.tag + ` (${temp})`)
+                turnPhoto('gallery')
+                getEleById('downloadPhoto').style.display = 'inline-block'
+                getEleById('shootIcon').style.display = 'inline-block'
+            }
+        })
+        content.style.display = 'none'
+    }
+
+}
+
+// 调用相关接口进行查询
+function getDataInfo(urlStr, flag) {
+    //第一步：建立所需的对象
+    let httpRequest = new XMLHttpRequest();
+    //第二步：打开连接  将请求参数写在url中
+    httpRequest.open('GET', urlStr, true);
+    httpRequest.onreadystatechange = function () {
+      if (httpRequest.readyState === 4) {
+        if (httpRequest.status === 200) {
+            var json = httpRequest.responseText; //获取到json字符串，还需解析
+            var parseJson = JSON.parse(json)
+            if (flag === 'ip') {
+                // ip信息  --  运营商: parseJson.info.lsp
+                var testHtml = '<span>'+ parseJson.info.country + ' - ' + parseJson.info.prov + ' - ' + parseJson.info.city +'</span><br/>IP: ' + parseJson.ip + '<br/>'
+                getEleById('ipInfo').innerHTML = testHtml
+            } else if (flag === 'img') {
+                // 背景图信息
+                imgHandler(parseJson.data.url, parseJson.data.title)
+                turnPhoto()
+                const obj = {
+                    url: parseJson.data.url,
+                    title: parseJson.data.title
+                }
+                handlerStorage('imgObj', JSON.stringify(obj))
+            } else if (flag === 'poem') {
+                // 诗词信息
+                getEleById('jinrishici-sentence').innerText = parseJson.hitokoto
+                getEleById('poemTitle').innerText = '《' + parseJson.from +'》'
+                getEleById('author').innerText = parseJson.from_who
+            } else if (flag === 'music') {
+                if (parseJson.info.mp3url.indexOf('/404') === -1) {
+                    getEleById('gifDom').src = parseJson.info.picUrl + '?param=50y50'
+                    musicFunc(parseJson)
+                } else {
+                    getRandomMusic()
+                }
+            } else if (flag === 'gallery') {
+                progressFunc()
+                setGalleryContent(parseJson.data)
+            }
+        }
+      }
+    };
+    //第三步：发送请求
+    httpRequest.send(null);
 }
