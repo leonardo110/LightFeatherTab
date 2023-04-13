@@ -1,0 +1,75 @@
+#emailDialog{
+    width: 400px;
+    height: 385px;
+    left: 50%;
+    z-index: 1;
+    position: absolute;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    border-radius: 10px;
+    background-color: white;
+    display: none;
+}
+.emailBottomCss{
+    width: 380px;
+    display: inline-block;
+    height: 1px;
+    margin: 0px 10px;
+    background: rgb(218 216 216);
+}
+.emailHead{
+    padding: 10px;
+}
+.emailContent{
+    padding: 0px 10px;
+}
+.paddingCss{
+    margin: 10px 0px;
+}
+.titleText{
+    padding-left: 25px;
+    font-size: 13px;
+}
+.requiredCss{
+    color: red;
+    padding-left: 3px;
+}
+#emailClose{
+    width: 15px;
+    float: right;
+    padding-right: 2px;
+    cursor: pointer;
+}
+#emailCloseWhite{
+    width: 15px;
+    float: right;
+    padding-right: 2px;
+    cursor: pointer;
+}
+.inputCss{
+    width: 100%;
+    height: 30px;
+    outline: none;
+    padding: 5px;
+    background: transparent;
+    border-radius: 4px;
+}
+.inputCss:focus{
+    outline: none;
+}
+.areaCss{
+    width: 100%;
+    height: 160px;
+    resize: none;
+    padding: 5px;
+    outline: none;
+    background: transparent;
+    border-radius: 4px;
+}
+#linkMe{
+    cursor: pointer;
+}
+.question{
+    display: inline-block;
+    padding-top: 5px;
+}

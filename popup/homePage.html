@@ -6,6 +6,7 @@
     <link rel="stylesheet" href="../styles/homePage.css" />
     <link rel="stylesheet" href="../styles/updateLog.css" />
     <link rel="stylesheet" href="../styles/gallery.css">
+    <link rel="stylesheet" href="../styles/email.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <title>轻羽标签页</title>
 </head>
@@ -40,31 +41,31 @@
             <span class="shezhiTitle">搜索设置</span>
             <div id="secondDiv" class="shezhiCard">
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">历史搜索记录</span>
+                    <span class="displayClass">历史搜索记录</span>
                     <input class="mui-switch mui-switch-anim" id="checkHistory" type="checkbox" checked>
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">在新标签页中打开链接</span>
+                    <span class="displayClass">在新标签页中打开链接</span>
                     <input class="mui-switch mui-switch-anim" id="checkNewTab" type="checkbox" checked>
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">搜索框圆角效果</span>
+                    <span class="displayClass">搜索框圆角效果</span>
                     <input type="range" max="20" min="0" id="inputRange">
                 </div>
             </div>
             <span class="shezhiTitle">页面效果</span>
             <div id="firstDiv" class="shezhiCard">
                 <div class="labelDiv">
-                    <span style="vertical-align: middle;display: inline-block;" class="animate__animated animate__lightSpeedInRight">问候语</span>
+                    <span style="vertical-align: middle;display: inline-block;">问候语</span>
                     <img src="../icons/tip.svg" class="tipClass" title="打开新标签页时弹出问候语，清空则不提示" id="showTipIcon1">
                     <img src="../icons/tishi.svg" class="tipClass" title="打开新标签页时弹出问候语，清空则不提示" id="showTipIcon2">
                     <input type="text" id="greetingCss"></input>
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">提示方式</span>
+                    <span class="displayClass">提示方式</span>
                     <select id="noticeCss">
                         <option value="pop">弹窗提示</option>
                         <option value="notice">浏览器通知</option>
@@ -72,32 +73,32 @@
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">时间标题</span>
+                    <span class="displayClass">时间标题</span>
                     <input class="mui-switch mui-switch-anim" id="checkTitle" type="checkbox" checked>
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">摸鱼卡片</span>
+                    <span class="displayClass">摸鱼卡片</span>
                     <input class="mui-switch mui-switch-anim" id="checkCard" type="checkbox" checked>
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">樱花特效</span>
+                    <span class="displayClass">樱花特效</span>
                     <input class="mui-switch mui-switch-anim" id="checkSakura" type="checkbox" checked>
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">一言诗词</span>
+                    <span class="displayClass">一言诗词</span>
                     <input class="mui-switch mui-switch-anim" id="checkPoem" type="checkbox" checked>
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">音乐播放</span>
+                    <span class="displayClass">音乐播放</span>
                     <input class="mui-switch mui-switch-anim" id="checkMusic" type="checkbox" checked>
                 </div>
                 <span class="lineBottomCss"></span>
                 <div class="labelDiv">
-                    <span class="animate__animated animate__lightSpeedInRight displayClass">毛玻璃效果</span>
+                    <span class="displayClass">毛玻璃效果</span>
                     <input type="range" max="20" min="0" id="glassRange">
                 </div>
             </div>
@@ -116,12 +117,12 @@
                     <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
                     <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
                 </div>
-                <span class="shezhiTitle" style="padding-left: 10px;">本地上传</span>
+                <span class="shezhiTitle" style="padding-left: 10px;">本地</span>
                 <div href="javascript:;" class="upload btnHoverCss">
                     <!-- <span>选择文件</span> -->
                     <img src="../icons/uploadBlue.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="uploadBlue">
                     <img src="../icons/uploadWhite.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="uploadWhite">
-                    &nbsp;选择文件
+                    &nbsp;上传图片
                     <input class="inputFile" id="inputFile" type="file" accept="image/*"/>
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">随机</span>
@@ -129,7 +130,7 @@
                     <button id="checkPhoto" class="btnHoverCss">
                         <img src="../icons/refreshBlue.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshBlue">
                         <img src="../icons/refreshWhite.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshWhite">
-                        <span>&nbsp;试试手气</span>
+                        <span>&nbsp;Bing&nbsp;一下</span>
                     </button>
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">图库</span>
@@ -152,7 +153,7 @@
             </div> -->
             <h2 style="margin: 10px 0 0 0;font-size: 16px;">关于</h2>
             <span class="shezhiTitle" id="addonsHref" style="display: inline-block;">轻羽标签页&nbsp;&nbsp;|&nbsp;&nbsp;Light Feather Tab</span><br/>
-            <span class="shezhiTitle">版本: v1.1.6</span><br/>
+            <span class="shezhiTitle">版本: v1.1.7</span><br/>
             <span class="shezhiTitle" id="updateLog">历史版本日志</span><br/>
             <span class="shezhiTitle">©Copyright&nbsp;&nbsp;<a href="./myself.html" target="_blank" id="myselfBlue">权朝阳</a></span>
         </div>
@@ -239,6 +240,16 @@
             </div>
             <span class="logLineBottomCss"></span>
             <div class="dialogContent">
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.1.7</span>
+                        <span class="versionTime">2023-04-14</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 问题与建议，可提出一些实用性需求或者问题并发送邮件给作者</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 点击 关于--插件名称，可前往对应浏览器商店进行扩展安装</div>
+                    </div>
+                </div>
                 <div class="contentDiv">
                     <div class="versionHead">
                         <span class="versionDiv">v1.1.6</span>
@@ -459,7 +470,65 @@
             <div>
                 <button class="galleryBtnCss">下一页</button>
                 <button class="galleryBtnCss">上一页</button>
-                <span id="pageNum" class="pageNumss"></span>
+                <span id="pageNum" class="pageNumCss"></span>
+                <span class="inputPageCss">
+                    <span>跳至</span>
+                    <input type="text" id="pageInput">
+                    <span>页</span>
+                </span>
+            </div>
+        </div>
+        <div id="emailDialog">
+            <div class="emailHead">
+                <img src="../icons/logo32.png" class="logoCss">
+                <span class="titleText">问题与建议</span>
+                <img src="../icons/guanbi.svg" id="emailClose">
+                <img src="../icons/guanbiWhite.svg" id="emailCloseWhite">
+            </div>
+            <span class="emailBottomCss"></span>
+            <div class="loading" id="emailLoading">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div id="emailContentPage">
+                <div class="emailContent">
+                    <span class="question">您有什么想要的功能或者对扩展存在问题的地方，都可以发邮件告诉我。</span>
+                    <div class="paddingCss">
+                        昵称
+                        <span class="requiredCss">*</span>
+                    </div>
+                    <input required id="nameInput" class="inputCss" type="text"  value="" size="15" maxlength="20"/><br/>
+                    <div class="paddingCss">
+                        问题或者建议
+                        <span class="requiredCss">*</span>
+                    </div>
+                    <textarea id="textArea" maxlength="200" class="areaCss" required></textarea><br/>
+                </div>
+                <div>
+                    <button class="galleryBtnCss" id="cancleBtn">取消</button>
+                    <button class="galleryBtnCss" id="sendBtn">发送</button>
+                </div>
+            </div>
+        </div>
+        <div id="addonsAddress">
+            <div class="addonsLogo">
+                <img src="../icons/edge.png" alt="" class="addonsImg">
+                <div class="addonName">Edge 扩展安装</div>
+            </div>
+            <div class="addonsLogo">
+                <img src="../icons/chrome.svg" alt="" class="addonsImg">
+                <div class="addonName">Chrome 扩展安装</div>
+            </div>
+            <div class="addonsLogo">
+                <img src="../icons/firefox.svg" alt="" class="addonsImg">
+                <div class="addonName">Firefox 扩展安装</div>
+            </div>
+            <div class="addonsLogo">
+                <img src="../icons/crx.png" alt="" class="addonsImg">
+                <div class="addonName">Crx 文件下载</div>
             </div>
         </div>
         <img id="startIcon" src="../icons/start.svg">
@@ -475,21 +544,22 @@
                 </span>
             </span>
         </div>
-        <footer class="brief">
+        <!-- <footer class="brief">
             <img src="../icons/shoot.svg" style="vertical-align: middle;margin-bottom: 3px;" id="shootIcon">
             <span id="photoPosition"></span>
             <span id="prePhotoPosition"></span>
             <span id="downloadPhoto">下载壁纸</span>
-        </footer>
+        </footer> -->
         <div id="myselfDiv">
             <span id="copyright">
                 <span>©Copyright&nbsp;2023&nbsp;</span>
                 <span id="myself">权朝阳</span>
+                <span id="linkMe">&nbsp;|&nbsp;&nbsp;问题与建议</span>
+                <span id="downloadPhoto">&nbsp;|&nbsp;&nbsp;<span style="color: #ffe643">下载壁纸</span></span>
             </span>
         </div>
         <script src="../scripts/vanilla-tilt.js"></script>
         <script src="../scripts/homePage.js"></script>
-        <!-- <script src="../scripts/email.js"></script> -->
     </div>
 </body>
 </html>
