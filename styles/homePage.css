@@ -452,7 +452,7 @@ header img{
     z-index: 10;
     position: absolute;
     top: 215px;
-    width: 90px;
+    width: 80px;
     border-radius: 10px;
     text-align: center;
     left: 30%;
@@ -1096,12 +1096,12 @@ audio::-webkit-media-controls-panel{
 }
 ::-webkit-scrollbar {
     /*滚动条整体样式*/
-    width: 5px; /*高宽分别对应横竖滚动条的尺寸*/
-    height: 3px;
+    width: 1px; /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
 }
 ::-webkit-scrollbar-thumb {
-    background-color: #1b97fd;
-    background-image: -webkit-linear-gradient(
+    background: transparent;
+    /* background-image: -webkit-linear-gradient(
         45deg,
         rgba(255, 255, 255, 0.2) 25%,
         transparent 25%,
@@ -1110,15 +1110,15 @@ audio::-webkit-media-controls-panel{
         rgba(255, 255, 255, 0.2) 75%,
         transparent 75%,
         transparent
-    );
+    ); */
     /*滚动条里面小方块*/
     border-radius: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: white;
+    background: transparent;
     border-radius: 10px;
     /*滚动条里面轨道*/
-    box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+    /* box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2); */
 }
 
  /*滑动条背景*/

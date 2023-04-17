@@ -260,7 +260,7 @@ function registFunc () {
                     window.open('https://addons.mozilla.org/zh-CN/firefox/addon/轻羽标签页/', '_blank')
                 } else {
                     // Crx跳转云盘地址
-                    window.open('https://pan.baidu.com/s/1N_jAZywF_kWY7dptlIa3kQ?pwd=7giz', '_blank')
+                    window.open('https://pan.baidu.com/s/1qf4Ia8MfeEWoY8ziHZ2FJQ?pwd=qk9m', '_blank')
                 }
             }
         }
@@ -415,6 +415,7 @@ function registFunc () {
     getEleById('inputStr').onfocus = (event) => {
         getEleById('typeSelect').style.display = 'none'
         getEleById('searchTab').style.opacity = 1
+        // getEleById('searchTab').style.width = '40%'
         getEleById('inputStr').style.padding = '0px 45px'
         getEleById('deleteIcon').style.right = '40px'
         getEleById('searchTypeDiv').style.display = 'inline-block'
@@ -437,6 +438,7 @@ function registFunc () {
             if (!event.target.value) {
                 getEleById('inputStr').style.padding = '0px 15px'
                 getEleById('deleteIcon').style.right = '15px'
+                // getEleById('searchTab').style.width = '20%'
             }
         }, 100)
     }
@@ -970,17 +972,17 @@ function initTheme () {
         // options[0].style.color = '#5a5858'
         // options[1].style.color = '#5a5858'
         if (themeVal === 'lucency') {
-            iconDom.style.left = '118px'
+            iconDom.style.left = '120px'
             iconDom.style.bottom = '34px'
             shezhiView.style['backdrop-filter'] = 'blur(25px)'
             shezhiView.removeAttribute('class', 'thirdTheme')
         } else if (themeVal === 'gradient') {
-            iconDom.style.left = '197px'
-            iconDom.style.bottom = '36px'
+            iconDom.style.left = '199px'
+            iconDom.style.bottom = '35px'
             shezhiView.style['backdrop-filter'] = ''
             shezhiView.setAttribute('class', 'thirdTheme')
         } else {
-            iconDom.style.left = '276px'
+            iconDom.style.left = '279px'
             iconDom.style.bottom = '34px'
             shezhiView.style['backdrop-filter'] = ''
             shezhiView.style.backgroundColor = '#363636'
