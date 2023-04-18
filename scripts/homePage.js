@@ -279,7 +279,7 @@ function registFunc () {
                     window.open('https://addons.mozilla.org/zh-CN/firefox/addon/轻羽标签页/', '_blank')
                 } else {
                     // Crx跳转云盘地址
-                    window.open('https://pan.baidu.com/s/1qf4Ia8MfeEWoY8ziHZ2FJQ?pwd=qk9m', '_blank')
+                    window.open('https://pan.baidu.com/s/1VL9YcV-dNL1iA5sZbAT84g?pwd=5tr4', '_blank')
                 }
             }
         }
