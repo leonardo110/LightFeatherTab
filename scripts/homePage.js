@@ -66,13 +66,13 @@ const imgList = [
     },
     {
         index: 1,
-        src: '../icons/secondPhoto.jpg',
-        dis: 'secondPhoto.jpg'
+        src: '../icons/secondPhoto.png',
+        dis: 'secondPhoto.png'
     },
     {
         index: 2,
-        src: '../icons/thirdPhoto.jpg',
-        dis: 'thirdPhoto.jpg'
+        src: '../icons/thirdPhoto.png',
+        dis: 'thirdPhoto.png'
     },
     {
         index: 3,
