@@ -1,6 +1,6 @@
 #emailDialog{
     width: 400px;
-    height: 385px;
+    height: 390px;
     left: 50%;
     z-index: 1;
     position: absolute;
@@ -9,6 +9,7 @@
     border-radius: 10px;
     background-color: white;
     display: none;
+    font-size: 13px;
 }
 .emailBottomCss{
     width: 380px;

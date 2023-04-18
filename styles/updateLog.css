@@ -19,6 +19,8 @@
 .dialogContent{
     padding: 0px 15px;
     overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
     height: 380px;
 }
 .contentDiv{

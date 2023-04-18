@@ -10,6 +10,7 @@
     border-radius: 10px;
     padding: 15px;
     display: none;
+    font-size: 13px;
 }
 .addonsLogo{
     width: 25%;
@@ -192,9 +193,9 @@
     bottom: 40px;
 }
 #greetingCss{
-    width: 45%;
+    width: 140px;
     position: absolute;
-    right: 10px;
+    right: 15px;
     border: 1px solid #dcdce2;
     background: transparent;
     border-radius: 5px;
@@ -569,6 +570,7 @@ header img{
     z-index: 1;
     overflow-y: auto;
     overflow-x: hidden;
+    scrollbar-width: none;
     animation-name: shezhi;
     animation-duration: 0.5s;
     /* animation-timing-function: ease-out; */
