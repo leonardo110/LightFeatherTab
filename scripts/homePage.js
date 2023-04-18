@@ -12,42 +12,50 @@ let curPage = 1
 let galleryList = []
 let photoTypeId = 36
 let totalPage = 0
+let placeholderText = ''
 const musicTypeList = ['热歌榜', '飙升榜', '热歌榜', '原创']
 const typeList = [
     {
         key: 'baidu',
         url: '../icons/baidu.png',
-        logo: '../icons/baidulogo.svg'
+        logo: '../icons/baidulogo.svg',
+        uppercase: 'BaiDu'
     },
     {
         key: 'bing',
         url: '../icons/bing.png',
-        logo: '../icons/binglogo.png'
+        logo: '../icons/binglogo.png',
+        uppercase: 'Bing'
     },
     {
         key: 'google',
         url: '../icons/google.png',
-        logo: '../icons/googlelogo.PNG'
+        logo: '../icons/googlelogo.PNG',
+        uppercase: 'Google'
     },
     {
         key: 'Yahoo',
         url: '../icons/yahoo.png',
-        logo: '../icons/yahoologo.svg'
+        logo: '../icons/yahoologo.svg',
+        uppercase: 'Yahoo'
     },
     {
         key: '360',
         url: '../icons/360sousuo.png',
-        logo: '../icons/360logo.png'
+        logo: '../icons/360logo.png',
+        uppercase: '360'
     },
     {
         key: 'sougou',
         url: '../icons/sougou.png',
-        logo: '../icons/sougoulogo.png'
+        logo: '../icons/sougoulogo.png',
+        uppercase: 'Sougou'
     },
     {
         key: 'kaifazhe',
         url: '../icons/kaifazhe.png',
-        logo: '../icons/kaifazhelogo.PNG'
+        logo: '../icons/kaifazhelogo.PNG',
+        uppercase: 'Develop'
     }
 ]
 const imgList = [
@@ -132,9 +140,20 @@ createFunc()
 vanillaTiltFunc('.navBarCard')
 // 注册主题点击事件
 setTheme()
+// 切换极简模式
+switchSimple()
 
 // 初始化注册各种鼠标事件
 function registFunc () {
+    getEleById('simpleInput').onfocus = () => {
+        getEleById('shezhiView').style.display = 'none'
+        getEleById('mask').style.opacity = 0
+    }
+    getEleById('simpleInput').onkeyup = (event) => {
+        if (event.keyCode === 13) {
+            searchText(event.target.value)
+        }
+    }
     // 联系我
     getEleById('linkMe').onclick = () => {
         getEleById('emailDialog').style.display = 'inline-block'
@@ -749,6 +768,69 @@ function registFunc () {
     if (!handlerStorage('searchType')) {
         handlerStorage('searchType', 'baidu')
     }
+    // 极简模式开关
+    let simpleDom = getEleById('checkSimple')
+    if (simpleDom) {
+        getEleById('checkSimple').onclick = () => {
+            if (getEleById('checkSimple').checked) {
+                handlerStorage('simpleCheck', true)
+            } else {
+                handlerStorage('simpleCheck', false)
+            }
+            switchSimple('switch')
+        }
+        simpleDom.checked = handlerStorage('simpleCheck') === 'true'
+    }
+}
+
+// 切换极简模式
+function switchSimple (flag) {
+    const simpleCheck = handlerStorage('simpleCheck') || false
+    const centerDom = getEleById('centerDiv')
+    const navBarDom = getEleById('navBar')
+    const timeContentDom = getEleById('timeContent')
+    const simpleMode = getEleById('simpleMode')
+    const poemDom = getEleById('poemContent')
+    let musicDom = getEleById('checkMusic')
+    let sakuraDom = getEleById('checkSakura')
+    const handlerSimpleDom = getEleById('handlerSimple')
+    const myselfDivDom = getEleById('myselfDiv')
+    const simpleInputDom = getEleById('simpleInput')
+    const historySearchDom = getEleById('historySearch')
+    const radiusDivDom = getEleById('radiusDiv')
+    if (simpleCheck === 'true') {
+        const searchType = handlerStorage('searchType') || 'baidu'
+        centerDom.style.visibility = 'hidden'
+        navBarDom.style.visibility = 'hidden'
+        timeContentDom.style.visibility = 'hidden'
+        poemDom.style.visibility = 'hidden'
+        historySearchDom.style.display = 'none'
+        simpleMode.style.visibility = 'visible'
+        handlerStorage('sakuraCheck', false)
+        handlerStorage('musicCheck', false)
+        musicDom.checked = false
+        sakuraDom.checked = false
+        handlerSimpleDom.style.display = 'none'
+        myselfDivDom.style.display = 'none'
+        radiusDivDom.style.display = 'none'
+        const typeObj = typeList.find(cur => cur.key === searchType)
+        simpleInputDom.setAttribute("placeholder", `Search With ${typeObj.uppercase}`);
+        flag === 'switch' && popTip('极简模式适合添加毛玻璃效果哟~', 5000)
+    } else {
+        const navBar = handlerStorage('cardCheck')
+        centerDom.style.visibility = 'visible'
+        navBarDom.style.visibility = navBar === 'true' ? 'visible' : 'hidden'
+        timeContentDom.style.visibility = 'visible'
+        simpleMode.style.visibility = 'hidden'
+        poemDom.style.visibility = 'visible'
+        historySearchDom.style.display = 'inline-block'
+        handlerSimpleDom.style.display = 'inline-block'
+        myselfDivDom.style.display = 'inline-block'
+        radiusDivDom.style.display = 'inline-block'
+        showPoemFunc()
+    }
+    loadMusicScript()
+    loadSakuraScript()
 }
 
 function closeEmail () {
@@ -1407,13 +1489,15 @@ function blobToDataURL(blobUrl, callback) {
 }
 
 // 弹出提示
-function popTip (tip, time=3000, color = 'normal') {
+function popTip (tip, time=3000, color) {
     const tipMode = handlerStorage('tipMode') || 'pop'
     if (tipMode === 'pop') {
         const tempDom = getEleById('alertTip')
         tempDom.style.display = 'block'
-        if (color!=='normal') {
+        if (color) {
             tempDom.style.color = color
+        } else {
+            tempDom.style.color = 'rgb(58, 58, 58)'
         }
         tempDom.innerHTML = tip
         setTimeout(() => {
@@ -1437,7 +1521,13 @@ function popTip (tip, time=3000, color = 'normal') {
 function searchText (e) {
     const type = handlerStorage('searchType') || 'baidu'
     const newTab = handlerStorage('newTabCheck') === 'true' ? '_blank' : '_self'
-    const curVal = e?.target?.value || getEleById('inputStr').value
+    const mode = handlerStorage('simpleCheck')
+    let curVal = ''
+    if (mode === 'true') {
+        curVal = e?.target?.value || getEleById('simpleInput').value
+    } else {
+        curVal = e?.target?.value || getEleById('inputStr').value
+    }
     if (type === 'baidu') {
         window.open('http://www.baidu.com/s?wd=' + curVal, newTab)
     } else if (type === 'bing') {

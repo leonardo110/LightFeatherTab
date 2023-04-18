@@ -1,4 +1,30 @@
 
+#simpleMode{
+    width: 100%;
+    visibility: hidden;
+}
+#simpleInput{
+    width: 40%;
+    height: 40px;
+    color: white;
+    position: absolute;
+    top: 40%;
+    outline: none;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+    background: transparent;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    border-bottom: 2px solid lightskyblue;
+    cursor: text;
+    text-align: center;
+}
+#simpleInput::placeholder {
+    color: white;
+    opacity: 0.4;
+}
 #addonsAddress{
     position: absolute;
     left: 50%;
@@ -62,7 +88,7 @@
 #noticeCss{
     position: relative;
     left: 92px;
-    width: 141px;
+    width: 140px;
     height: 30px;
     border: 1px solid #dcdce2;
     background: transparent;
@@ -421,7 +447,7 @@ header img{
     animation-name: alertTip;
     animation-duration: 0.2s;
     animation-timing-function: ease;
-    color: black;
+    color: rgb(58, 58, 58);
 }
 /* 动画代码 */
 @keyframes alertTip {

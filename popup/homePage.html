@@ -41,18 +41,27 @@
             <span class="shezhiTitle">搜索设置</span>
             <div id="secondDiv" class="shezhiCard">
                 <div class="labelDiv">
-                    <span class="displayClass">历史搜索记录</span>
-                    <input class="mui-switch mui-switch-anim" id="checkHistory" type="checkbox" checked>
+                    <span class="displayClass">极简模式</span>
+                    <input class="mui-switch mui-switch-anim" id="checkSimple" type="checkbox" checked>
                 </div>
                 <span class="lineBottomCss"></span>
+                <div id="historySearch">
+                    <div class="labelDiv">
+                        <span class="displayClass">历史搜索记录</span>
+                        <input class="mui-switch mui-switch-anim" id="checkHistory" type="checkbox" checked>
+                    </div>
+                    <span class="lineBottomCss"></span>
+                </div>
                 <div class="labelDiv">
                     <span class="displayClass">在新标签页中打开链接</span>
                     <input class="mui-switch mui-switch-anim" id="checkNewTab" type="checkbox" checked>
                 </div>
-                <span class="lineBottomCss"></span>
-                <div class="labelDiv">
-                    <span class="displayClass">搜索框圆角效果</span>
-                    <input type="range" max="20" min="0" id="inputRange">
+                <div id="radiusDiv">
+                    <span class="lineBottomCss"></span>
+                    <div class="labelDiv">
+                        <span class="displayClass">搜索框圆角效果</span>
+                        <input type="range" max="20" min="0" id="inputRange">
+                    </div>
                 </div>
             </div>
             <span class="shezhiTitle">页面效果</span>
@@ -72,31 +81,33 @@
                     </select>
                 </div>
                 <span class="lineBottomCss"></span>
-                <div class="labelDiv">
-                    <span class="displayClass">时间标题</span>
-                    <input class="mui-switch mui-switch-anim" id="checkTitle" type="checkbox" checked>
+                <div id="handlerSimple">
+                    <div class="labelDiv">
+                        <span class="displayClass">时间标题</span>
+                        <input class="mui-switch mui-switch-anim" id="checkTitle" type="checkbox" checked>
+                    </div>
+                    <span class="lineBottomCss"></span>
+                    <div class="labelDiv">
+                        <span class="displayClass">摸鱼卡片</span>
+                        <input class="mui-switch mui-switch-anim" id="checkCard" type="checkbox" checked>
+                    </div>
+                    <span class="lineBottomCss"></span>
+                    <div class="labelDiv">
+                        <span class="displayClass">樱花特效</span>
+                        <input class="mui-switch mui-switch-anim" id="checkSakura" type="checkbox" checked>
+                    </div>
+                    <span class="lineBottomCss"></span>
+                    <div class="labelDiv">
+                        <span class="displayClass">一言诗词</span>
+                        <input class="mui-switch mui-switch-anim" id="checkPoem" type="checkbox" checked>
+                    </div>
+                    <span class="lineBottomCss"></span>
+                    <div class="labelDiv">
+                        <span class="displayClass">音乐播放</span>
+                        <input class="mui-switch mui-switch-anim" id="checkMusic" type="checkbox" checked>
+                    </div>
+                    <span class="lineBottomCss"></span>
                 </div>
-                <span class="lineBottomCss"></span>
-                <div class="labelDiv">
-                    <span class="displayClass">摸鱼卡片</span>
-                    <input class="mui-switch mui-switch-anim" id="checkCard" type="checkbox" checked>
-                </div>
-                <span class="lineBottomCss"></span>
-                <div class="labelDiv">
-                    <span class="displayClass">樱花特效</span>
-                    <input class="mui-switch mui-switch-anim" id="checkSakura" type="checkbox" checked>
-                </div>
-                <span class="lineBottomCss"></span>
-                <div class="labelDiv">
-                    <span class="displayClass">一言诗词</span>
-                    <input class="mui-switch mui-switch-anim" id="checkPoem" type="checkbox" checked>
-                </div>
-                <span class="lineBottomCss"></span>
-                <div class="labelDiv">
-                    <span class="displayClass">音乐播放</span>
-                    <input class="mui-switch mui-switch-anim" id="checkMusic" type="checkbox" checked>
-                </div>
-                <span class="lineBottomCss"></span>
                 <div class="labelDiv">
                     <span class="displayClass">毛玻璃效果</span>
                     <input type="range" max="20" min="0" id="glassRange">
@@ -166,10 +177,10 @@
                 <img id="iconqingyu"/>
             </div>
         </div>
+        <div id="shezhiIcon">
+            <img src="../icons/setting.svg" id="settingIcon"/>
+        </div>
         <div id="centerDiv">
-            <div id="shezhiIcon">
-                <img src="../icons/setting.svg" id="settingIcon"/>
-            </div>
             <!-- <div id="shezhiIcon"><img src="../icons/chilun.svg" id="settingIcon"/></div> -->
             <div id="searchTab">
                 <span id="searchTypeDiv">
@@ -216,6 +227,9 @@
                 </div>
             </div>
         </div>
+        <div id="simpleMode">
+            <input type="text" id="simpleInput">
+        </div>
         <div id="navBar">
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/aiqiyi.png');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/taobao.jpeg');"></div>
@@ -246,6 +260,7 @@
                         <span class="versionTime">2023-04-18</span>
                     </div>
                     <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 极简模式，化繁为简，清爽美观</div>
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 针对 火狐浏览器 样式不兼容做适配处理</div>
                     </div>
                 </div>
@@ -503,7 +518,7 @@
             </div>
             <div id="emailContentPage">
                 <div class="emailContent">
-                    <span class="question">您有什么想要的功能或者对扩展存在问题的地方，都可以发邮件告诉我。</span>
+                    <span class="question">您有什么需求或者对扩展存在问题的地方，都可以发邮件告诉我，期待您的来信。</span>
                     <div class="paddingCss">
                         昵称
                         <span class="requiredCss">*</span>
@@ -536,7 +551,7 @@
             </div>
             <div class="addonsLogo">
                 <img src="../icons/crx.png" alt="" class="addonsImg">
-                <div class="addonName">Crx 文件下载</div>
+                <div class="addonName">Crx 程序包下载</div>
             </div>
         </div>
         <img id="startIcon" src="../icons/start.svg">
