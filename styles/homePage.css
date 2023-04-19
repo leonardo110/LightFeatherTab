@@ -4,7 +4,7 @@
     visibility: hidden;
 }
 #simpleInput{
-    width: 40%;
+    width: 30%;
     height: 40px;
     color: white;
     position: absolute;
@@ -20,6 +20,19 @@
     border-bottom: 2px solid lightskyblue;
     cursor: text;
     text-align: center;
+}
+.donghua {
+    animation-name: prolong;
+    animation-duration: 0.5s;
+    cursor: text;
+}
+@keyframes prolong{
+    from {
+        width: 30%
+    }
+    to {
+        width: 40%
+    }
 }
 #simpleInput::placeholder {
     color: white;
@@ -1154,6 +1167,7 @@ audio::-webkit-media-controls-panel{
     -webkit-appearance: none;
     width: 296px;
     margin-top: 15px;
+    outline: none;
     height: 5px;
     background: linear-gradient(90deg, #e0e7ec 0%, #7cc4f5 100%);
     border-radius: 10px;

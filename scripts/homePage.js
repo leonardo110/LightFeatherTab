@@ -19,7 +19,7 @@ const typeList = [
         key: 'baidu',
         url: '../icons/baidu.png',
         logo: '../icons/baidulogo.svg',
-        uppercase: 'BaiDu'
+        uppercase: 'Baidu'
     },
     {
         key: 'bing',
@@ -148,10 +148,23 @@ function registFunc () {
     getEleById('simpleInput').onfocus = () => {
         getEleById('shezhiView').style.display = 'none'
         getEleById('mask').style.opacity = 0
+        const inputDom = getEleById('simpleInput')
+        inputDom.style.width = '40%'
+        inputDom.setAttribute('class', 'donghua')
+        placeholderText = inputDom.getAttribute("placeholder") || placeholderText
+        placeholderText && inputDom.setAttribute("placeholder", '')
     }
     getEleById('simpleInput').onkeyup = (event) => {
         if (event.keyCode === 13) {
             searchText(event.target.value)
+        }
+    }
+    getEleById('simpleInput').onblur = (event) => {
+        const inputDom = getEleById('simpleInput')
+        if (!inputDom.value) {
+            getEleById('simpleInput').style.width = '30%'
+            getEleById('simpleInput').removeAttribute('class', 'donghua')
+            inputDom.setAttribute("placeholder", placeholderText)
         }
     }
     // 联系我
