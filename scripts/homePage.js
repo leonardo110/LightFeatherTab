@@ -92,22 +92,31 @@ const cardUrlList = [
     'https://zhihu.com',
     'https://youtube.com'
 ]
-let imgTypeMap = new Map()
-imgTypeMap.set('36', '4K专区')
-imgTypeMap.set('9', '风景大片')
-imgTypeMap.set('15', '清新淡雅')
-imgTypeMap.set('26', '动漫卡通')
-imgTypeMap.set('11', '明星风尚')
-imgTypeMap.set('14', '萌宠动物')
-imgTypeMap.set('5', '游戏壁纸')
-imgTypeMap.set('12', '汽车天下')
-imgTypeMap.set('10', '炫酷时尚')
-imgTypeMap.set('29', '月历壁纸')
-imgTypeMap.set('7', '影视剧照')
-imgTypeMap.set('13', '节日美图')
-imgTypeMap.set('22', '军事天地')
-imgTypeMap.set('16', '劲爆体育')
-imgTypeMap.set('35', '文字控')
+let imgTypeMap = new Map([
+    ['36', '4K专区'],
+    ['9', '风景大片'],
+    ['15', '清新淡雅'],
+    ['26', '动漫卡通'],
+    ['11', '明星风尚'],
+    ['14', '萌宠动物'],
+    ['5', '游戏壁纸'],
+    ['12', '汽车天下'],
+    ['10', '炫酷时尚'],
+    ['29', '月历壁纸'],
+    ['7', '影视剧照'],
+    ['13', '节日美图'],
+    ['22', '军事天地'],
+    ['16', '劲爆体育'],
+    ['35', '文字控'],
+])
+// let gameHref = new Map([
+//     ['网上冲浪', 'edge://surf/'],
+//     ['植物大战僵尸', 'https://pvz.heheda.top/'],
+//     ['弹力球', 'https://bouncyballs.org/'],
+//     ['水果忍者', 'https://fn.heheda.top/'],
+//     ['Web魔方','https://tools.bqrdh.com/rubiks-cube/'],
+//     ['微博热搜榜  https://weibo.com/ajax/statuses/hot_band']
+// ])
 // 动画效果
 const animationList = ['bounce', 'flash', 'pulse', 'rubberBand', 'shakeX', 'shakeY', 'headShake', 'swing', 'tada', 'wobble', 'jello', 'heartBeat', 'flip', 'hinge', 'jackInTheBox', 'rollIn']
 // 时间实时展示、初始化计算星期数
@@ -790,14 +799,14 @@ function registFunc () {
             } else {
                 handlerStorage('simpleCheck', false)
             }
-            switchSimple('switch')
+            switchSimple()
         }
         simpleDom.checked = handlerStorage('simpleCheck') === 'true'
     }
 }
 
 // 切换极简模式
-function switchSimple (flag) {
+function switchSimple () {
     const simpleCheck = handlerStorage('simpleCheck') || false
     const centerDom = getEleById('centerDiv')
     const navBarDom = getEleById('navBar')
@@ -828,7 +837,6 @@ function switchSimple (flag) {
         radiusDivDom.style.display = 'none'
         const typeObj = typeList.find(cur => cur.key === searchType)
         simpleInputDom.setAttribute("placeholder", `Search With ${typeObj.uppercase}`);
-        flag === 'switch' && popTip('极简模式适合添加毛玻璃效果哟~', 5000)
     } else {
         const navBar = handlerStorage('cardCheck')
         centerDom.style.visibility = 'visible'
@@ -897,7 +905,7 @@ function getGalleryPhoto () {
 // 进度条
 function progressFunc () {
     const widthDom = getEleById('progress').style
-    let num = 400
+    let num = 500
     let progress = setInterval(() => {
         widthDom.width = num++ + 'px'
         if (num === 663) {
@@ -908,7 +916,7 @@ function progressFunc () {
             gujiaScreen.style.display = 'none'
             content.style.display = 'block'
         }
-    }, 5)
+    }, 1)
 }
 
 // 更新版本提示

@@ -21,6 +21,9 @@
     cursor: text;
     text-align: center;
 }
+.question{
+    font-size: 12px;
+}
 .donghua {
     animation-name: prolong;
     animation-duration: 0.5s;
