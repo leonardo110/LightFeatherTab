@@ -691,7 +691,7 @@ header img{
     width: 295px;
     display: inline-block;
     height: 1px;
-    left: 50%;
+    left: 156px;
     background: rgb(218 216 216);
     position: relative;
     transform: translateX(-50%);
@@ -1169,7 +1169,8 @@ audio::-webkit-media-controls-panel{
  input[type="range"] {
     -webkit-appearance: none;
     width: 296px;
-    margin-top: 15px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     outline: none;
     height: 5px;
     background: linear-gradient(90deg, #e0e7ec 0%, #7cc4f5 100%);

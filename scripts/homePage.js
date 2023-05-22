@@ -154,6 +154,19 @@ switchSimple()
 
 // 初始化注册各种鼠标事件
 function registFunc () {
+    //禁止右键
+    // document.oncontextmenu = function () {
+    //     return false; 
+    // };
+    //禁止F12
+    // document.onkeydown = function () {
+    //     if (window.event && window.event.keyCode == 123) {
+    //         event.keyCode = 0;
+    //         event.returnValue = false;
+    //         return false;
+    //     }
+    // };
+    // 极简模式输入框
     getEleById('simpleInput').onfocus = () => {
         getEleById('shezhiView').style.display = 'none'
         getEleById('mask').style.opacity = 0
@@ -239,7 +252,7 @@ function registFunc () {
         }
         sendEmailNew(nameInput, textArea)
     }
-    // 壁纸库
+    // 壁纸广场
     getEleById('galleryBtn').onclick = () => {
         if (showLogDialog) {
             getEleById('appDialog').style.display = 'none'
@@ -458,7 +471,7 @@ function registFunc () {
         getEleById('searchTab').style.opacity = 1
         // getEleById('searchTab').style.width = '40%'
         getEleById('inputStr').style.padding = '0px 45px'
-        getEleById('deleteIcon').style.right = '40px'
+        getEleById('deleteIcon').style.right = '45px'
         getEleById('searchTypeDiv').style.display = 'inline-block'
         getEleById('sousuoDiv').style.display = 'inline-block'
         setTimeout(() => {
