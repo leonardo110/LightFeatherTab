@@ -470,7 +470,7 @@ function registFunc () {
         getEleById('typeSelect').style.display = 'none'
         getEleById('searchTab').style.opacity = 1
         // getEleById('searchTab').style.width = '40%'
-        getEleById('inputStr').style.padding = '0px 45px'
+        getEleById('inputStr').style.padding = '0px 70px 0px 45px'
         getEleById('deleteIcon').style.right = '45px'
         getEleById('searchTypeDiv').style.display = 'inline-block'
         getEleById('sousuoDiv').style.display = 'inline-block'
