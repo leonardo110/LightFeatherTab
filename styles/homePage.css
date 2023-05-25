@@ -100,6 +100,7 @@
     color: #409EFF;
     cursor: pointer;
     padding: 0px 2px;
+    display: inline-block;
 }
 #noticeCss{
     position: relative;
@@ -956,13 +957,6 @@ footer {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-size: cover;
-}
-#preBackGroundImg{
-    position: fixed;
-    width: 0;
-    height: 0;
-    z-index: -2;
     background-size: cover;
 }
 .search #searchTab {

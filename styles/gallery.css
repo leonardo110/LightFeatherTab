@@ -4,7 +4,6 @@
     position: absolute;
     left: 50%;
     transform: translate(-50%, -60%);
-    top: 52%;
     border-radius: 10px;
     z-index: 1;
     padding: 10px;
@@ -19,6 +18,9 @@
 .tukuDialogHead{
     font-size: 16px;
     padding: 0px 0px 10px 10px;
+}
+.dialogIcons{
+    padding: 0px 3px;
 }
 .galleryContent{
     height: 415px;
@@ -75,15 +77,7 @@
         opacity: 0.9;
     }
 }
-#galleryClose{
-    width: 15px;
-    float: right;
-    padding-right: 10px;
-    cursor: pointer;
-    padding-top: 5px;
-}
-#galleryCloseWhite{
-    width: 15px;
+.headIcons{
     float: right;
     padding-right: 10px;
     cursor: pointer;

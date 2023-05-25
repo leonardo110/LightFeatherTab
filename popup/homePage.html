@@ -13,12 +13,12 @@
 <body>
     <div class="homeBackGround" id="allPage">
         <div id="backGroundImg" style="background-size: cover;"></div>
-        <div id="preBackGroundImg" style="background-size: cover;"></div>
         <div id="mask"></div>
         <div id="alertTip"></div>
+        <!-- 设置界面 -->
         <div id="shezhiView">
             <h2 style="margin: 10px 0 0 0;font-size: 16px;">设置</h2>
-            <span class="shezhiTitle">主题风格</span>
+            <span class="shezhiTitle">面板风格</span>
             <div class="themeCardDiv">
                 <div class="themeCard">
                     <span class="cardSet" style="background-color: rgb(239 245 252);"></span>
@@ -117,10 +117,10 @@
             <div id="thirdDiv" class="shezhiCard">
                 <span class="shezhiTitle" style="padding-left: 10px;">静态</span>
                 <div id="imgDiv">
-                    <span class="imgBack"><img class="jingtaiImg" src="../icons/firstPhoto.jpeg" /></span>
+                    <span class="imgBack"><img class="jingtaiImg" src="../icons/firstPhoto.png" /></span>
                     <span class="imgBack"><img class="jingtaiImg" src="../icons/secondPhoto.png" /></span>
                     <span class="imgBack"><img class="jingtaiImg" src="../icons/thirdPhoto.png" /></span>
-                    <span class="imgBack"><img class="jingtaiImg" src="../icons/fourPhoto.jpg" /></span>
+                    <span class="imgBack"><img class="jingtaiImg" src="../icons/fourPhoto.png" /></span>
                 </div>
                 <div id="imgDivCopy">
                     <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
@@ -168,6 +168,7 @@
             <span class="shezhiTitle" id="updateLog">历史版本日志</span><br/>
             <span class="shezhiTitle">©Copyright&nbsp;&nbsp;<a href="./myself.html" target="_blank" id="myselfBlue">权朝阳</a></span>
         </div>
+        <!-- 时间标题 -->
         <div id="timeContent">
             <div id="showTime">
                 <div id="timeStr"></div>
@@ -180,6 +181,7 @@
         <div id="shezhiIcon">
             <img src="../icons/setting.svg" id="settingIcon"/>
         </div>
+        <!-- 输入框 -->
         <div id="centerDiv">
             <!-- <div id="shezhiIcon"><img src="../icons/chilun.svg" id="settingIcon"/></div> -->
             <div id="searchTab">
@@ -227,13 +229,15 @@
                 </div>
             </div>
         </div>
+        <!-- 极简模式输入框 -->
         <div id="simpleMode">
             <input type="text" id="simpleInput">
         </div>
+        <!-- 摸鱼卡片 -->
         <div id="navBar">
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/aiqiyi.png');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/bilibili.jpeg');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/taobao.jpeg');"></div>
-            <div class="navBarCard" draggable="true" style="background-image: url('../icons/bilibili.webp');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/jingdong.jpg');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/qqyinyue.PNG');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/wangyiyun.jpg');"></div>
@@ -245,6 +249,7 @@
                 <img src="../icons/jiahao.svg" style="position: relative;top: 13px;width: 35%;">
             </div> -->
         </div>
+        <!-- 版本日志 -->
         <div id="appDialog">
             <div class="dialogHead">
                 <img src="../icons/logo32.png" class="logoCss">
@@ -271,7 +276,7 @@
                     </div>
                     <div class="updateContent">
                         <div class="textStyle">• <span class="addSpan">新增</span> 问题与建议，可提出一些实用性需求或者问题并发送邮件给作者</div>
-                        <div class="textStyle">• <span class="addSpan">新增</span> 点击 关于--插件名称，可前往对应浏览器商店进行扩展安装</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 点击 关于 -- 插件名称，可前往对应浏览器商店进行扩展安装</div>
                     </div>
                 </div>
                 <div class="contentDiv">
@@ -440,6 +445,7 @@
                 </div>
             </div>
         </div>
+        <!-- chatgpt弹框 -->
         <div id="chatgptDialog">
             <div class="gptheadCss">
                 <img src="../icons/openai.webp" class="openaicss"/>
@@ -448,16 +454,19 @@
             </div>
             <iframe src="./chatgpt.html" frameborder="0" width="100%" height="100%" id="gptIframe"></iframe>
         </div>
+        <!-- 一言诗词 -->
         <div id="poemContent">
             <div id="poemTitle"></div>
             <div id="author"></div>
             <div style="margin-top: 10px;" class="animate__animated animate__bounceInLeft displayClass"><span id="jinrishici-sentence"></span></div>
         </div>
+        <!-- 壁纸广场 -->
         <div id="tukuDialog">
             <div class="tukuDialogHead">
                 <img src="../icons/logo32.png" class="tukuLogoCss">
                 <span class="animate__animated animate__lightSpeedInRight" style="padding-left: 25px;font-size: 14px;">壁纸广场</span>
                 <select id="gallerysSelectCss">
+                    <option value="10">炫酷时尚</option>
                     <option value="36">4K专区</option>
                     <option value="9">风景大片</option>
                     <option value="15">清新淡雅</option>
@@ -466,7 +475,6 @@
                     <option value="14">萌宠动物</option>
                     <option value="5">游戏壁纸</option>
                     <option value="12">汽车天下</option>
-                    <option value="10">炫酷时尚</option>
                     <option value="29">月历壁纸</option>
                     <option value="7">影视剧照</option>
                     <option value="13">节日美图</option>
@@ -474,33 +482,44 @@
                     <option value="16">劲爆体育</option>
                     <option value="35">文字控</option>
                 </select>
-                <img src="../icons/guanbi.svg" id="galleryClose">
-                <img src="../icons/guanbiWhite.svg" id="galleryCloseWhite">
-            </div>
-            <span class="galleryLineBottomCss"></span>
-            <div id="progress"></div>
-            <div class="galleryContent">
-                <div class="loading" id="gujiaScreen">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-                <div id="insideContent"></div>
-            </div>
-            <span class="galleryLineBottomCss"></span>
-            <div>
-                <button class="galleryBtnCss">下一页</button>
-                <button class="galleryBtnCss">上一页</button>
-                <span id="pageNum" class="pageNumCss"></span>
-                <span class="inputPageCss">
-                    <span>跳至</span>
-                    <input type="text" id="pageInput">
-                    <span>页</span>
+                <span class="headIcons" id="iconGray">
+                    <img src="../icons/suoxiao.svg" class="dialogIcons">
+                    <img src="../icons/fangda.svg" class="dialogIcons">
+                    <img src="../icons/guanbi.svg" class="dialogIcons">
+                </span>
+                <span class="headIcons" id="iconWhite">
+                    <img src="../icons/suoxiaoWhite.svg" class="dialogIcons">
+                    <img src="../icons/fangdaWhite.svg" class="dialogIcons">
+                    <img src="../icons/guanbiWhite.svg" class="dialogIcons">
                 </span>
             </div>
+            <div id="tukuDialogCenter">
+                <span class="galleryLineBottomCss"></span>
+                <div id="progress"></div>
+                <div class="galleryContent">
+                    <div class="loading" id="gujiaScreen">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div id="insideContent"></div>
+                </div>
+                <span class="galleryLineBottomCss"></span>
+                <div>
+                    <button class="galleryBtnCss">下一页</button>
+                    <button class="galleryBtnCss">上一页</button>
+                    <span id="pageNum" class="pageNumCss"></span>
+                    <span class="inputPageCss">
+                        <span>跳至</span>
+                        <input type="text" id="pageInput">
+                        <span>页</span>
+                    </span>
+                </div>
+            </div>
         </div>
+        <!-- 邮件弹框 -->
         <div id="emailDialog">
             <div class="emailHead">
                 <img src="../icons/logo32.png" class="logoCss">
@@ -535,6 +554,7 @@
                 </div>
             </div>
         </div>
+        <!-- 浏览器插件地址 -->
         <div id="addonsAddress">
             <div class="addonsLogo">
                 <img src="../icons/edge.png" alt="" class="addonsImg">
@@ -555,6 +575,7 @@
         </div>
         <img id="startIcon" src="../icons/start.svg">
         <img id="pauseIcon" src="../icons/pause.svg">
+        <!-- 音乐 -->
         <div id="music">
             <img id="gifDom">
             <span id="musicDom">
@@ -566,12 +587,6 @@
                 </span>
             </span>
         </div>
-        <!-- <footer class="brief">
-            <img src="../icons/shoot.svg" style="vertical-align: middle;margin-bottom: 3px;" id="shootIcon">
-            <span id="photoPosition"></span>
-            <span id="prePhotoPosition"></span>
-            <span id="downloadPhoto">下载壁纸</span>
-        </footer> -->
         <div id="myselfDiv">
             <span id="copyright">
                 <span>©Copyright&nbsp;2023&nbsp;</span>

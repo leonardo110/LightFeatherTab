@@ -10,7 +10,7 @@ let showLink = false
 let showAddons = false
 let curPage = 1
 let galleryList = []
-let photoTypeId = 36
+let photoTypeId = 10
 let totalPage = 0
 let placeholderText = ''
 const musicTypeList = ['热歌榜', '飙升榜', '热歌榜', '原创']
@@ -61,8 +61,8 @@ const typeList = [
 const imgList = [
     {
         index: 0,
-        src: '../icons/firstPhoto.jpeg',
-        dis: 'firstPhoto.jpeg'
+        src: '../icons/firstPhoto.png',
+        dis: 'firstPhoto.png'
     },
     {
         index: 1,
@@ -76,14 +76,14 @@ const imgList = [
     },
     {
         index: 3,
-        src: '../icons/fourPhoto.jpg',
-        dis: 'fourPhoto.jpg'
+        src: '../icons/fourPhoto.png',
+        dis: 'fourPhoto.png'
     }
 ]
 const cardUrlList = [
     'http://iqiyi.com',
-    'https://taobao.com',
     'https://bilibili.com',
+    'https://taobao.com',
     'https://jd.com',
     'https://y.qq.com',
     'https://music.163.com',
@@ -93,6 +93,7 @@ const cardUrlList = [
     'https://youtube.com'
 ]
 let imgTypeMap = new Map([
+    ['10', '炫酷时尚'],
     ['36', '4K专区'],
     ['9', '风景大片'],
     ['15', '清新淡雅'],
@@ -101,7 +102,6 @@ let imgTypeMap = new Map([
     ['14', '萌宠动物'],
     ['5', '游戏壁纸'],
     ['12', '汽车天下'],
-    ['10', '炫酷时尚'],
     ['29', '月历壁纸'],
     ['7', '影视剧照'],
     ['13', '节日美图'],
@@ -155,17 +155,17 @@ switchSimple()
 // 初始化注册各种鼠标事件
 function registFunc () {
     //禁止右键
-    // document.oncontextmenu = function () {
-    //     return false; 
-    // };
+    document.oncontextmenu = function () {
+        return false; 
+    };
     //禁止F12
-    // document.onkeydown = function () {
-    //     if (window.event && window.event.keyCode == 123) {
-    //         event.keyCode = 0;
-    //         event.returnValue = false;
-    //         return false;
-    //     }
-    // };
+    document.onkeydown = function () {
+        if (window.event && window.event.keyCode == 123) {
+            event.keyCode = 0;
+            event.returnValue = false;
+            return false;
+        }
+    };
     // 极简模式输入框
     getEleById('simpleInput').onfocus = () => {
         getEleById('shezhiView').style.display = 'none'
@@ -268,9 +268,11 @@ function registFunc () {
         }
         getEleById('tukuDialog').style.display = 'inline-block'
         getEleById('mask').style.opacity = 0.6
+        getEleById('shezhiView').style.display = 'none'
         showGallery = true
         getGalleryPhoto()
         setGalleryTheme()
+        galleryIconFunc()
     }
     getEleById('gallerysSelectCss').onchange = (e) => {
         photoTypeId = e.target.value
@@ -379,20 +381,6 @@ function registFunc () {
             getEleById('mask').style.opacity = 0.3
         }
         showLogDialog = false
-    }
-    getEleById('galleryClose').onclick = () => {
-        getEleById('tukuDialog').style.display = 'none'
-        if (showGallery) {
-            getEleById('mask').style.opacity = 0.3
-        }
-        showGallery = false
-    }
-    getEleById('galleryCloseWhite').onclick = () => {
-        getEleById('tukuDialog').style.display = 'none'
-        if (showGallery) {
-            getEleById('mask').style.opacity = 0.3
-        }
-        showGallery = false
     }
     // 打开日志
     getEleById('updateLog').onclick = () => {
@@ -915,6 +903,52 @@ function getGalleryPhoto () {
     pageNo.innerText = `第 ${curPage} 页`
     getDataInfo(`http://wp.birdpaper.com.cn/intf/GetListByCategory?cids=${photoTypeId}&pageno=${curPage}&count=16`, 'gallery')
 }
+// 图标功能
+function galleryIconFunc () {
+    const dialogIconsList = getEleByClass('dialogIcons')
+    const tukuDialogDom = getEleById('tukuDialog')
+    const iconGrayDom = getEleById('iconGray')
+    const iconWhiteDom = getEleById('iconWhite')
+    const tukuDialogCenterDom = getEleById('tukuDialogCenter')
+    tukuDialogDom.style.top = '52%'
+    tukuDialogDom.style.height = '495px'
+    tukuDialogCenterDom.style.display = 'block'
+    for (let s = 0; s < dialogIconsList.length; s++) {
+        const dom = dialogIconsList[s]
+        dom.style.display = 'inline-block'
+        if (s === 1 || s === 4) {
+            dom.style.display = 'none'
+        }
+        dom.onclick = () => {
+            if (s === 0 || s === 3) {
+                // 缩小
+                tukuDialogDom.style.height = '25px'
+                tukuDialogCenterDom.style.display = 'none'
+                tukuDialogDom.style.top = ''
+                tukuDialogDom.style.bottom = '10px'
+                dom.style.display = 'none'
+                s === 0 ? dialogIconsList[1].style.display = 'inline-block' : dialogIconsList[4].style.display = 'inline-block'
+                getEleById('mask').style.opacity = 0.3
+            } else if (s === 1 || s === 4) {
+                // 放大
+                tukuDialogDom.style.height = '495px'
+                tukuDialogCenterDom.style.display = 'block'
+                tukuDialogDom.style.top = '52%'
+                tukuDialogDom.style.bottom = ''
+                dom.style.display = 'none'
+                s === 1 ? dialogIconsList[0].style.display = 'inline-block' : dialogIconsList[3].style.display = 'inline-block'
+                getEleById('mask').style.opacity = 0.6
+            } else {
+                // 关闭
+                tukuDialogDom.style.display = 'none'
+                closeView()
+                getEleById('mask').style.opacity = 0
+                showGallery = false
+            }
+        }
+    }
+}
+
 // 进度条
 function progressFunc () {
     const widthDom = getEleById('progress').style
@@ -937,7 +971,7 @@ function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'
     if (version !== '1.1.8') {
-        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>v1.1.8</span>" : " v1.1.8") + "版本", 5000)
+        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>&nbsp;v1.1.8&nbsp;</span>" : " v1.1.8") + "版本", 5000)
         handlerStorage('version', '1.1.8')
     }
 }
@@ -1153,8 +1187,8 @@ function setDialogTheme () {
 function setGalleryTheme () {
     const tukuDialog = getEleById('tukuDialog')
     const themeVal = handlerStorage('theme') || 'default'
-    const galleryClose = getEleById('galleryClose').style
-    const galleryCloseWhite = getEleById('galleryCloseWhite').style
+    const iconGray = getEleById('iconGray').style
+    const iconWhite = getEleById('iconWhite').style
     const gallerysSelectCss = getEleById('gallerysSelectCss').style
     const galleryBtnCss = getEleByClass('galleryBtnCss')
     const pageInput = getEleById('pageInput')
@@ -1166,15 +1200,15 @@ function setGalleryTheme () {
         tukuDialog.style.background = 'white'
         tukuDialog.style.color = '#1c1b1b'
         tukuDialog.removeAttribute('class', 'thirdTheme')
-        galleryClose.display = 'inline-block'
-        galleryCloseWhite.display = 'none'
+        iconGray.display = 'inline-block'
+        iconWhite.display = 'none'
         gallerysSelectCss.color = '#5a5858'
         pageInput.style.border = '1px solid #409eff'
         pageInput.style.color = '#6e6d6d'
     } else {
         tukuDialog.style.color = 'white'
-        galleryCloseWhite.display = 'inline-block'
-        galleryClose.display = 'none'
+        iconGray.display = 'none'
+        iconWhite.display = 'inline-block'
         gallerysSelectCss.color = 'white'
         pageInput.style.border = '1px solid white'
         pageInput.style.color = 'white'
@@ -1440,50 +1474,18 @@ function createObjectURL (blob){
 };
 
 function imgHandler(url, title) {
-    const preBgImg = getEleById('preBackGroundImg');
-    // const prePhotoPos = getEleById('prePhotoPosition');
     const bgImg = getEleById('backGroundImg');
-    // const photoPos = getEleById('photoPosition');
-    const viewFlag = handlerStorage('viewFlag') || 'true'
-
-    const bgImgElem = viewFlag === 'true' ? preBgImg : bgImg;
-    // const photoPosElem = viewFlag === 'true' ? prePhotoPos : photoPos;
-    
-    bgImgElem.style.backgroundImage = `url(${url})`;
-    // photoPosElem.innerText = ` : ${title}`;
-    bgImgElem.style.backgroundSize = 'cover';
+    bgImg.style.backgroundImage = `url(${url})`;
+    bgImg.style.backgroundSize = 'cover';
 }
 
 
 // 更换图片
 function turnPhoto(flag) {
     const img1 = getEleById('backGroundImg');
-    const img2 = getEleById('preBackGroundImg');
-    // const footer1 = getEleById('photoPosition');
-    // const footer2 = getEleById('prePhotoPosition');
-    // const brief = getEleByClass('brief')[0];
-    const viewFlag = handlerStorage('viewFlag') || 'true'
-    if (viewFlag === 'true') {
-        img1.style.width = 0;
-        img1.style.height = 0;
-        img2.style.width = '100%';
-        img2.style.height = '100%';
-        img2.style.backgroundSize = 'cover';
-        // footer1.style.display = 'none';
-        // footer2.style.display = 'inline-block';
-        // brief.style.display = footer2.innerText.endsWith(')') ? 'inline-block' : 'none';
-        handlerStorage('viewFlag', false)
-    } else {
-        img1.style.width = '100%';
-        img1.style.height = '100%';
-        img2.style.width = 0;
-        img2.style.height = 0;
-        img1.style.backgroundSize = 'cover';
-        // footer1.style.display = 'inline-block';
-        // footer2.style.display = 'none';
-        // brief.style.display = footer1.innerText.endsWith(')') || flag === 'gallery' ? 'inline-block' : 'none';
-        handlerStorage('viewFlag', true)
-    }
+    img1.style.width = '100%';
+    img1.style.height = '100%';
+    img1.style.backgroundSize = 'cover';
 }
 
 
@@ -1660,7 +1662,7 @@ function loadPhoto () {
         }
     } else {
         // 如果没有缓存图片，则默认第一张静态图
-        getEleById('backGroundImg').style.background = "url('../icons/firstPhoto.jpeg')";
+        getEleById('backGroundImg').style.background = "url('../icons/firstPhoto.png')";
         getEleById('backGroundImg').style.backgroundSize = "cover";
         getEleByClass('greenRight')[0].style.zIndex = 1
         getEleByClass('imgBack')[0].style.filter = 'blur(1px)'
@@ -1834,7 +1836,6 @@ function musicFunc (parseJson) {
 // 背景毛玻璃效果
 function backgroundGlass (event) {
     let curBack1 = getEleById('backGroundImg')
-    let curBack2 = getEleById('preBackGroundImg')
     let curVal
     const num = Number(handlerStorage('glassCheck'))
     if (num === NaN) {
@@ -1844,13 +1845,9 @@ function backgroundGlass (event) {
     if (Number(curVal) > 0) {
         curBack1.style.transform = 'scale(1.1) translateX(0)';
         curBack1.style.filter = 'blur(' + curVal + 'px) brightness(0.8)';
-        curBack2.style.transform = 'scale(1.1) translateX(0)';
-        curBack2.style.filter = 'blur(' + curVal + 'px) brightness(0.8)';
     } else {
         curBack1.style.transform = '';
         curBack1.style.filter = '';
-        curBack2.style.transform = '';
-        curBack2.style.filter = '';
     }
 }
 
