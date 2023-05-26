@@ -1,0 +1,43 @@
+#privacyDialog{
+    width: 780px;
+    height: 85%;
+    background-color: #fff;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 10px;
+    top: 40px;
+    z-index: 1;
+    padding: 20px;
+    display: none;
+}
+.privacyContent{
+    height: calc(100% - 65px);
+    overflow-y: auto;
+}
+.privacyHead{
+    width: 100%;
+    text-align: center;
+}
+.leftIcon{
+    display: inline-block;
+    vertical-align: middle;
+}
+.rightName{
+    display: inline-block;
+    vertical-align: middle;
+    color: #449aff;
+    padding-left: 10px;
+    font-size: 25px;
+}
+.spiltLine{
+    padding: 10px 0px;
+}
+.contentTitle{
+    font-size: 17px;
+    font-weight: 600;
+}
+.contentText{
+    font-size: 14px;
+    padding-top: 10px;
+}

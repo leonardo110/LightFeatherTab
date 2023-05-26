@@ -737,13 +737,7 @@ header img{
     color: white;
     font-size: 12px;
 }
-#downloadPhoto:hover{
-    cursor: pointer;
-}
-#myself{
-    color: #ffe643;
-}
-#myself:hover{
+.cursorCss:hover{
     cursor: pointer;
     text-decoration: underline;
 }

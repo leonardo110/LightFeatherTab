@@ -130,11 +130,11 @@ loadPhoto()
 // 查诗词
 getDataInfo('https://v1.hitokoto.cn/?c=i&encode=json', 'poem')
 // 加载樱花特效
-loadSakuraScript();
+// loadSakuraScript();
 // 背景毛玻璃效果
 backgroundGlass()
 // 加载音乐播放器
-loadMusicScript()
+// loadMusicScript()
 // 是否显示诗词
 showPoemFunc()
 // 切换输入法更改图标
@@ -155,17 +155,26 @@ switchSimple()
 // 初始化注册各种鼠标事件
 function registFunc () {
     //禁止右键
-    document.oncontextmenu = function () {
-        return false; 
-    };
+    // document.oncontextmenu = function () {
+    //     return false; 
+    // };
     //禁止F12
-    document.onkeydown = function () {
-        if (window.event && window.event.keyCode == 123) {
-            event.keyCode = 0;
-            event.returnValue = false;
-            return false;
-        }
-    };
+    // document.onkeydown = function () {
+    //     if (window.event && window.event.keyCode == 123) {
+    //         event.keyCode = 0;
+    //         event.returnValue = false;
+    //         return false;
+    //     }
+    // };
+    getEleById('privacy').onclick = () => {
+        closeView()
+        const privacyDom = getEleById('privacyDialog')
+        privacyDom.style.display = 'block'
+        const maskDom = getEleById('mask')
+        maskDom.style.opacity = 0.6
+        maskDom.style.zIndex = 1
+        setPrivacy()
+    }
     // 极简模式输入框
     getEleById('simpleInput').onfocus = () => {
         getEleById('shezhiView').style.display = 'none'
@@ -245,8 +254,8 @@ function registFunc () {
         const time = handlerStorage('emailTime')
         if (time) {
             const mm = Date.now() - Number(time)
-            if (mm < 60000 * 60) {
-                popTip('请1小时后再重新发送', 3000 ,'#d52a2a')
+            if (mm < 60000 * 5) {
+                popTip('请5分钟后再重新发送', 3000 ,'#d52a2a')
                 return
             }
         }
@@ -268,6 +277,7 @@ function registFunc () {
         }
         getEleById('tukuDialog').style.display = 'inline-block'
         getEleById('mask').style.opacity = 0.6
+        getEleById('mask').style.zIndex = 1
         getEleById('shezhiView').style.display = 'none'
         showGallery = true
         getGalleryPhoto()
@@ -521,70 +531,11 @@ function registFunc () {
         const newStr = event.target.textContent
         window.open('https://baike.baidu.com/item/' + newStr, '_blank')
     }
-    // 移入时展示音乐播放器
-    getEleById('gifDom').onmouseenter = () => {
-        showMusicDom()
-        // 展示暂停还是播放图标
-        const audio = getEleByTag("audio")[0]
-        if (!audio.paused) {
-            getEleById('startIcon').style.display = 'block'
-        } else {
-            getEleById('pauseIcon').style.display = 'block'
-            getEleById('pauseIcon').style.visibility = 'visible'
-        }
-        
-    }
-    // 移出音乐区域时，隐藏播放器
-    getEleById('music').onmouseleave = () => {
-        getEleById('audioDom').style.display = 'none'
-        getEleById('randomMusic').style.display = 'none'
-        // getEleById('startIcon').style.display = 'none'
-        // getEleById('pauseIcon').style.display = 'none'
-    }
-    getEleById('musicDom').onmouseleave = () => {
-        getEleById('startIcon').style.display = 'none'
-        getEleById('pauseIcon').style.display = 'none'
-        getEleById('pauseIcon').style.visibility = 'hidden'
-    }
-    // 点击上一首
-    getEleById('musicSvgCssUp').onclick = () => {
-        if (musicIdList.length === 0) {
-            window.alert('没有历史听歌记录')
-        } else {
-            const str = 'https://api.vvhan.com/api/rand.music?type=json&sort=' + musicIdList[0]
-            getDataInfo(str, 'music')
-        }
-    }
-    // 点击下一首
-    getEleById('musicSvgCssNext').onclick = () => {
-        upMusicId && musicIdList.unshift(upMusicId)
-        getRandomMusic()
-    }
-    // 播放 点击事件
-    getEleById('startIcon').onclick = () => {
-        const audio = getEleByTag("audio")[0]
-        audio.pause()
-        getEleById('startIcon').style.display = 'none'
-        getEleById('pauseIcon').style.display = 'block'
-        getEleById('pauseIcon').style.visibility = 'visible'
-    }
-    // 暂停 点击事件
-    getEleById('pauseIcon').onclick = () => {
-        const audio = getEleByTag("audio")[0]
-        audio.play()
-        getEleById('pauseIcon').style.display = 'none'
-        getEleById('startIcon').style.display = 'block'
-    }
-    // 暂停图标移入事件
-    getEleById('pauseIcon').onmouseenter = () => {
-        showMusicDom()
-    }
-    // 播放图标移入事件
-    getEleById('startIcon').onmouseenter = () => {
-        showMusicDom()
-    }
     // 设置图标点击事件
     getEleById('shezhiIcon').onclick = () => {
+        if (showGallery) {
+            return
+        }
         getEleById('shezhiView').style.display = 'block'
         setTimeout(() => {
             const dom = getEleById('glassRange')
@@ -634,21 +585,6 @@ function registFunc () {
             initTheme()
         }, 0);
     }
-    // 监听歌曲播放完的回调事件
-    getEleByTag("audio")[0].addEventListener('ended', function () {
-        getRandomMusic()
-    }, false);
-    // 监听歌曲暂停回调事件
-    getEleByTag("audio")[0].addEventListener('pause', function () {
-        getEleById('startIcon').style.display = 'none'
-        getEleById('pauseIcon').style.display = 'block'
-        getEleById('pauseIcon').style.visibility = 'visible'
-    }, false);
-    // 监听歌曲播放回调事件
-    getEleByTag("audio")[0].addEventListener('play', function () {
-        getEleById('pauseIcon').style.display = 'none'
-        getEleById('startIcon').style.display = 'block'
-    }, false);
     // 跳转个人主页
     getEleById('myself').onclick =()=> {
         window.open('./myself.html', '_blank')
@@ -686,20 +622,6 @@ function registFunc () {
         // check事件
         titleDom.checked = handlerStorage('titleCheck') === 'true'
     }
-    // 樱花特效开关
-    let sakuraDom = getEleById('checkSakura')
-    if (sakuraDom) {
-        sakuraDom.onclick = () => {
-            if (getEleById('checkSakura').checked) {
-                handlerStorage('sakuraCheck', true)
-            } else {
-                handlerStorage('sakuraCheck', false)
-            }
-            loadSakuraScript()
-        }
-        // check事件
-        sakuraDom.checked = handlerStorage('sakuraCheck') === 'true'
-    }
     // 是否显示诗词
     let poemDom = getEleById('checkPoem')
     if (poemDom) {
@@ -713,19 +635,6 @@ function registFunc () {
         }
         // check事件
         poemDom.checked = handlerStorage('poemCheck') === 'true'
-    }
-    // 音乐开关
-    let musicDom = getEleById('checkMusic')
-    if (musicDom) {
-        getEleById('checkMusic').onclick = () => {
-            if (getEleById('checkMusic').checked) {
-                handlerStorage('musicCheck', true)
-            } else {
-                handlerStorage('musicCheck', false)
-            }
-            loadMusicScript()
-        }
-        musicDom.checked = handlerStorage('musicCheck') === 'true'
     }
     // 毛玻璃效果开关
     let glassDom = getEleById('glassRange')
@@ -814,8 +723,6 @@ function switchSimple () {
     const timeContentDom = getEleById('timeContent')
     const simpleMode = getEleById('simpleMode')
     const poemDom = getEleById('poemContent')
-    let musicDom = getEleById('checkMusic')
-    let sakuraDom = getEleById('checkSakura')
     const handlerSimpleDom = getEleById('handlerSimple')
     const myselfDivDom = getEleById('myselfDiv')
     const simpleInputDom = getEleById('simpleInput')
@@ -831,8 +738,6 @@ function switchSimple () {
         simpleMode.style.visibility = 'visible'
         handlerStorage('sakuraCheck', false)
         handlerStorage('musicCheck', false)
-        musicDom.checked = false
-        sakuraDom.checked = false
         handlerSimpleDom.style.display = 'none'
         myselfDivDom.style.display = 'none'
         radiusDivDom.style.display = 'none'
@@ -851,8 +756,6 @@ function switchSimple () {
         radiusDivDom.style.display = 'inline-block'
         showPoemFunc()
     }
-    loadMusicScript()
-    loadSakuraScript()
 }
 
 function closeEmail () {
@@ -943,6 +846,7 @@ function galleryIconFunc () {
                 tukuDialogDom.style.display = 'none'
                 closeView()
                 getEleById('mask').style.opacity = 0
+                getEleById('mask').style.zIndex = 0
                 showGallery = false
             }
         }
@@ -970,9 +874,9 @@ function progressFunc () {
 function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'
-    if (version !== '1.1.8') {
-        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>&nbsp;v1.1.8&nbsp;</span>" : " v1.1.8") + "版本", 5000)
-        handlerStorage('version', '1.1.8')
+    if (version !== '1.1.9') {
+        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>&nbsp;v1.1.9&nbsp;</span>" : " v1.1.9") + "版本", 5000)
+        handlerStorage('version', '1.1.9')
     }
 }
 // 下载壁纸
@@ -1041,6 +945,7 @@ function setTheme () {
             if (showAddons) {
                 setAddonsTheme()
             }
+            setPrivacy()
             if ([0,1,2].includes(v)) {
                 cardDomList[3].style.border = '0px'
             }
@@ -1119,8 +1024,6 @@ function initTheme () {
         tukuWhite.display = 'inline-block'
         greetDom.color = 'white'
         noticeDom.color = 'white'
-        // options[0].style.color = '#5a5858'
-        // options[1].style.color = '#5a5858'
         if (themeVal === 'lucency') {
             iconDom.style.left = '120px'
             iconDom.style.bottom = '34px'
@@ -1138,6 +1041,27 @@ function initTheme () {
             shezhiView.style.backgroundColor = '#363636'
             shezhiView.removeAttribute('class', 'thirdTheme')
         }
+    }
+}
+
+// 隐私弹框切换主题
+function setPrivacy () {
+    const privacyDialogDom = getEleById('privacyDialog')
+    const themeVal = handlerStorage('theme') || 'default'
+    const rightNameDom = getEleByClass('rightName')[0]
+    const addonsCssDom = getEleByClass('addonsCss')[0]
+    if (themeVal === 'default') {
+        privacyDialogDom.style.background = 'white'
+        privacyDialogDom.style.color = '#3a3a3a'
+        privacyDialogDom.removeAttribute('class', 'thirdTheme')
+        privacyDialogDom.style['backdrop-filter'] = ''
+        rightNameDom.style.color = '#449aff'
+        addonsCssDom.style.color = '#449aff'
+    } else {
+        privacyDialogDom.style.color = 'white'
+        rightNameDom.style.color = 'white'
+        addonsCssDom.style.color = '#ffa400'
+        assembleCode(themeVal, privacyDialogDom)
     }
 }
 
@@ -1310,6 +1234,7 @@ function closeView () {
     getEleById('shezhiView').style.display = 'none'
     getEleById('typeSelect').style.display = 'none'
     getEleById('mask').style.opacity = 0.3
+    getEleById('mask').style.zIndex = 0
     const addonsAddress = getEleById('addonsAddress')
     addonsAddress.style.display = 'none'
     const maskDom = getEleById('mask')
@@ -1318,6 +1243,7 @@ function closeView () {
     searchTab.style.zIndex = 1
     const typeDom = getEleById('typeSelect')
     typeDom.style.zIndex = 1
+    getEleById('privacyDialog').style.display = 'none'
     getEleById('navBar').style.zIndex = 0
 }
 
@@ -2004,13 +1930,6 @@ function getDataInfo(urlStr, flag) {
                 getEleById('jinrishici-sentence').innerText = parseJson.hitokoto
                 getEleById('poemTitle').innerText = '《' + parseJson.from +'》'
                 getEleById('author').innerText = parseJson.from_who
-            } else if (flag === 'music') {
-                if (parseJson.info.mp3url.indexOf('/404') === -1) {
-                    getEleById('gifDom').src = parseJson.info.picUrl + '?param=50y50'
-                    musicFunc(parseJson)
-                } else {
-                    getRandomMusic()
-                }
             } else if (flag === 'gallery') {
                 setGalleryContent(parseJson.data)
             }

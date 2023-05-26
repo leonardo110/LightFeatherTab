@@ -1,5 +1,6 @@
 <html lang="en">
 <!-- Copyright 权朝阳 -->
+
 <head>
     <meta charset="UTF-8" />
     <link rel="icon" href="../icons/titleLogo.png" />
@@ -7,9 +8,11 @@
     <link rel="stylesheet" href="../styles/updateLog.css" />
     <link rel="stylesheet" href="../styles/gallery.css">
     <link rel="stylesheet" href="../styles/email.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <link rel="stylesheet" href="../styles/privacy.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <title>轻羽标签页</title>
 </head>
+
 <body>
     <div class="homeBackGround" id="allPage">
         <div id="backGroundImg" style="background-size: cover;"></div>
@@ -29,7 +32,8 @@
                     <span class="themeText">天空之境</span>
                 </div>
                 <div class="themeCard">
-                    <span class="cardSet" style="background-image: linear-gradient(45deg, #f7797d 0%, #c471ed 50%,  #12c2e9 100%)"></span>
+                    <span class="cardSet"
+                        style="background-image: linear-gradient(45deg, #f7797d 0%, #c471ed 50%,  #12c2e9 100%)"></span>
                     <span class="themeText">流光</span>
                 </div>
                 <div class="themeCard">
@@ -59,7 +63,7 @@
                 <div id="radiusDiv">
                     <span class="lineBottomCss"></span>
                     <div class="labelDiv">
-                        <span class="displayClass">搜索框圆角效果</span>
+                        <span class="displayClass">搜索框圆角</span>
                         <input type="range" max="20" min="0" id="inputRange">
                     </div>
                 </div>
@@ -93,18 +97,8 @@
                     </div>
                     <span class="lineBottomCss"></span>
                     <div class="labelDiv">
-                        <span class="displayClass">樱花特效</span>
-                        <input class="mui-switch mui-switch-anim" id="checkSakura" type="checkbox" checked>
-                    </div>
-                    <span class="lineBottomCss"></span>
-                    <div class="labelDiv">
                         <span class="displayClass">一言诗词</span>
                         <input class="mui-switch mui-switch-anim" id="checkPoem" type="checkbox" checked>
-                    </div>
-                    <span class="lineBottomCss"></span>
-                    <div class="labelDiv">
-                        <span class="displayClass">音乐播放</span>
-                        <input class="mui-switch mui-switch-anim" id="checkMusic" type="checkbox" checked>
                     </div>
                     <span class="lineBottomCss"></span>
                 </div>
@@ -130,25 +124,30 @@
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">本地</span>
                 <div href="javascript:;" class="upload btnHoverCss">
-                    <!-- <span>选择文件</span> -->
-                    <img src="../icons/uploadBlue.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="uploadBlue">
-                    <img src="../icons/uploadWhite.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;" id="uploadWhite">
+                    <img src="../icons/uploadBlue.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;"
+                        id="uploadBlue">
+                    <img src="../icons/uploadWhite.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;"
+                        id="uploadWhite">
                     &nbsp;上传图片
-                    <input class="inputFile" id="inputFile" type="file" accept="image/*"/>
+                    <input class="inputFile" id="inputFile" type="file" accept="image/*" />
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">随机</span>
                 <div style="text-align: center;z-index: 5;position: relative;">
                     <button id="checkPhoto" class="btnHoverCss">
-                        <img src="../icons/refreshBlue.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshBlue">
-                        <img src="../icons/refreshWhite.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshWhite">
+                        <img src="../icons/refreshBlue.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;"
+                            id="refreshBlue">
+                        <img src="../icons/refreshWhite.svg"
+                            style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshWhite">
                         <span>&nbsp;Bing&nbsp;一下</span>
                     </button>
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">图库</span>
                 <div style="text-align: center;z-index: 5;position: relative;padding-bottom: 15px;">
                     <button id="galleryBtn" class="btnHoverCss">
-                        <img src="../icons/tukuBlue.svg" style="width: 15px;margin-top: -3px;vertical-align: middle;" id="tukuBlue">
-                        <img src="../icons/tukuWhite.svg" style="width: 15px;margin-top: -3px;vertical-align: middle;" id="tukuWhite">
+                        <img src="../icons/tukuBlue.svg" style="width: 15px;margin-top: -3px;vertical-align: middle;"
+                            id="tukuBlue">
+                        <img src="../icons/tukuWhite.svg" style="width: 15px;margin-top: -3px;vertical-align: middle;"
+                            id="tukuWhite">
                         <span>&nbsp;&nbsp;壁纸广场</span>
                     </button>
                 </div>
@@ -163,10 +162,12 @@
                 </div>
             </div> -->
             <h2 style="margin: 10px 0 0 0;font-size: 16px;">关于</h2>
-            <span class="shezhiTitle" id="addonsHref" style="display: inline-block;">轻羽标签页&nbsp;&nbsp;|&nbsp;&nbsp;Light Feather Tab</span><br/>
-            <span class="shezhiTitle">版本: v1.1.8</span><br/>
-            <span class="shezhiTitle" id="updateLog">历史版本日志</span><br/>
-            <span class="shezhiTitle">©Copyright&nbsp;&nbsp;<a href="./myself.html" target="_blank" id="myselfBlue">权朝阳</a></span>
+            <span class="shezhiTitle" id="addonsHref" style="display: inline-block;">轻羽标签页&nbsp;&nbsp;|&nbsp;&nbsp;Light
+                Feather Tab</span><br />
+            <span class="shezhiTitle">版本: v1.1.9</span><br />
+            <span class="shezhiTitle" id="updateLog">历史版本日志</span><br />
+            <span class="shezhiTitle">©Copyright&nbsp;&nbsp;<a href="./myself.html" target="_blank"
+                    id="myselfBlue">权朝阳</a></span>
         </div>
         <!-- 时间标题 -->
         <div id="timeContent">
@@ -175,11 +176,11 @@
                 <span id="dateStr"></span>
             </div>
             <div id="showTabName">
-                <img id="iconqingyu"/>
+                <img id="iconqingyu" />
             </div>
         </div>
         <div id="shezhiIcon">
-            <img src="../icons/setting.svg" id="settingIcon"/>
+            <img src="../icons/setting.svg" id="settingIcon" />
         </div>
         <!-- 输入框 -->
         <div id="centerDiv">
@@ -190,7 +191,7 @@
                 </span>
                 <input type="text" id="inputStr" name="word" size="30" autocomplete="on">
                 <span id="sousuoDiv">
-                    <img src="../icons/sousuo.svg" id="sousuoIcon"/>
+                    <img src="../icons/sousuo.svg" id="sousuoIcon" />
                 </span>
                 <img src="../icons/deleteIcon.svg" id="deleteIcon"></img>
             </div>
@@ -241,7 +242,7 @@
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/jingdong.jpg');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/qqyinyue.PNG');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/wangyiyun.jpg');"></div>
-            <div class="navBarCard"  draggable="true" style="background-image: url('../icons/tengxun.png');"></div>
+            <div class="navBarCard" draggable="true" style="background-image: url('../icons/tengxun.png');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/douyin.PNG');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/zhihu.png');"></div>
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/youtube.PNG');"></div>
@@ -259,6 +260,16 @@
             </div>
             <span class="logLineBottomCss"></span>
             <div class="dialogContent">
+                <div class="contentDiv">
+                    <div class="versionHead">
+                        <span class="versionDiv">v1.1.9</span>
+                        <span class="versionTime">2023-05-26</span>
+                    </div>
+                    <div class="updateContent">
+                        <div class="textStyle">• <span class="addSpan">新增</span> 隐私政策协议</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 壁纸广场增加缩放功能，以便查看壁纸是否匹配</div>
+                    </div>
+                </div>
                 <div class="contentDiv">
                     <div class="versionHead">
                         <span class="versionDiv">v1.1.8</span>
@@ -448,8 +459,8 @@
         <!-- chatgpt弹框 -->
         <div id="chatgptDialog">
             <div class="gptheadCss">
-                <img src="../icons/openai.webp" class="openaicss"/>
-                <img src="../icons/clearGpt.svg" id="cleargptCss" alt="" title="清空聊天内容">
+                <img src="../icons/openai.webp" class="openaicss" />
+                <img src="../icons/clearGpt.svg" id="cleargptCss" title="清空聊天内容">
                 <img src="../icons/guanbi.svg" id="dialogDelete">
             </div>
             <iframe src="./chatgpt.html" frameborder="0" width="100%" height="100%" id="gptIframe"></iframe>
@@ -458,13 +469,15 @@
         <div id="poemContent">
             <div id="poemTitle"></div>
             <div id="author"></div>
-            <div style="margin-top: 10px;" class="animate__animated animate__bounceInLeft displayClass"><span id="jinrishici-sentence"></span></div>
+            <div style="margin-top: 10px;" class="animate__animated animate__bounceInLeft displayClass"><span
+                    id="jinrishici-sentence"></span></div>
         </div>
         <!-- 壁纸广场 -->
         <div id="tukuDialog">
             <div class="tukuDialogHead">
                 <img src="../icons/logo32.png" class="tukuLogoCss">
-                <span class="animate__animated animate__lightSpeedInRight" style="padding-left: 25px;font-size: 14px;">壁纸广场</span>
+                <span class="animate__animated animate__lightSpeedInRight"
+                    style="padding-left: 25px;font-size: 14px;">壁纸广场</span>
                 <select id="gallerysSelectCss">
                     <option value="10">炫酷时尚</option>
                     <option value="36">4K专区</option>
@@ -484,12 +497,12 @@
                 </select>
                 <span class="headIcons" id="iconGray">
                     <img src="../icons/suoxiao.svg" class="dialogIcons">
-                    <img src="../icons/fangda.svg" class="dialogIcons">
+                    <img src="../icons/fangda.svg" class="dialogIcons" style="padding-bottom: 1px;">
                     <img src="../icons/guanbi.svg" class="dialogIcons">
                 </span>
                 <span class="headIcons" id="iconWhite">
                     <img src="../icons/suoxiaoWhite.svg" class="dialogIcons">
-                    <img src="../icons/fangdaWhite.svg" class="dialogIcons">
+                    <img src="../icons/fangdaWhite.svg" class="dialogIcons" style="padding-bottom: 1px;">
                     <img src="../icons/guanbiWhite.svg" class="dialogIcons">
                 </span>
             </div>
@@ -541,12 +554,13 @@
                         昵称
                         <span class="requiredCss">*</span>
                     </div>
-                    <input required id="nameInput" class="inputCss" type="text"  value="" size="15" maxlength="20"/><br/>
+                    <input required id="nameInput" class="inputCss" type="text" value="" size="15"
+                        maxlength="20" /><br />
                     <div class="paddingCss">
                         问题或者建议
                         <span class="requiredCss">*</span>
                     </div>
-                    <textarea id="textArea" maxlength="200" class="areaCss" required></textarea><br/>
+                    <textarea id="textArea" maxlength="200" class="areaCss" required></textarea><br />
                 </div>
                 <div>
                     <button class="galleryBtnCss" id="cancleBtn">取消</button>
@@ -557,46 +571,101 @@
         <!-- 浏览器插件地址 -->
         <div id="addonsAddress">
             <div class="addonsLogo">
-                <img src="../icons/edge.png" alt="" class="addonsImg">
+                <img src="../icons/edge.png" class="addonsImg">
                 <div class="addonName">Edge 扩展安装</div>
             </div>
             <div class="addonsLogo">
-                <img src="../icons/chrome.svg" alt="" class="addonsImg">
+                <img src="../icons/chrome.svg" class="addonsImg">
                 <div class="addonName">Chrome 扩展安装</div>
             </div>
             <div class="addonsLogo">
-                <img src="../icons/firefox.svg" alt="" class="addonsImg">
+                <img src="../icons/firefox.svg" class="addonsImg">
                 <div class="addonName">Firefox 扩展安装</div>
             </div>
             <!-- <div class="addonsLogo">
-                <img src="../icons/crx.png" alt="" class="addonsImg">
+                <img src="../icons/crx.png"  class="addonsImg">
                 <div class="addonName">Crx 程序包下载</div>
             </div> -->
         </div>
-        <img id="startIcon" src="../icons/start.svg">
-        <img id="pauseIcon" src="../icons/pause.svg">
-        <!-- 音乐 -->
-        <div id="music">
-            <img id="gifDom">
-            <span id="musicDom">
-                <audio id="audioDom" controls></audio>
-                <span id="randomMusic">
-                    <img src="../icons/up.svg" id="musicSvgCssUp"/>
-                    <span id="musicName"></span>
-                    <img src="../icons/next.svg" id="musicSvgCssNext"/>
-                </span>
-            </span>
+        <!-- 隐私政策 -->
+        <div id="privacyDialog">
+            <div class="privacyHead">
+                <div class="leftIcon">
+                    <img src="../icons/logo64.png">
+                </div>
+                <div style="display: inline-block;" class="rightName">
+                    <span>轻羽标签页</span>
+                </div>
+            </div>
+            <div class="privacyContent">
+                <div style="padding: 5px 0px;">
+                    <div style="font-size: 25px;padding-top: 10px;font-weight: 600;">隐私政策协议</div>
+                    <div class="spiltLine"></div>
+                    <div style="font-size: 14px;">
+                        <p>感谢您使用 <span class="addonsCss">轻羽标签页</span>，本隐私政策协议适用于此次提供的产品，鉴于个人隐私的重要性，特此声明：</p><br>
+                        <h4>1. 本应用尊重并保护所有使用服务用户的个人隐私权。</h4><br>
+                        <h4>2. 本应用不会收集或上传任何个人相关数据。</h4><br>
+                        <h4>3. 本隐私权政策属于本应用服务使用协议不可分割的一部分。</h4><br>
+                        <h4>4. 本应用尊重并保护所有使用服务用户的个人隐私权。</h4><br>
+                        <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了给您提供更准确、更有个性化的服务，本应用会按照本隐私权政策的规定使用和披露您的个人信息。但本应用将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本应用不会将这些信息对外披露或向第三方提供。本应用会不时更新本隐私权政策。
+                            您在同意本应用服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本应用服务使用协议不可分割的一部分。</p>
+                    </div>
+                    <div class="spiltLine"></div>
+                    <div>
+                        <span class="contentTitle">收集的信息范围</span>
+                        <div class="contentText">信息范围包括页面布局、缓存、主页等。
+                        </div>
+                    </div>
+                    <div class="spiltLine"></div>
+                    <div>
+                        <span class="contentTitle">某些特定原因的用途</span>
+                        <div class="contentText">
+                            <p>我们认为在以下特定情形下，对您的某些信息进行使用披露是合理必要的：</p><br>
+                            <p>1.满足任何适用的法律、法规，法律程序或可执行的政府要求。</p><br>
+                            <p>2.根据适用的服务条款，对潜在违规行为进行的调查。</p><br>
+                            <p>3.检测、防止或以其他方式解决欺诈，安全或技术问题。</p><br>
+                            <p>4.在法律要求或允许的范围内，防止损害我们以及用户或公众的权利，财产或安全。</p>
+                        </div>
+                    </div>
+                    <div class="spiltLine"></div>
+                    <div>
+                        <span class="contentTitle">用户授权说明</span>
+                        <div class="contentText">
+                            我将尽力保证您的信息安全，按照隐私权政策的规定使用和披露您的个人信息。
+                        </div>
+                    </div>
+                    <div class="spiltLine"></div>
+                    <div>
+                        <span class="contentTitle">信息安全说明</span>
+                        <div class="contentText">使用我们的产品及服务即表示您接受本协议。如果您不同意本协议，请不要继续使用本产品。
+                        </div>
+                    </div>
+                    <div class="spiltLine"></div>
+                    <div>
+                        <span class="contentTitle">法律适用与争议解决</span>
+                        <div class="contentText">
+                            <p>1、如果您是中国居民，本协议的效力、解释、履行和争议的解决均适用中华人民共和国法律、法规、电信管理部门的规定和计算机行业的规范。</p><br>
+                            <p>2、如果您是非中国地区的居民，则本协议的效力、解释、履行和争议的解决均适用于您居住地的法律。</p><br>
+                            <p>3、因履行本协议或与本协议有关的一切争议，应通过友好协商方式解决。如果协商未成，则提交我们的住所地有管辖权的人民法院诉讼解决。</p><br>
+                            <p>4、我们与您共同确认：本协议签署的选择权对于双方是完全对等而公允的，即任何一方可以不受强制地选择签署或不签署本协议。本协议是经过双方审慎考虑阐述的意思表示，不存在任何一方片面加大另一方责任或逃避应履行义务的情形。任何一方签署或承诺遵守本协议均视为放弃对于本协议公允性的质疑。</p><br>
+                    
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="myselfDiv">
             <span id="copyright">
                 <span>©Copyright&nbsp;2023&nbsp;</span>
-                <span id="myself">权朝阳</span>
-                <span id="linkMe">&nbsp;|&nbsp;&nbsp;问题与建议</span>
-                <span id="downloadPhoto">&nbsp;|&nbsp;&nbsp;<span style="color: #ffe643">下载壁纸</span></span>
+                <span id="myself" class="cursorCss">权朝阳</span>
+                <span id="downloadPhoto">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">下载壁纸</span></span>
+                <span id="linkMe">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">问题反馈</span></span>
+                <span id="privacy">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">隐私政策协议</span></span>
             </span>
         </div>
         <script src="../scripts/vanilla-tilt.js"></script>
         <script src="../scripts/homePage.js"></script>
     </div>
 </body>
+
 </html>
