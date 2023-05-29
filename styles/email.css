@@ -11,12 +11,24 @@
     display: none;
     font-size: 13px;
 }
+#emailContentPage{
+    width: 400px;
+}
 .emailBottomCss{
     width: 380px;
     display: inline-block;
     height: 1px;
     margin: 0px 10px;
     background: rgb(218 216 216);
+}
+.emailBtnCss{
+    background: transparent;
+    outline: none;
+    margin: 10px;
+    padding: 5px 17px;;
+    border-radius: 3px;
+    cursor: pointer;
+    float: right;
 }
 .emailHead{
     padding: 10px;

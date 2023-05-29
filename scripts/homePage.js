@@ -124,7 +124,7 @@ showNameFunc()
 // 初始化注册各种鼠标事件和监听事件
 registFunc()
 // 查天气
-// getDataInfo('https://api.vvhan.com/api/weather', 'weather')
+getDataInfo('https://api.vvhan.com/api/weather', 'weather')
 // 预加载一张背景图
 loadPhoto()
 // 查诗词
@@ -166,6 +166,21 @@ function registFunc () {
     //         return false;
     //     }
     // };
+    // 监听tab键盘事件
+    document.addEventListener('keyup', function (event) {
+        if (event.keyCode === 9) {
+            const type = handlerStorage('searchType')
+            let index = typeList.findIndex(temp => {
+                return temp.key === type
+            })
+            let setIdx = index === 6 ? 0 : ++index
+            // getEleById('typeSelect').style.display = 'none'
+            getEleByClass('typeIcon')[0].src = typeList[setIdx].logo
+            handlerStorage('searchType', typeList[setIdx].key)
+            // 切换输入法更改图标
+            handlerInputMethod(handlerStorage('searchType'))
+        }
+    })
     document.body.addEventListener('click', function(e) {
         const menuDom = getEleById('rightMenu')
         menuDom.style.display = 'none'
@@ -466,18 +481,7 @@ function registFunc () {
     }
     // 选中查询类型时
     getEleById('searchTypeDiv').onclick = () => {
-        const curVal = getEleById('typeSelect')
-        curVal.style.display = 'block'
-        const eventFunc = getEleByClass('selectCss')
-        for (let b = 0; b < eventFunc.length; b++) {
-            eventFunc[b].onclick = (e) => {
-                getEleById('typeSelect').style.display = 'none'
-                getEleByClass('typeIcon')[0].src = typeList[b].logo
-                handlerStorage('searchType', typeList[b].key)
-                // 切换输入法更改图标
-                handlerInputMethod(handlerStorage('searchType'))
-            }
-        }
+        tabKeyUpFunc()
     }
     // 鼠标移入输入框时
     getEleById('inputStr').onmouseenter = () => {
@@ -690,6 +694,22 @@ function registFunc () {
     }
 }
 
+// tab键切换搜索引擎
+function tabKeyUpFunc () {
+    const curVal = getEleById('typeSelect')
+    curVal.style.display = 'block'
+    const eventFunc = getEleByClass('selectCss')
+    for (let b = 0; b < eventFunc.length; b++) {
+        eventFunc[b].onclick = (e) => {
+            getEleById('typeSelect').style.display = 'none'
+            getEleByClass('typeIcon')[0].src = typeList[b].logo
+            handlerStorage('searchType', typeList[b].key)
+            // 切换输入法更改图标
+            handlerInputMethod(handlerStorage('searchType'))
+        }
+    }
+}
+
 // 打开壁纸广场
 function openGalleryDialog () {
     if (showLogDialog) {
@@ -740,10 +760,8 @@ function openSettingView () {
         searchTab.style.zIndex = -1
         const typeDom = getEleById('typeSelect')
         typeDom.style.zIndex = -1
-        setTimeout(() => {
-            const maskDom = getEleById('mask')
-            maskDom.style.opacity = 0.3
-        }, 350)
+        const maskDom = getEleById('mask')
+        maskDom.style.opacity = 0.3
         const length = getEleByClass('jingtaiImg').length
         for (let v = 0; v < length; v++) {
             getEleByClass('jingtaiImg')[v].onclick = () => {
@@ -790,6 +808,7 @@ function switchSimple () {
     const simpleInputDom = getEleById('simpleInput')
     const historySearchDom = getEleById('historySearch')
     const radiusDivDom = getEleById('radiusDiv')
+    const weatherDom = getEleByClass('weather')[0]
     if (simpleCheck === 'true') {
         const searchType = handlerStorage('searchType') || 'baidu'
         centerDom.style.visibility = 'hidden'
@@ -805,6 +824,7 @@ function switchSimple () {
         radiusDivDom.style.display = 'none'
         const typeObj = typeList.find(cur => cur.key === searchType)
         simpleInputDom.setAttribute("placeholder", `Search With ${typeObj.uppercase}`);
+        weatherDom.style.display = 'none'
     } else {
         const navBar = handlerStorage('cardCheck')
         centerDom.style.visibility = 'visible'
@@ -816,6 +836,7 @@ function switchSimple () {
         handlerSimpleDom.style.display = 'inline-block'
         myselfDivDom.style.display = 'inline-block'
         radiusDivDom.style.display = 'inline-block'
+        weatherDom.style.display = 'inline-block'
         showPoemFunc()
     }
 }
@@ -842,9 +863,13 @@ function getGalleryPhoto () {
             const cur = galleryBtnList[v]
             cur.onclick = () => {
                 const xy = curPage
-                if (v === 0) {
+                if (v === 1) {
                     curPage++
                 } else {
+                    if (curPage === 1) {
+                        popTip('当前页已是第一页')
+                        return
+                    }
                     curPage > 1 && curPage--
                 }
                 pageNo.innerText = `第 ${curPage} 页`
@@ -937,7 +962,7 @@ function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'
     if (version !== '1.1.9') {
-        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>&nbsp;v1.1.9&nbsp;</span>" : " v1.1.9") + "版本", 5000)
+        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>&nbsp;v1.1.9&nbsp;</span>" : " v1.1.9") + "版本，快试试新功能吧~", 5000)
         handlerStorage('version', '1.1.9')
     }
 }
@@ -974,7 +999,7 @@ function downloadImage() {
         var event = new MouseEvent('click')
 
         // 将a的download属性设置为我们想要下载的图片名称，若name不存在则使用‘下载图片名称’作为默认名称
-        a.download = '壁纸'
+        a.download = '图片'
         // 将生成的URL设置为a.href属性
         a.href = url
 
@@ -1462,9 +1487,6 @@ function imgHandlerPhoto(url) {
     bgImg.style.backgroundSize = 'cover';
     bgImg.style.width = '100%';
     bgImg.style.height = '100%';
-    // handlerStorage('imgObj', JSON.stringify({
-    //     url: url
-    // }))
 }
 
 
@@ -1979,6 +2001,12 @@ function getDataInfo(urlStr, flag) {
                 getEleById('author').innerText = parseJson.from_who
             } else if (flag === 'gallery') {
                 setGalleryContent(parseJson.data)
+            } else if (flag === 'weather') {
+                const weatherText = getEleById('weatherText')
+                const {type, high, low, tip} = parseJson.info
+                const text = `${type}，温度 ${high} | ${parseJson.city}`
+                weatherText.innerText = text
+                weatherText.title = tip
             }
         }
       }

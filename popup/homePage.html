@@ -18,6 +18,9 @@
         <div id="backGroundImg" style="background-size: cover;"></div>
         <div id="mask"></div>
         <div id="alertTip"></div>
+        <div class="weather">
+            <span id="weatherText"></span>
+        </div>
         <!-- 设置界面 -->
         <div id="shezhiView">
             <h2 style="margin: 10px 0 0 0;font-size: 16px;">设置</h2>
@@ -124,9 +127,9 @@
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">本地</span>
                 <div href="javascript:;" class="upload btnHoverCss">
-                    <img src="../icons/uploadBlue.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;"
+                    <img src="../icons/uploadBlue.svg" class="uploadBtnIcon"
                         id="uploadBlue">
-                    <img src="../icons/uploadWhite.svg" style="width: 20px;margin-top: -4px;vertical-align: middle;"
+                    <img src="../icons/uploadWhite.svg" class="uploadBtnIcon"
                         id="uploadWhite">
                     &nbsp;上传图片
                     <input class="inputFile" id="inputFile" type="file" accept="image/*" />
@@ -144,10 +147,8 @@
                 <span class="shezhiTitle" style="padding-left: 10px;">图库</span>
                 <div style="text-align: center;z-index: 5;position: relative;padding-bottom: 15px;">
                     <button id="galleryBtn" class="btnHoverCss">
-                        <img src="../icons/tukuBlue.svg" style="width: 15px;margin-top: -3px;vertical-align: middle;"
-                            id="tukuBlue">
-                        <img src="../icons/tukuWhite.svg" style="width: 15px;margin-top: -3px;vertical-align: middle;"
-                            id="tukuWhite">
+                        <img src="../icons/tukuBlue.svg" class="btnIconCss" id="tukuBlue">
+                        <img src="../icons/tukuWhite.svg" class="btnIconCss" id="tukuWhite">
                         <span>&nbsp;&nbsp;壁纸广场</span>
                     </button>
                 </div>
@@ -236,11 +237,26 @@
         </div>
         <!-- 右键菜单 -->
         <div id="rightMenu">
-            <div class="menuDiv">设置</div>
-            <div class="menuDiv">壁纸广场</div>
-            <div class="menuDiv">刷新</div>
-            <div class="menuDiv">Bing&nbsp;一下</div>
-            <div class="menuDiv">下载壁纸</div>
+            <div class="menuDiv">
+                <img src="../icons/menuSetting.svg" class="middleCss">
+                <span class="menuItemText middleCss">设置</span>
+            </div>
+            <div class="menuDiv">
+                <img src="../icons/menuTuku.svg" class="middleCss">
+                <span class="menuItemText middleCss">壁纸广场</span>
+            </div>
+            <div class="menuDiv">
+                <img src="../icons/menuRefresh.svg" class="middleCss">
+                <span class="menuItemText middleCss">刷新</span>
+            </div>
+            <div class="menuDiv">
+                <img src="../icons/menuRandom.svg" class="middleCss">
+                <span class="menuItemText middleCss">Bing&nbsp;每日一图</span>
+            </div>
+            <div class="menuDiv">
+                <img src="../icons/menuDownload.svg" class="middleCss">
+                <span class="menuItemText middleCss">下载壁纸</span>
+            </div>
         </div>
         <!-- 摸鱼卡片 -->
         <div id="navBar">
@@ -529,15 +545,15 @@
                     <div id="insideContent"></div>
                 </div>
                 <span class="galleryLineBottomCss"></span>
-                <div>
-                    <button class="galleryBtnCss">下一页</button>
-                    <button class="galleryBtnCss">上一页</button>
-                    <span id="pageNum" class="pageNumCss"></span>
+                <div style="text-align: center;">
                     <span class="inputPageCss">
                         <span>跳至</span>
                         <input type="text" id="pageInput">
                         <span>页</span>
                     </span>
+                    <span id="pageNum" class="pageNumCss"></span>
+                    <button class="galleryBtnCss">上一页</button>
+                    <button class="galleryBtnCss">下一页</button>
                 </div>
             </div>
         </div>
@@ -572,8 +588,8 @@
                     <textarea id="textArea" maxlength="200" class="areaCss" required></textarea><br />
                 </div>
                 <div>
-                    <button class="galleryBtnCss" id="cancleBtn">取消</button>
-                    <button class="galleryBtnCss" id="sendBtn">发送邮件</button>
+                    <button class="galleryBtnCss" id="cancleBtn" style="float: right;">取消</button>
+                    <button class="galleryBtnCss" id="sendBtn" style="float: right;">发送邮件</button>
                 </div>
             </div>
         </div>

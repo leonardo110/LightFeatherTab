@@ -1,4 +1,14 @@
 
+.weather{
+    position: absolute;
+    right: 30px;
+    backdrop-filter: blur(15px);
+    top: 20px;
+    backdrop-filter: blur(10);
+    padding: 2px 10px;
+    color: #fff;
+    font-size: 14px;
+}
 #rightMenu{
     width: 130px;
     background: white;
@@ -16,6 +26,16 @@
 .menuDiv{
     padding: 10px;
 }
+.middleCss {
+    vertical-align: middle;
+    width: 14px;
+}
+.menuItemText{
+    padding-left: 5px;
+    padding-bottom: 2px;
+    display: inline-block;
+    width: auto;
+}
 @keyframes rightMenu {
     from {
         height: 0px;
@@ -23,6 +43,16 @@
     to {
         height: 132px;
     }
+}
+.btnIconCss{
+    width: 15px;
+    margin-top: -3px;
+    vertical-align: middle;
+}
+.uploadBtnIcon {
+    width: 20px;
+    margin-top: -4px;
+    vertical-align: middle;
 }
 .menuDiv:hover{
     cursor: pointer;
@@ -496,6 +526,7 @@ header img{
     animation-duration: 0.2s;
     animation-timing-function: ease;
     color: rgb(58, 58, 58);
+    z-index: 1;
 }
 /* 动画代码 */
 @keyframes alertTip {
