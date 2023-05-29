@@ -131,7 +131,7 @@
                     &nbsp;上传图片
                     <input class="inputFile" id="inputFile" type="file" accept="image/*" />
                 </div>
-                <span class="shezhiTitle" style="padding-left: 10px;">随机</span>
+                <!-- <span class="shezhiTitle" style="padding-left: 10px;">随机</span>
                 <div style="text-align: center;z-index: 5;position: relative;">
                     <button id="checkPhoto" class="btnHoverCss">
                         <img src="../icons/refreshBlue.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;"
@@ -140,7 +140,7 @@
                             style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshWhite">
                         <span>&nbsp;Bing&nbsp;一下</span>
                     </button>
-                </div>
+                </div> -->
                 <span class="shezhiTitle" style="padding-left: 10px;">图库</span>
                 <div style="text-align: center;z-index: 5;position: relative;padding-bottom: 15px;">
                     <button id="galleryBtn" class="btnHoverCss">
@@ -234,6 +234,14 @@
         <div id="simpleMode">
             <input type="text" id="simpleInput">
         </div>
+        <!-- 右键菜单 -->
+        <div id="rightMenu">
+            <div class="menuDiv">设置</div>
+            <div class="menuDiv">壁纸广场</div>
+            <div class="menuDiv">刷新</div>
+            <div class="menuDiv">Bing&nbsp;一下</div>
+            <div class="menuDiv">下载壁纸</div>
+        </div>
         <!-- 摸鱼卡片 -->
         <div id="navBar">
             <div class="navBarCard" draggable="true" style="background-image: url('../icons/aiqiyi.png');"></div>
@@ -266,7 +274,7 @@
                         <span class="versionTime">2023-05-26</span>
                     </div>
                     <div class="updateContent">
-                        <div class="textStyle">• <span class="addSpan">新增</span> 隐私政策协议</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 右键菜单，优化设置面板功能</div>
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 壁纸广场增加缩放功能，以便查看壁纸是否匹配</div>
                     </div>
                 </div>
@@ -469,8 +477,9 @@
         <div id="poemContent">
             <div id="poemTitle"></div>
             <div id="author"></div>
-            <div style="margin-top: 10px;" class="animate__animated animate__bounceInLeft displayClass"><span
-                    id="jinrishici-sentence"></span></div>
+            <div style="margin-top: 10px;" class="animate__animated animate__bounceInLeft displayClass">
+                <span id="jinrishici-sentence"></span>
+            </div>
         </div>
         <!-- 壁纸广场 -->
         <div id="tukuDialog">
@@ -606,25 +615,24 @@
                         <h4>1. 本应用尊重并保护所有使用服务用户的个人隐私权。</h4><br>
                         <h4>2. 本应用不会收集或上传任何个人相关数据。</h4><br>
                         <h4>3. 本隐私权政策属于本应用服务使用协议不可分割的一部分。</h4><br>
-                        <h4>4. 本应用尊重并保护所有使用服务用户的个人隐私权。</h4><br>
                         <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了给您提供更准确、更有个性化的服务，本应用会按照本隐私权政策的规定使用和披露您的个人信息。但本应用将以高度的勤勉、审慎义务对待这些信息。除本隐私权政策另有规定外，在未征得您事先许可的情况下，本应用不会将这些信息对外披露或向第三方提供。本应用会不时更新本隐私权政策。
-                            您在同意本应用服务使用协议之时，即视为您已经同意本隐私权政策全部内容。本隐私权政策属于本应用服务使用协议不可分割的一部分。</p>
+                            您在同意本应用服务使用协议之时，即视为您已经同意本隐私权政策全部内容。</p>
                     </div>
                     <div class="spiltLine"></div>
                     <div>
                         <span class="contentTitle">收集的信息范围</span>
-                        <div class="contentText">信息范围包括页面布局、缓存、主页等。
+                        <div class="contentText">信息范围包括页面布局、缓存、主页和浏览器通知等。
                         </div>
                     </div>
                     <div class="spiltLine"></div>
                     <div>
                         <span class="contentTitle">某些特定原因的用途</span>
                         <div class="contentText">
-                            <p>我们认为在以下特定情形下，对您的某些信息进行使用披露是合理必要的：</p><br>
+                            <p>我认为在以下特定情形下，对您的某些信息进行使用披露是合理必要的：</p><br>
                             <p>1.满足任何适用的法律、法规，法律程序或可执行的政府要求。</p><br>
                             <p>2.根据适用的服务条款，对潜在违规行为进行的调查。</p><br>
                             <p>3.检测、防止或以其他方式解决欺诈，安全或技术问题。</p><br>
-                            <p>4.在法律要求或允许的范围内，防止损害我们以及用户或公众的权利，财产或安全。</p>
+                            <p>4.在法律要求或允许的范围内，防止损害用户或公众的权利，财产或安全。</p>
                         </div>
                     </div>
                     <div class="spiltLine"></div>
@@ -637,7 +645,7 @@
                     <div class="spiltLine"></div>
                     <div>
                         <span class="contentTitle">信息安全说明</span>
-                        <div class="contentText">使用我们的产品及服务即表示您接受本协议。如果您不同意本协议，请不要继续使用本产品。
+                        <div class="contentText">使用产品及服务即表示您接受本协议。如果您不同意本协议，请不要继续使用本产品。
                         </div>
                     </div>
                     <div class="spiltLine"></div>
@@ -646,10 +654,20 @@
                         <div class="contentText">
                             <p>1、如果您是中国居民，本协议的效力、解释、履行和争议的解决均适用中华人民共和国法律、法规、电信管理部门的规定和计算机行业的规范。</p><br>
                             <p>2、如果您是非中国地区的居民，则本协议的效力、解释、履行和争议的解决均适用于您居住地的法律。</p><br>
-                            <p>3、因履行本协议或与本协议有关的一切争议，应通过友好协商方式解决。如果协商未成，则提交我们的住所地有管辖权的人民法院诉讼解决。</p><br>
-                            <p>4、我们与您共同确认：本协议签署的选择权对于双方是完全对等而公允的，即任何一方可以不受强制地选择签署或不签署本协议。本协议是经过双方审慎考虑阐述的意思表示，不存在任何一方片面加大另一方责任或逃避应履行义务的情形。任何一方签署或承诺遵守本协议均视为放弃对于本协议公允性的质疑。</p><br>
-                    
+                            <p>3、因履行本协议或与本协议有关的一切争议，应通过友好协商方式解决。</p><br>
+                            <p>4、与您共同确认：本协议签署的选择权对于双方是完全对等而公允的，即任何一方可以不受强制地选择签署或不签署本协议。本协议是经过双方审慎考虑阐述的意思表示，不存在任何一方片面加大另一方责任或逃避应履行义务的情形。任何一方签署或承诺遵守本协议均视为放弃对于本协议公允性的质疑。</p><br>
                         </div>
+                    </div>
+                    <div class="spiltLine"></div>
+                    <div>
+                        <span class="contentTitle">联系我</span>
+                        <div class="contentText">
+                            <p>邮箱：jaychoumaster@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="spiltLine"></div>
+                    <div>
+                        <span class="contentTitle">本协议条款最终解释权归本应用所属方所有</span>
                     </div>
                 </div>
             </div>
@@ -658,7 +676,7 @@
             <span id="copyright">
                 <span>©Copyright&nbsp;2023&nbsp;</span>
                 <span id="myself" class="cursorCss">权朝阳</span>
-                <span id="downloadPhoto">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">下载壁纸</span></span>
+                <!-- <span id="downloadPhoto">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">下载壁纸</span></span> -->
                 <span id="linkMe">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">问题反馈</span></span>
                 <span id="privacy">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">隐私政策协议</span></span>
             </span>

@@ -1,4 +1,35 @@
 
+#rightMenu{
+    width: 130px;
+    background: white;
+    border-radius: 5px;
+    height: auto;
+    text-align: left;
+    font-size: 13px;
+    position: absolute;
+    display: none;
+    color: #393939;
+    padding: 5px;
+    animation-name: rightMenu;
+    animation-duration: 0.05s;
+}
+.menuDiv{
+    padding: 10px;
+}
+@keyframes rightMenu {
+    from {
+        height: 0px;
+    }
+    to {
+        height: 132px;
+    }
+}
+.menuDiv:hover{
+    cursor: pointer;
+    background-color: #e2e2e2;
+    border-radius: 3px;
+    color: #409EFF;
+}
 #simpleMode{
     width: 100%;
     visibility: hidden;
@@ -1034,7 +1065,7 @@ i {
 #poemContent {
     position: absolute;
     font-family: cursive;
-    bottom: 22%;
+    bottom: 20%;
     left: 50%;
     transform: translateX(-50%);
     width: 530px;
@@ -1056,7 +1087,6 @@ i {
     margin-top: 10px;
 }
 #jinrishici-sentence:hover{
-    /* text-decoration:underline; */
     cursor: text;
 }
 input::-webkit-input-placeholder{
