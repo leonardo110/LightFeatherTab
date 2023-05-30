@@ -154,10 +154,6 @@ switchSimple()
 
 // 初始化注册各种鼠标事件
 function registFunc () {
-    //禁止右键
-    // document.oncontextmenu = function () {
-    //     return false; 
-    // };
     //禁止F12
     // document.onkeydown = function () {
     //     if (window.event && window.event.keyCode == 123) {
@@ -166,20 +162,10 @@ function registFunc () {
     //         return false;
     //     }
     // };
+
     // 监听tab键盘事件
-    document.addEventListener('keyup', function (event) {
-        if (event.keyCode === 9) {
-            const type = handlerStorage('searchType')
-            let index = typeList.findIndex(temp => {
-                return temp.key === type
-            })
-            let setIdx = index === 6 ? 0 : ++index
-            // getEleById('typeSelect').style.display = 'none'
-            getEleByClass('typeIcon')[0].src = typeList[setIdx].logo
-            handlerStorage('searchType', typeList[setIdx].key)
-            // 切换输入法更改图标
-            handlerInputMethod(handlerStorage('searchType'))
-        }
+    document.addEventListener('keydown', function (event) {
+        tabKeyUpFunc(event)
     })
     document.body.addEventListener('click', function(e) {
         const menuDom = getEleById('rightMenu')
@@ -190,7 +176,7 @@ function registFunc () {
         menuDom.style.display = 'none'
     })
     // 注意 取消默认行为 我们鼠标右键的时候 一般是弹出 浏览器的 属性 刷新等等的那个菜单
-    document.getElementById('mask').addEventListener('contextmenu',function(e){
+    getEleById('mask').addEventListener('contextmenu',function(e){
         e.preventDefault();
         const menuDom = getEleById('rightMenu')
         menuDom.style.display = 'block'
@@ -228,6 +214,9 @@ function registFunc () {
                 } else if (m === 4) {
                     // 下载壁纸
                     downloadImage()
+                } else if (m === 5) {
+                    // 好评
+                    toInstallHref()
                 }
                 menuDom.style.display = 'none'
             }
@@ -396,7 +385,7 @@ function registFunc () {
         // 清空临时会话数据
         handlerStorage('clearGpt', true)
         // 获取iframe元素对象
-        var iframe = document.getElementById("gptIframe");
+        var iframe = getEleById("gptIframe");
         // 获取iframe的contentWindow对象
         var iframeWindow = iframe.contentWindow;
         // 获取iframe内部的文档对象
@@ -481,7 +470,7 @@ function registFunc () {
     }
     // 选中查询类型时
     getEleById('searchTypeDiv').onclick = () => {
-        tabKeyUpFunc()
+        switchSearchTypeFunc()
     }
     // 鼠标移入输入框时
     getEleById('inputStr').onmouseenter = () => {
@@ -525,7 +514,7 @@ function registFunc () {
             if (!event.target.value) {
                 getEleById('inputStr').style.padding = '0px 15px'
                 getEleById('deleteIcon').style.right = '15px'
-                // getEleById('searchTab').style.width = '20%'
+                getEleById('searchTab').style.opacity = 0.5
             }
         }, 100)
     }
@@ -694,8 +683,30 @@ function registFunc () {
     }
 }
 
-// tab键切换搜索引擎
-function tabKeyUpFunc () {
+// Tab键功能
+function tabKeyUpFunc (event) {
+    if (event.keyCode === 9) {
+        event.preventDefault()
+        const serchType = handlerStorage('simpleCheck')
+        const type = handlerStorage('searchType')
+        let index = typeList.findIndex(temp => {
+            return temp.key === type
+        })
+        let setIdx = index === 6 ? 0 : ++index
+        getEleByClass('typeIcon')[0].src = typeList[setIdx].logo
+        handlerStorage('searchType', typeList[setIdx].key)
+        if (serchType === 'true') {
+            getEleById('simpleInput').setAttribute("placeholder", `Search With ${typeList[setIdx].uppercase}`);
+        } else {
+            getEleById('inputStr').focus()
+        }
+        // 切换输入法更改图标
+        handlerInputMethod(handlerStorage('searchType'))
+    }
+}
+
+// 手动切换搜索引擎
+function switchSearchTypeFunc () {
     const curVal = getEleById('typeSelect')
     curVal.style.display = 'block'
     const eventFunc = getEleByClass('selectCss')
@@ -707,6 +718,24 @@ function tabKeyUpFunc () {
             // 切换输入法更改图标
             handlerInputMethod(handlerStorage('searchType'))
         }
+    }
+}
+
+// 好评
+function toInstallHref () {
+    const userAgent = window.navigator.userAgent
+    if (userAgent.indexOf('Edg') !== -1) {
+        // Edge
+        window.open('https://microsoftedge.microsoft.com/addons/detail/dcnpfefcbpeggaajgeffehpckpdjpckd', '_blank')
+    } else if (userAgent.indexOf('Firefox') !== -1) {
+        // 火狐
+        window.open('https://addons.mozilla.org/zh-CN/firefox/addon/轻羽标签页/', '_blank')
+    } else if (userAgent.indexOf('Chrome') !== -1) {
+        // 谷歌
+        window.open('https://chrome.google.com/webstore/detail/dbjnimhhecichpmcimfhkcfjiladefci', '_blank')
+    } else {
+        // 统一跳转到Edge
+        window.open('https://microsoftedge.microsoft.com/addons/detail/dcnpfefcbpeggaajgeffehpckpdjpckd', '_blank')
     }
 }
 
@@ -1314,7 +1343,7 @@ function changeGPT_height () {
     if (height !== 0) {
         const newHeight = height - 90
         // 获取iframe元素对象
-        var iframe = document.getElementById("gptIframe");
+        var iframe = getEleById("gptIframe");
         // 获取iframe的contentWindow对象
         var iframeWindow = iframe.contentWindow;
         // 获取iframe内部的文档对象
@@ -1946,7 +1975,7 @@ function setGalleryContent (rsp) {
             grlleryCard.onclick = () => {
                 // 背景图信息
                 handlerStorage('viewFlag', false)
-                const type = document.getElementById('gallerysSelectCss').value
+                const type = getEleById('gallerysSelectCss').value
                 const temp = imgTypeMap.get(type)
                 const obj = {
                     url: item.url,

@@ -1030,8 +1030,8 @@ footer {
     box-shadow: rgb(0 0 0 / 20%) 0 0 10px;
     overflow: hidden;
     transition: color .25s, background-color .25s, box-shadow .25s, left .25s, opacity .25s, top .25s, width .25s;
-    /* opacity: 0.4; */
-    /* backdrop-filter: blur(10px) saturate(1.5); */
+    opacity: 0.5;
+    backdrop-filter: blur(10px) saturate(1.5);
 }
 .search #inputStr {
     transition: .25s;
@@ -1044,15 +1044,14 @@ footer {
     font-size: 15px;
     font-family: var(--fonts);
     color: rgb(70, 70, 70);
-    background-color: white;
     text-align: left;
     mix-blend-mode: difference;
-    /* backdrop-filter: blur(10px);
-    background: rgba(255,255,255,.25);
+    /* backdrop-filter: blur(50px);
+    background: rgba(255,255,255,.85);
     background-color: transparent; */
 }
 #inputStr:focus{
-    background-color: white;
+    /* background-color: white; */
     cursor: text;
 }
 #btnSearchEng {
