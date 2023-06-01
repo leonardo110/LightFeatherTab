@@ -10,19 +10,30 @@
     <link rel="stylesheet" href="../styles/email.css">
     <link rel="stylesheet" href="../styles/privacy.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <title>轻羽标签页</title>
+    <title>轻羽标签&nbsp;&nbsp;|&nbsp;&nbsp;清凉一夏</title>
 </head>
 
 <body>
     <div class="homeBackGround" id="allPage">
-        <div id="backGroundImg" style="background-size: cover;"></div>
+        <div id="backGroundImg"></div>
         <div id="mask"></div>
         <div id="alertTip"></div>
+        <!-- 欢迎页 -->
+        <div id="welcomePage">
+            <div class="welcomeText" id="welcomeFirst">
+                嗨，您好<br>
+            欢迎使用 轻羽标签页</div>
+            <div class="welcomeText" id="welcomeSecond">一个简单、清爽的个性化起始页</div>
+            <div class="welcomeBtnDiv">
+                <span id="welcomeBtn">开始体验吧</span>
+            </div>
+        </div>
+        <!-- 天气 -->
         <div class="weather">
             <span id="weatherText"></span>
         </div>
         <!-- 设置界面 -->
-        <div id="shezhiView">
+        <div id="settingView">
             <h2 style="margin: 10px 0 0 0;font-size: 16px;">设置</h2>
             <span class="shezhiTitle">面板风格</span>
             <div class="themeCardDiv">
@@ -67,7 +78,7 @@
                     <span class="lineBottomCss"></span>
                     <div class="labelDiv">
                         <span class="displayClass">搜索框圆角</span>
-                        <input type="range" max="20" min="0" id="inputRange">
+                        <input type="range" max="20" min="0" id="inputRange" step="0.01">
                     </div>
                 </div>
             </div>
@@ -106,8 +117,8 @@
                     <span class="lineBottomCss"></span>
                 </div>
                 <div class="labelDiv">
-                    <span class="displayClass">背景图遮罩</span>
-                    <input type="range" max="20" min="0" id="glassRange">
+                    <span class="displayClass">模糊度</span>
+                    <input type="range" max="20" min="0" id="glassRange" step="0.01">
                 </div>
             </div>
             <span class="shezhiTitle">背景设置</span>
@@ -153,15 +164,6 @@
                     </button>
                 </div>
             </div>
-            <!-- <span class="shezhiTitle">智能聊天</span>
-            <img src="../icons/tip.svg" class="tipClass" title="由于国内运营商的屏蔽, 此功能需要挂载代理才可使用" id="showTipIcon3">
-            <img src="../icons/tishi.svg" class="tipClass" title="由于国内运营商的屏蔽, 此功能需要挂载代理才可使用" id="showTipIcon4">
-            <span class="betaClass">Beta</span>
-            <div id="chatDiv" class="shezhiCard">
-                <div class="labelDiv">
-                    <button id="chatgptBtn" class="btnHoverCss"><span>ChatGPT 智能聊天</span></button>
-                </div>
-            </div> -->
             <h2 style="margin: 10px 0 0 0;font-size: 16px;">关于</h2>
             <span class="shezhiTitle" id="addonsHref" style="display: inline-block;">轻羽标签页&nbsp;&nbsp;|&nbsp;&nbsp;Light
                 Feather Tab</span><br />
@@ -183,6 +185,18 @@
         </div>
         <div id="shezhiIcon">
             <img src="../icons/setting.svg" id="settingIcon" />
+        </div>
+        <!-- 新版本更新提示 -->
+        <div id="updateDiv">
+            <div class="versionHead">
+                <img src="../icons/updateVersion.svg" class="versionIcon">
+                <h3 class="versionTitle">新版本 <span class='versionNum'>v1.1.9</span> 更新了~</h3>
+            </div>
+            <div>
+                <div class="versionText">1. 新增右键菜单，优化功能</div>
+                <div class="versionText">2. Tab键切换搜索引擎，简化搜索方式</div>
+            </div>
+            <div class="triangle"></div>
         </div>
         <!-- 输入框 -->
         <div id="centerDiv">
@@ -222,10 +236,6 @@
                     <img src="../icons/sougoulogo.png" class="searchLogoClass">
                     <span class="searchTypeText">搜 狗</span>
                 </div>
-                <div class="selectCss">
-                    <img src="../icons/kaifazhelogo.PNG" class="searchLogoClass">
-                    <span class="searchTypeText">开 发</span></span>
-                </div>
             </div>
             <div id="searchHistory">
                 <div id="historyText">
@@ -260,7 +270,7 @@
             </div>
             <div class="menuDiv">
                 <img src="../icons/menuStar.svg" class="middleCss">
-                <span class="menuItemText middleCss">给个好评~</span>
+                <span class="menuItemText middleCss">给个好评吧~</span>
             </div>
         </div>
         <!-- 摸鱼卡片 -->
@@ -295,7 +305,7 @@
                         <span class="versionTime">2023-05-26</span>
                     </div>
                     <div class="updateContent">
-                        <div class="textStyle">• <span class="addSpan">新增</span> 右键菜单，优化设置面板空间，减弱重复功能</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 右键菜单，优化面板空间，减弱重复功能</div>
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 使用Tab键可以切换搜索引擎</div>
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 壁纸广场增加缩放功能，以便查看壁纸是否匹配</div>
                     </div>
@@ -316,7 +326,7 @@
                         <span class="versionTime">2023-04-13</span>
                     </div>
                     <div class="updateContent">
-                        <div class="textStyle">• <span class="addSpan">新增</span> 问题与建议，可提出一些实用性需求或者问题并发送邮件给作者</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 反馈产品，可提出一些实用性需求或者问题并发送邮件给作者</div>
                         <div class="textStyle">• <span class="addSpan">新增</span> 点击 关于 -- 插件名称，可前往对应浏览器商店进行扩展安装</div>
                     </div>
                 </div>
@@ -356,8 +366,6 @@
                         <span class="versionTime">2023-03-17</span>
                     </div>
                     <div class="updateContent">
-                        <div class="textStyle">• <span class="addSpan">新增</span> 开发者搜索 类型，程序员专享搜索方式</div>
-                        <!-- <div class="textStyle">• <span class="addSpan">新增</span> Chat GPT智能聊天 功能<span class="attentionSpan">注:此功能当前处于测试阶段，由于国内运营商的屏蔽，需要挂载代理才可使用。</span></div> -->
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 设置界面弹出卡顿问题、渐变色搭配</div>
                     </div>
                 </div>
@@ -369,7 +377,6 @@
                     <div class="updateContent">
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 查询类型logo切换动画</div>
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 搜索类型下拉框 样式，增加图标展示</div>
-                        <!-- <div class="textStyle">• <span class="optimizeSpan">优化</span> 按钮鼠标划入感知，柔化触感</div> -->
                     </div>
                 </div>
                 <div class="contentDiv">
@@ -411,7 +418,6 @@
                     <div class="updateContent">
                         <div class="textStyle">• <span class="addSpan">新增</span> 点击查询类型 更换图标的功能</div>
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 静态图片 选中效果</div>
-                        <!-- <div class="textStyle">• <span class="fixSpan">修复</span> 点击随机更换图片 按钮不生效的问题</div> -->
                     </div>
                 </div>
                 <div class="contentDiv">
@@ -430,9 +436,8 @@
                         <span class="versionTime">2023-01-18</span>
                     </div>
                     <div class="updateContent">
-                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 音乐盒唱片 样式，更换为专辑封面</div>
-                        <!-- <div class="textStyle">• <span class="optimizeSpan">优化</span> 个人主页，增加 更换壁纸 功能</div> -->
-                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 音乐 接口，更换为 网易云音乐 随机接口</div>
+                        <!-- <div class="textStyle">• <span class="optimizeSpan">优化</span> 音乐盒唱片 样式，更换为专辑封面</div>
+                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 音乐 接口，更换为 网易云音乐 随机接口</div> -->
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 搜索类型下拉框 样式</div>
                     </div>
                 </div>
@@ -443,7 +448,6 @@
                     </div>
                     <div class="updateContent">
                         <div class="textStyle">• <span class="addSpan">新增</span> 百度、谷歌、雅虎、必应、搜狗和360搜索六种搜索引擎</div>
-                        <!-- <div class="textStyle">• <span class="fixSpan">修复</span> 查询诗词 接口，样式优化</div> -->
                     </div>
                 </div>
                 <div class="contentDiv">
@@ -452,8 +456,7 @@
                         <span class="versionTime">2023-01-03</span>
                     </div>
                     <div class="updateContent">
-                        <div class="textStyle">• <span class="fixSpan">修复</span> 音乐模块随机接口功能问题</div>
-                        <!-- <div class="textStyle">• <span class="addSpan">新增</span> 背景图片拍摄信息 模块</div> -->
+                        <div class="textStyle">• <span class="fixSpan">修复</span> 背景图切换错误问题</div>
                     </div>
                 </div>
                 <div class="contentDiv">
@@ -487,14 +490,14 @@
             </div>
         </div>
         <!-- chatgpt弹框 -->
-        <div id="chatgptDialog">
+        <!-- <div id="chatgptDialog">
             <div class="gptheadCss">
                 <img src="../icons/openai.webp" class="openaicss" />
                 <img src="../icons/clearGpt.svg" id="cleargptCss" title="清空聊天内容">
                 <img src="../icons/guanbi.svg" id="dialogDelete">
             </div>
             <iframe src="./chatgpt.html" frameborder="0" width="100%" height="100%" id="gptIframe"></iframe>
-        </div>
+        </div> -->
         <!-- 一言诗词 -->
         <div id="poemContent">
             <div id="poemTitle"></div>
@@ -563,11 +566,11 @@
                 </div>
             </div>
         </div>
-        <!-- 邮件弹框 -->
+        <!-- 产品反馈 -->
         <div id="emailDialog">
             <div class="emailHead">
                 <img src="../icons/logo32.png" class="logoCss">
-                <span class="titleText">问题与建议</span>
+                <span class="titleText">产品反馈</span>
                 <img src="../icons/guanbi.svg" id="emailClose">
                 <img src="../icons/guanbiWhite.svg" id="emailCloseWhite">
             </div>
@@ -603,15 +606,15 @@
         <div id="addonsAddress">
             <div class="addonsLogo">
                 <img src="../icons/edge.png" class="addonsImg">
-                <div class="addonName">Edge 扩展安装</div>
+                <div class="addonName">Edge 商店安装</div>
             </div>
             <div class="addonsLogo">
                 <img src="../icons/chrome.svg" class="addonsImg">
-                <div class="addonName">Chrome 扩展安装</div>
+                <div class="addonName">Chrome 商店安装</div>
             </div>
             <div class="addonsLogo">
                 <img src="../icons/firefox.svg" class="addonsImg">
-                <div class="addonName">Firefox 扩展安装</div>
+                <div class="addonName">Firefox 商店安装</div>
             </div>
             <!-- <div class="addonsLogo">
                 <img src="../icons/crx.png"  class="addonsImg">
@@ -622,7 +625,7 @@
         <div id="privacyDialog">
             <div class="privacyHead">
                 <div class="leftIcon">
-                    <img src="../icons/logo64.png">
+                    <img src="../icons/logo64.png" style="width: 50px;">
                 </div>
                 <div style="display: inline-block;" class="rightName">
                     <span>轻羽标签页</span>
@@ -694,16 +697,18 @@
                 </div>
             </div>
         </div>
+        <!-- footer -->
         <div id="myselfDiv">
             <span id="copyright">
                 <span>©Copyright&nbsp;2023&nbsp;</span>
                 <span id="myself" class="cursorCss">权朝阳</span>
                 <!-- <span id="downloadPhoto">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">下载壁纸</span></span> -->
-                <span id="linkMe">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">问题反馈</span></span>
+                <span id="linkMe">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">产品体验反馈</span></span>
                 <span id="privacy">&nbsp;|&nbsp;&nbsp;<span class="cursorCss">隐私政策协议</span></span>
             </span>
         </div>
         <script src="../scripts/vanilla-tilt.js"></script>
+        <script src="../scripts/lunar.js"></script>
         <script src="../scripts/homePage.js"></script>
     </div>
 </body>

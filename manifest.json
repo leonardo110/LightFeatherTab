@@ -21,6 +21,5 @@
     "chrome_url_overrides": {
         "newtab": "popup/homePage.html"
     },
-    "default_locale": "zh_CN",
-    "permission": ["browsingData"]
+    "default_locale": "zh_CN"
 } 

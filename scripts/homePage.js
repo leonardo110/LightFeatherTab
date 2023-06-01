@@ -1,3 +1,5 @@
+// 是否第一次使用
+isShowWelcomPage()
 // 全局变量
 var curTime = ''
 let musicName = ''
@@ -50,12 +52,6 @@ const typeList = [
         url: '../icons/sougou.png',
         logo: '../icons/sougoulogo.png',
         uppercase: 'Sougou'
-    },
-    {
-        key: 'kaifazhe',
-        url: '../icons/kaifazhe.png',
-        logo: '../icons/kaifazhelogo.PNG',
-        uppercase: 'Develop'
     }
 ]
 const imgList = [
@@ -175,6 +171,18 @@ function registFunc () {
         const menuDom = getEleById('rightMenu')
         menuDom.style.display = 'none'
     })
+    getEleById('welcomeBtn').onclick = () => {
+        const welcomePageDom = getEleById('welcomePage')
+        animateCSS('#welcomePage', 'fadeOut')
+        const searchTab = getEleById('searchTab')
+        searchTab.style.display = 'block'
+        setTimeout(() => {
+            welcomePageDom.style.display = 'none'
+            // 版本更新提醒
+            updateVersionTip()
+            // handlerStorage('welcome', true)
+        }, 980);
+    }
     // 注意 取消默认行为 我们鼠标右键的时候 一般是弹出 浏览器的 属性 刷新等等的那个菜单
     getEleById('mask').addEventListener('contextmenu',function(e){
         e.preventDefault();
@@ -222,20 +230,22 @@ function registFunc () {
             }
         }
     })
-
     // 隐私政策
     getEleById('privacy').onclick = () => {
         closeView()
         const privacyDom = getEleById('privacyDialog')
-        privacyDom.style.display = 'block'
+        setTimeout(() => {
+            animateCSS('#privacyDialog', 'fadeIn')
+            privacyDom.style.display = 'block'
+        }, 5);
         const maskDom = getEleById('mask')
         maskDom.style.opacity = 0.6
         maskDom.style.zIndex = 1
         setPrivacy()
+        showAddons = true
     }
     // 极简模式输入框
     getEleById('simpleInput').onfocus = () => {
-        getEleById('shezhiView').style.display = 'none'
         getEleById('mask').style.opacity = 0
         const inputDom = getEleById('simpleInput')
         inputDom.style.width = '40%'
@@ -258,8 +268,11 @@ function registFunc () {
     }
     // 联系我
     getEleById('linkMe').onclick = () => {
-        getEleById('emailDialog').style.display = 'inline-block'
-        getEleById('emailDialog').style.zIndex = 2
+        setTimeout(() => {
+            animateCSS('#emailDialog', 'fadeIn')
+            getEleById('emailDialog').style.display = 'block'
+        }, 5);
+        getEleById('emailDialog').style.zIndex = 1
         setTimeout(() => {
             if (!showLink) {
                 getEleById('nameInput').value = ''
@@ -282,6 +295,7 @@ function registFunc () {
             const typeDom = getEleById('typeSelect')
             typeDom.style.zIndex = -1
             getEleById('mask').style.opacity = 0.3
+            getEleById('mask').style.zIndex = 1
             setLinkMeTheme()
             showLink = true
         }, 0);
@@ -330,7 +344,10 @@ function registFunc () {
     // 跳转至插件地址
     getEleById('addonsHref').onclick =() => {
         const addonsAddress = getEleById('addonsAddress')
-        addonsAddress.style.display = 'inline-block'
+        setTimeout(() => {
+            animateCSS('#addonsAddress', 'fadeIn')
+            addonsAddress.style.display = 'block'
+        }, 5);
         const searchTab = getEleById('searchTab')
         searchTab.style.zIndex = -1
         const typeDom = getEleById('typeSelect')
@@ -381,20 +398,20 @@ function registFunc () {
         }
     }
     // 清空聊天窗口内容
-    getEleById('cleargptCss').onclick = () => {
-        // 清空临时会话数据
-        handlerStorage('clearGpt', true)
-        // 获取iframe元素对象
-        var iframe = getEleById("gptIframe");
-        // 获取iframe的contentWindow对象
-        var iframeWindow = iframe.contentWindow;
-        // 获取iframe内部的文档对象
-        var iframeDocument = iframeWindow.document;
-        // 通过文档对象的getElementById()等方法获取子页面的元素dom
-        var element = iframeDocument.getElementsByClassName("container")[0];
-        // 清空聊天窗口内容
-        element.innerHTML = ''
-    }
+    // getEleById('cleargptCss').onclick = () => {
+    //     // 清空临时会话数据
+    //     handlerStorage('clearGpt', true)
+    //     // 获取iframe元素对象
+    //     var iframe = getEleById("gptIframe");
+    //     // 获取iframe的contentWindow对象
+    //     var iframeWindow = iframe.contentWindow;
+    //     // 获取iframe内部的文档对象
+    //     var iframeDocument = iframeWindow.document;
+    //     // 通过文档对象的getElementById()等方法获取子页面的元素dom
+    //     var element = iframeDocument.getElementsByClassName("container")[0];
+    //     // 清空聊天窗口内容
+    //     element.innerHTML = ''
+    // }
     // 打开chatgpt窗口
     // getEleById('chatgptBtn').onclick = () => {
     //     handlerStorage('clearGpt', false)
@@ -404,14 +421,14 @@ function registFunc () {
     //         changeGPT_height()
     //     }, 0)
     // }
-    window.addEventListener('resize', () => {
-        changeGPT_height()
-    });
+    // window.addEventListener('resize', () => {
+    //     changeGPT_height()
+    // });
 
     // 关闭chatgpt窗口
-    getEleById('dialogDelete').onclick = () => {
-        getEleById('chatgptDialog').style.display = 'none'
-    }
+    // getEleById('dialogDelete').onclick = () => {
+    //     getEleById('chatgptDialog').style.display = 'none'
+    // }
     // 关闭日志弹框
     getEleById('logDialogDelete').onclick = () => {
         getEleById('appDialog').style.display = 'none'
@@ -429,7 +446,10 @@ function registFunc () {
     }
     // 打开日志
     getEleById('updateLog').onclick = () => {
-        getEleById('appDialog').style.display = 'block'
+        setTimeout(() => {
+            animateCSS('#appDialog', 'fadeIn')
+            getEleById('appDialog').style.display = 'block'
+        }, 5);
         getEleById('mask').style.opacity = 0.6
         showLogDialog = true
         setDialogTheme()
@@ -514,7 +534,6 @@ function registFunc () {
             if (!event.target.value) {
                 getEleById('inputStr').style.padding = '0px 15px'
                 getEleById('deleteIcon').style.right = '15px'
-                getEleById('searchTab').style.opacity = 0.5
             }
         }, 100)
     }
@@ -614,7 +633,7 @@ function registFunc () {
     let glassDom = getEleById('glassRange')
     if (glassDom) {
         getEleById('glassRange').oninput = (event) => {
-            handlerStorage('glassCheck', getEleById('glassRange').value)
+            // handlerStorage('glassCheck', getEleById('glassRange').value)
             backgroundGlass(event)
         }
     }
@@ -683,6 +702,14 @@ function registFunc () {
     }
 }
 
+// 隐藏设置面板
+function hiddenSettingView() {
+    animateCSS('#settingView', 'fadeOutRight')
+    setTimeout(() => {
+        getEleById('settingView').style.display = 'none'
+    }, 900);
+}
+
 // Tab键功能
 function tabKeyUpFunc (event) {
     if (event.keyCode === 9) {
@@ -692,7 +719,7 @@ function tabKeyUpFunc (event) {
         let index = typeList.findIndex(temp => {
             return temp.key === type
         })
-        let setIdx = index === 6 ? 0 : ++index
+        let setIdx = index === 5 ? 0 : ++index
         getEleByClass('typeIcon')[0].src = typeList[setIdx].logo
         handlerStorage('searchType', typeList[setIdx].key)
         if (serchType === 'true') {
@@ -753,10 +780,13 @@ function openGalleryDialog () {
         getEleById('addonsAddress').style.display = 'none'
         showAddons = false
     }
-    getEleById('tukuDialog').style.display = 'inline-block'
+    setTimeout(() => {
+        animateCSS('#tukuDialog', 'fadeIn')
+        getEleById('tukuDialog').style.display = 'block'
+    }, 5);
     getEleById('mask').style.opacity = 0.6
     getEleById('mask').style.zIndex = 1
-    getEleById('shezhiView').style.display = 'none'
+    hiddenSettingView()
     showGallery = true
     getGalleryPhoto()
     setGalleryTheme()
@@ -779,8 +809,10 @@ function openSettingView () {
     if (showGallery) {
         return
     }
-    getEleById('shezhiView').style.display = 'block'
     setTimeout(() => {
+        animateCSS('#settingView', 'fadeInRight')
+        getEleById('settingView').style.display = 'block'
+    }, 3);
         const dom = getEleById('glassRange')
         dom.value = handlerStorage('glassCheck') || 0
         const rangeDom = getEleById('inputRange')
@@ -821,7 +853,6 @@ function openSettingView () {
         }
         getEleById('navBar').style.zIndex = -1
         initTheme()
-    }, 0);
 }
 
 // 切换极简模式
@@ -874,6 +905,7 @@ function closeEmail () {
     getEleById('emailDialog').style.display = 'none'
     if (showLink) {
         getEleById('mask').style.opacity = 0
+        getEleById('mask').style.zIndex = 0
         const searchTab = getEleById('searchTab')
         searchTab.style.zIndex = 1
         const typeDom = getEleById('typeSelect')
@@ -926,8 +958,6 @@ function getGalleryPhoto () {
 function galleryIconFunc () {
     const dialogIconsList = getEleByClass('dialogIcons')
     const tukuDialogDom = getEleById('tukuDialog')
-    const iconGrayDom = getEleById('iconGray')
-    const iconWhiteDom = getEleById('iconWhite')
     const tukuDialogCenterDom = getEleById('tukuDialogCenter')
     tukuDialogDom.style.top = '52%'
     tukuDialogDom.style.height = '495px'
@@ -992,6 +1022,11 @@ function updateVersionTip () {
     const mode = handlerStorage('tipMode') || 'pop'
     if (version !== '1.1.9') {
         popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>&nbsp;v1.1.9&nbsp;</span>" : " v1.1.9") + "版本，快试试新功能吧~", 5000)
+        const versionDom = getEleById('updateDiv')
+        versionDom.style.display = 'block'
+        setTimeout(() => {
+            versionDom.style.display = 'none'
+        }, 10000);
         handlerStorage('version', '1.1.9')
     }
 }
@@ -1084,7 +1119,7 @@ function setTheme () {
 function initTheme () {
     const themeVal = handlerStorage('theme') || 'default'
     const iconDom = getEleById('selectIcon')
-    let shezhiView = getEleById('shezhiView')
+    let settingView = getEleById('settingView')
     const themeCardDiv = getEleByClass('themeCardDiv')[0]
     // const noticeCardDiv = getEleByClass('noticeCardDiv')[0]
     const shezhiCard = getEleByClass('shezhiCard')
@@ -1118,10 +1153,10 @@ function initTheme () {
         }
         iconDom.style.left = '39px'
         iconDom.style.bottom = '35px'
-        shezhiView.style['backdrop-filter'] = ''
-        shezhiView.style.backgroundColor = 'rgb(239 245 252)'
-        shezhiView.style.color = '#787878'
-        shezhiView.removeAttribute('class', 'thirdTheme')
+        settingView.style['backdrop-filter'] = ''
+        settingView.style.backgroundColor = 'rgb(239 245 252)'
+        settingView.style.color = '#787878'
+        settingView.removeAttribute('class', 'thirdTheme')
         uploadBlue.display = 'inline-block'
         uploadWhite.display = 'none'
         // refreshBlue.display = 'inline-block'
@@ -1140,8 +1175,8 @@ function initTheme () {
             btnHoverCss[b].style.color = 'white'
             btnHoverCss[b].style.background = 'rgba(0,0,0,0)'
         }
-        shezhiView.style.backgroundColor = ''
-        shezhiView.style.color = 'white'
+        settingView.style.backgroundColor = ''
+        settingView.style.color = 'white'
         uploadBlue.display = 'none'
         uploadWhite.display = 'inline-block'
         // refreshBlue.display = 'none'
@@ -1153,19 +1188,19 @@ function initTheme () {
         if (themeVal === 'lucency') {
             iconDom.style.left = '120px'
             iconDom.style.bottom = '34px'
-            shezhiView.style['backdrop-filter'] = 'blur(25px)'
-            shezhiView.removeAttribute('class', 'thirdTheme')
+            settingView.style['backdrop-filter'] = 'blur(25px)'
+            settingView.removeAttribute('class', 'thirdTheme')
         } else if (themeVal === 'gradient') {
             iconDom.style.left = '199px'
             iconDom.style.bottom = '35px'
-            shezhiView.style['backdrop-filter'] = ''
-            shezhiView.setAttribute('class', 'thirdTheme')
+            settingView.style['backdrop-filter'] = ''
+            settingView.setAttribute('class', 'thirdTheme')
         } else {
             iconDom.style.left = '279px'
             iconDom.style.bottom = '34px'
-            shezhiView.style['backdrop-filter'] = ''
-            shezhiView.style.backgroundColor = '#363636'
-            shezhiView.removeAttribute('class', 'thirdTheme')
+            settingView.style['backdrop-filter'] = ''
+            settingView.style.backgroundColor = '#363636'
+            settingView.removeAttribute('class', 'thirdTheme')
         }
     }
 }
@@ -1357,7 +1392,6 @@ function changeGPT_height () {
  * 关闭遮罩和设置
  */
 function closeView () {
-    getEleById('shezhiView').style.display = 'none'
     getEleById('typeSelect').style.display = 'none'
     getEleById('mask').style.opacity = 0.3
     getEleById('mask').style.zIndex = 0
@@ -1373,12 +1407,21 @@ function closeView () {
     getEleById('navBar').style.zIndex = 0
     const menuDom = getEleById('rightMenu')
     menuDom.style.display = 'none'
+    getEleById('emailDialog').style.display = 'none'
+    hiddenSettingView()
 }
 
 /**
  * 初始化
  */
 function createFunc () {
+    // 初始化是否显示问候语
+    setTimeout(() => {
+        const greetVal = handlerStorage('greetContent')
+        if (greetVal && greetVal.trim()) {
+            popTip((new Date().getHours() < 12 ? '上午好, ' : new Date().getHours() < 20 ? '下午好，' : '晚上好，') + greetVal)
+        }
+    }, 500)
     // 默认查询类型
     if (handlerStorage('searchType')) {
         getEleByClass('typeIcon')[0].src = getValue(handlerStorage('searchType')).logo
@@ -1389,15 +1432,6 @@ function createFunc () {
     if (!handlerStorage('newTabCheck')) {
         handlerStorage('newTabCheck', true)
     }
-    // 初始化是否显示问候语
-    setTimeout(() => {
-        const greetVal = handlerStorage('greetContent')
-        if (greetVal && greetVal.trim()) {
-            popTip((new Date().getHours() < 12 ? '上午好, ' : new Date().getHours() < 20 ? '下午好，' : '晚上好，') + greetVal)
-        }
-        // 版本更新提醒
-        updateVersionTip()
-    }, 500)
     // 是否显示快捷卡片
     if (handlerStorage('cardCheck') === 'true') {
         getEleById('navBar').style.visibility = 'visible'
@@ -1408,6 +1442,32 @@ function createFunc () {
     // 初始化 提示方式
     const mode = handlerStorage('tipMode') || 'pop'
     getEleById('noticeCss').value = mode
+}
+
+// 是否第一次使用
+function isShowWelcomPage () {
+    const curVal = handlerStorage('welcome')
+    const dom = getEleById('welcomePage')
+    const welcomeFirst = getEleById('welcomeFirst')
+    const welcomeSecond = getEleById('welcomeSecond')
+    const welcomeBtn = getEleById('welcomeBtn')
+    if (!curVal) {
+        dom.style.display = 'block'
+        setTimeout(() => {
+            animateCSS('#welcomeFirst', 'fadeOut')
+            welcomeFirst.style.display = 'none'
+            setTimeout(() => {
+                animateCSS('#welcomeSecond', 'fadeIn')
+                animateCSS('#welcomeBtn', 'fadeIn')
+                welcomeSecond.style.display = 'block'
+                welcomeBtn.style.display = 'block'
+            }, 5);
+        }, 4000);
+    } else {
+        // 版本更新提醒
+        updateVersionTip()
+        getEleById('searchTab').style.display = 'block'
+    }
 }
 
 // 初始化快捷卡片路径
@@ -1443,7 +1503,7 @@ function handlerInputMethod () {
     const flag = handlerStorage('titleCheck')
     if (flag === 'false' || flag === null) {
         let newVal = handlerStorage('searchType')
-        if (!newVal) {
+        if (!newVal || newVal === 'kaifazhe') {
             newVal = 'baidu'
         }
         let temp = typeList.find(item => item.key === newVal || item.value === newVal)
@@ -1513,6 +1573,7 @@ function createObjectURL (blob){
 function imgHandlerPhoto(url) {
     const bgImg = getEleById('backGroundImg');
     bgImg.style.backgroundImage = `url(${url})`;
+    animateCSS('#backGroundImg', 'fadeIn')
     bgImg.style.backgroundSize = 'cover';
     bgImg.style.width = '100%';
     bgImg.style.height = '100%';
@@ -1769,14 +1830,17 @@ function calcTime () {
     }, 1000)
     // 初始化计算星期数
     const weekList = ['周日', '周一', '周二', '周三', '周四', '周五', '周六']
-    getEleById('dateStr').innerHTML = (new Date().getHours() < 12 ? '上午好' : new Date().getHours() < 20 ? '下午好' : '晚上好') + '，今天是' + weekList[new Date().getDay()] + '哦~'
+    const hr = new Date().getHours()
+    const week = weekList[new Date().getDay()]
+    const lunar_month_day = Draw()
+    getEleById('dateStr').innerHTML = (hr < 12 ? '上午好' : hr < 20 ? '下午好' : '晚上好') + '，今天是农历' + lunar_month_day + '，' + week + '哦~'
 }
 
 // 解决时间显示时迟钝的问题
 function littleTimeFunc () {
     var minutes = new Date().getMinutes() + ''
     minutes = minutes.length < 2 ? '0' + minutes : minutes
-    curTime = new Date().getHours() + ':' + minutes
+    curTime = new Date().getHours() + '<span id="seconds">:</span>' + minutes
     getEleById('timeStr').innerHTML = curTime
     return curTime
 }
@@ -1864,12 +1928,9 @@ function musicFunc (parseJson) {
 // 背景毛玻璃效果
 function backgroundGlass (event) {
     let curBack1 = getEleById('backGroundImg')
-    let curVal
-    const num = Number(handlerStorage('glassCheck'))
-    if (num === NaN) {
-        curVal = 0 + ''
-    }
-    curVal = event?.target?.value || num + ''
+    let curVal = handlerStorage('glassCheck')
+    const num = curVal ? curVal : '3'
+    curVal = event ? event.target.value : num
     if (Number(curVal) > 0) {
         curBack1.style.transform = 'scale(1.1) translateX(0)';
         curBack1.style.filter = 'blur(' + curVal + 'px) brightness(0.8)';
@@ -1877,6 +1938,8 @@ function backgroundGlass (event) {
         curBack1.style.transform = '';
         curBack1.style.filter = '';
     }
+    handlerStorage('glassCheck', curVal)
+    getEleById('glassRange').value = curVal
 }
 
 // 输入框圆角
@@ -2032,8 +2095,9 @@ function getDataInfo(urlStr, flag) {
                 setGalleryContent(parseJson.data)
             } else if (flag === 'weather') {
                 const weatherText = getEleById('weatherText')
-                const {type, high, low, tip} = parseJson.info
-                const text = `${type}，温度 ${high} | ${parseJson.city}`
+                const {type, high, low, tip, fengxiang} = parseJson.info
+                const num = (new Date().getHours() < 20 && new Date().getHours() > 8) ? high : low
+                const text = `${type}，${num}，${fengxiang} | ${parseJson.city}`
                 weatherText.innerText = text
                 weatherText.title = tip
             }
@@ -2079,6 +2143,7 @@ function sendEmailNew(name, msg) {
                     getEleById('emailDialog').style.display = 'none'
                     if (showLink) {
                         getEleById('mask').style.opacity = 0
+                        getEleById('mask').style.zIndex = 0
                     }
                     showLink = false
                     popTip('邮件已发送', 3000, '#32bc37')

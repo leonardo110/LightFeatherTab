@@ -1,4 +1,117 @@
 
+#welcomePage{
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    position: absolute;
+    display: none;
+    background-image: linear-gradient(45deg, #c2fff4 10%, #b746fb 100%);
+}
+.welcomeText{
+    position: absolute;
+    transform: translate(-50%, -40%);
+    left: 50%;
+    top: 30%;
+    font-size: 45px;
+    color: #fff;
+}
+#welcomeFirst{
+    text-align: center;
+}
+#welcomeSecond{
+    display: none;
+}
+.welcomeBtnDiv{
+    position: absolute;
+    transform: translate(-50%, -40%);
+    left: 50%;
+    top: 50%;
+    margin-top: 20px;
+    cursor: pointer;
+}
+#welcomeBtn{
+    display: inline-block;
+    padding: 15px 40px;
+    font-size: 25px;
+    background-image: linear-gradient(90deg,#5cb0ff,#98ceff,#68e0cf);
+    color: #fff;
+    border-radius: 5px;
+    display: none;
+}
+#welcomeBtn:hover{
+    animation-name: scaleDraw; /*关键帧名称*/
+    animation-timing-function: ease-in; /*动画的速度曲线*/
+    animation-iteration-count: 5; /*动画播放的次数*/
+    animation-duration: 1s; /*动画所花费的时间*/
+}
+@keyframes scaleDraw {
+  /*定义关键帧、scaleDrew是需要绑定到选择器的关键帧名称*/
+  0% {
+    transform: scale(1); /*开始为原始大小*/
+  }
+  25% {
+    transform: scale(1.05); /*放大1.1倍*/
+  }
+  50% {
+    transform: scale(1);
+  }
+  75% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
+#seconds{
+    padding: 0px 3px;
+    display: inline-block;
+    height: 60px;
+    animation: fadeSeconds ease-in-out 1s;
+    line-height: 37px;
+    vertical-align: middle;
+}
+@keyframes fadeSeconds{
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+#updateDiv{
+    background: white;
+    padding: 10px;
+    width: 220px;
+    position: absolute;
+    right: 75px;
+    bottom: 80px;
+    border-radius: 5px 5px 0px 5px;
+    display: none;
+}
+.triangle {
+    width: 0;
+    height: 0;
+    border-top: 10px solid transparent;
+    border-right: 10px solid #fff;
+    border-bottom: 10px solid transparent;
+    position: absolute;
+    right: 0px;
+    bottom: -8px;
+}
+.versionTitle{
+    vertical-align: middle;
+    display: inline-block;
+}
+.versionText{
+    margin: 8px 0px;
+}
+.versionHead{
+    padding-bottom: 5px;
+}
+.versionIcon {
+    vertical-align: middle;
+    padding-right: 5;
+}
 .weather{
     position: absolute;
     right: 30px;
@@ -24,7 +137,7 @@
     animation-duration: 0.05s;
 }
 .menuDiv{
-    padding: 10px;
+    padding: 8px 10px;
 }
 .middleCss {
     vertical-align: middle;
@@ -664,28 +777,21 @@ header img{
     transform: rotate(180deg);
     transition-duration: 0.3s;
 }
-#shezhiView{
+#settingView{
     position: absolute;
     width: 320px;
     height: 100%;
     right: 0px;
-    padding: 0px 10px;
+    padding: 0px 15px;
     top: 0px;
     display: none;
     z-index: 1;
     overflow-y: auto;
     overflow-x: hidden;
     scrollbar-width: none;
-    animation-name: shezhi;
-    animation-duration: 0.5s;
-    /* animation-timing-function: ease-out; */
 }
 .thirdTheme {
-    background-image: linear-gradient(45deg, #12c2e9 0%, #c471ed 50%, #f7797d 90%);
-}
-@keyframes shezhi {
-    from {transform: translateX(320px)}
-    to {transform: translateX(0px)}
+    background-image: linear-gradient(307deg, #1290e9 0%, #71aeed 50%, #c089ff 90%);
 }
 .shezhiTitle{
     font-size: 14px;
@@ -1013,7 +1119,6 @@ footer {
     width: 100%;
     height: 100%;
     z-index: -1;
-    background-size: cover;
 }
 .search #searchTab {
     color: white;
@@ -1027,11 +1132,11 @@ footer {
     transform: translateX(-50%);
     width: 40%;
     height: 40px;
+    display: none;
     box-shadow: rgb(0 0 0 / 20%) 0 0 10px;
     overflow: hidden;
     transition: color .25s, background-color .25s, box-shadow .25s, left .25s, opacity .25s, top .25s, width .25s;
-    opacity: 0.5;
-    backdrop-filter: blur(10px) saturate(1.5);
+    /* backdrop-filter: blur(10px) saturate(1.5); */
 }
 .search #inputStr {
     transition: .25s;
