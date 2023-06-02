@@ -10,19 +10,20 @@
     <link rel="stylesheet" href="../styles/email.css">
     <link rel="stylesheet" href="../styles/privacy.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
-    <title>轻羽标签&nbsp;&nbsp;|&nbsp;&nbsp;清凉一夏</title>
+    <title>轻羽页签&nbsp;&nbsp;|&nbsp;&nbsp;清凉一夏</title>
 </head>
 
 <body>
     <div class="homeBackGround" id="allPage">
         <div id="backGroundImg"></div>
+        <video id="backGroundVedio" autoplay loop muted></video>
         <div id="mask"></div>
         <div id="alertTip"></div>
         <!-- 欢迎页 -->
         <div id="welcomePage">
             <div class="welcomeText" id="welcomeFirst">
-                嗨，您好<br>
-            欢迎使用 轻羽标签页</div>
+                嗨，您好!<br>
+            欢迎您使用 轻羽标签页</div>
             <div class="welcomeText" id="welcomeSecond">一个简单、清爽的个性化起始页</div>
             <div class="welcomeBtnDiv">
                 <span id="welcomeBtn">开始体验吧</span>
@@ -101,7 +102,7 @@
                 <span class="lineBottomCss"></span>
                 <div id="handlerSimple">
                     <div class="labelDiv">
-                        <span class="displayClass">时间标题</span>
+                        <span class="displayClass">电子时刻</span>
                         <input class="mui-switch mui-switch-anim" id="checkTitle" type="checkbox" checked>
                     </div>
                     <span class="lineBottomCss"></span>
@@ -130,11 +131,13 @@
                     <span class="imgBack"><img class="jingtaiImg" src="../icons/thirdPhoto.png" /></span>
                     <span class="imgBack"><img class="jingtaiImg" src="../icons/fourPhoto.png" /></span>
                 </div>
-                <div id="imgDivCopy">
-                    <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
-                    <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
-                    <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
-                    <span class="greenRight"><img src="../icons/zhengque.svg" /></span>
+                <span id="greenRight"><img src="../icons/zhengque.svg" /></span>
+                <span class="shezhiTitle" style="position: absolute;left: 11px;">动态</span>
+                <div id="imgDiv">
+                    <span class="imgBack"><video class="jingtaiImg" src="../icons/fengche.mp4" autoplay="false" preload controlsList="nodownload"   disablePictureInPicture></video></span>
+                    <span class="imgBack"><video class="jingtaiImg" src="../icons/cat.mp4" autoplay="false" preload controlsList="nodownload"   disablePictureInPicture></video></span>
+                    <span class="imgBack"><video class="jingtaiImg" src="../icons/window.mp4" autoplay="false" preload controlsList="nodownload"   disablePictureInPicture></video></span>
+                    <span class="imgBack"><video class="jingtaiImg" src="../icons/caoyuan.mp4" autoplay="false" preload controlsList="nodownload"   disablePictureInPicture></video></span>
                 </div>
                 <span class="shezhiTitle" style="padding-left: 10px;">本地</span>
                 <div href="javascript:;" class="upload btnHoverCss">
@@ -145,16 +148,6 @@
                     &nbsp;上传图片
                     <input class="inputFile" id="inputFile" type="file" accept="image/*" />
                 </div>
-                <!-- <span class="shezhiTitle" style="padding-left: 10px;">随机</span>
-                <div style="text-align: center;z-index: 5;position: relative;">
-                    <button id="checkPhoto" class="btnHoverCss">
-                        <img src="../icons/refreshBlue.svg" style="width: 20px;margin-top: -3px;vertical-align: middle;"
-                            id="refreshBlue">
-                        <img src="../icons/refreshWhite.svg"
-                            style="width: 20px;margin-top: -3px;vertical-align: middle;" id="refreshWhite">
-                        <span>&nbsp;Bing&nbsp;一下</span>
-                    </button>
-                </div> -->
                 <span class="shezhiTitle" style="padding-left: 10px;">图库</span>
                 <div style="text-align: center;z-index: 5;position: relative;padding-bottom: 15px;">
                     <button id="galleryBtn" class="btnHoverCss">
@@ -194,7 +187,8 @@
             </div>
             <div>
                 <div class="versionText">1. 新增右键菜单，优化功能</div>
-                <div class="versionText">2. Tab键切换搜索引擎，简化搜索方式</div>
+                <div class="versionText">2. 新增动态壁纸，让页面更加生动</div>
+                <div class="versionText">3. Tab键切换搜索引擎，简化搜索方式</div>
             </div>
             <div class="triangle"></div>
         </div>
@@ -305,9 +299,9 @@
                         <span class="versionTime">2023-05-26</span>
                     </div>
                     <div class="updateContent">
-                        <div class="textStyle">• <span class="addSpan">新增</span> 右键菜单，优化面板空间，减弱重复功能</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 右键菜单，优化面板空间</div>
+                        <div class="textStyle">• <span class="addSpan">新增</span> 动态壁纸，使页面更加生动、富有创意</div>
                         <div class="textStyle">• <span class="optimizeSpan">优化</span> 使用Tab键可以切换搜索引擎</div>
-                        <div class="textStyle">• <span class="optimizeSpan">优化</span> 壁纸广场增加缩放功能，以便查看壁纸是否匹配</div>
                     </div>
                 </div>
                 <div class="contentDiv">
@@ -569,7 +563,7 @@
         <!-- 产品反馈 -->
         <div id="emailDialog">
             <div class="emailHead">
-                <img src="../icons/logo32.png" class="logoCss">
+                <img src="../icons/logo32.png" class="emailLogoCss">
                 <span class="titleText">产品反馈</span>
                 <img src="../icons/guanbi.svg" id="emailClose">
                 <img src="../icons/guanbiWhite.svg" id="emailCloseWhite">

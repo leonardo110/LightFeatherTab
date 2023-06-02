@@ -5,6 +5,7 @@
     z-index: 1;
     position: absolute;
     top: 40%;
+    padding: 7px;
     transform: translate(-50%, -50%);
     border-radius: 10px;
     background-color: white;
@@ -41,7 +42,7 @@
 }
 .titleText{
     padding-left: 25px;
-    font-size: 13px;
+    font-size: 15px;
 }
 .requiredCss{
     color: red;
@@ -89,4 +90,10 @@
 #emailDialog input,textarea{
     font-size: 13px;
     font-family: '微软雅黑';
+}
+.emailLogoCss{
+    width: 20px;
+    position: absolute;
+    top: 18px;
+    left: 16px;
 }

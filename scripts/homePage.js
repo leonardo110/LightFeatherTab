@@ -74,6 +74,26 @@ const imgList = [
         index: 3,
         src: '../icons/fourPhoto.png',
         dis: 'fourPhoto.png'
+    },
+    {
+        index: 4,
+        src: '../icons/fengche.mp4',
+        dis: 'fengche.mp4'
+    },
+    {
+        index: 5,
+        src: '../icons/cat.mp4',
+        dis: 'cat.mp4'
+    },
+    {
+        index: 6,
+        src: '../icons/window.mp4',
+        dis: 'window.mp4'
+    },
+    {
+        index: 7,
+        src: '../icons/caoyuan.mp4',
+        dis: 'caoyuan.mp4'
     }
 ]
 const cardUrlList = [
@@ -180,7 +200,7 @@ function registFunc () {
             welcomePageDom.style.display = 'none'
             // 版本更新提醒
             updateVersionTip()
-            // handlerStorage('welcome', true)
+            handlerStorage('welcome', true)
         }, 980);
     }
     // 注意 取消默认行为 我们鼠标右键的时候 一般是弹出 浏览器的 属性 刷新等等的那个菜单
@@ -797,10 +817,7 @@ function openGalleryDialog () {
 function randomPhoto () {
     // 清除掉选中效果
     const length = getEleByClass('jingtaiImg').length
-    for (let y = 0; y < length; y++) {
-        getEleByClass('greenRight')[y].style.zIndex = -1
-        getEleByClass('imgBack')[y].style.filter = ''
-    }
+    getEleById('greenRight').style.visibility = 'hidden'
     getDataInfo('https://api.vvhan.com/api/bing?type=json&rand=sj', 'img');
 }
 
@@ -823,18 +840,13 @@ function openSettingView () {
         typeDom.style.zIndex = -1
         const maskDom = getEleById('mask')
         maskDom.style.opacity = 0.3
+        const greenRightDom = getEleById('greenRight').style
         const length = getEleByClass('jingtaiImg').length
         for (let v = 0; v < length; v++) {
             getEleByClass('jingtaiImg')[v].onclick = () => {
+                greenRightDom.visibility = 'visible'
+                handlerPhotoNumber(v)
                 imgHandlerPhoto(getEleByClass('jingtaiImg')[v].src)
-                getEleByClass('greenRight')[v].style.zIndex = 1
-                getEleByClass('imgBack')[v].style.filter = 'blur(1px)'
-                for (let y = 0; y < length; y++) {
-                    if (y !== v) {
-                        getEleByClass('greenRight')[y].style.zIndex = -1
-                        getEleByClass('imgBack')[y].style.filter = ''
-                    }
-                }
                 const imgObj = {
                     url: getEleByClass('jingtaiImg')[v].src,
                     title: ''
@@ -1021,7 +1033,7 @@ function updateVersionTip () {
     const version = handlerStorage('version')
     const mode = handlerStorage('tipMode') || 'pop'
     if (version !== '1.1.9') {
-        popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>&nbsp;v1.1.9&nbsp;</span>" : " v1.1.9") + "版本，快试试新功能吧~", 5000)
+        // popTip("插件已更新至" + (mode === 'pop' ? "<span class='versionNum'>&nbsp;v1.1.9&nbsp;</span>" : " v1.1.9") + "版本，快试试新功能吧~", 5000)
         const versionDom = getEleById('updateDiv')
         versionDom.style.display = 'block'
         setTimeout(() => {
@@ -1041,7 +1053,20 @@ function downloadImage() {
             popTip('本地上传的图片无需下载')
             return
         }
-    } 
+    }
+    const obj = JSON.parse(handlerStorage('imgObj'))
+    const photoUrl = obj.url
+    if (photoUrl.indexOf('mp4') === -1) {
+        // 下载非视频壁纸
+        downloadPhoto(photoUrl)
+    } else {
+        // 下载视频
+        downloadMp4(photoUrl)
+    }
+}
+
+// 下载非视频壁纸
+function downloadPhoto (photoUrl) {
     var image = new Image()
     // 解决跨域 Canvas 污染问题
     // crossorigin 是HTML5中新增的<img>标签属性
@@ -1063,16 +1088,30 @@ function downloadImage() {
         var event = new MouseEvent('click')
 
         // 将a的download属性设置为我们想要下载的图片名称，若name不存在则使用‘下载图片名称’作为默认名称
-        a.download = '图片'
+        a.download = 'image' + Date.now()
         // 将生成的URL设置为a.href属性
         a.href = url
-
         // 触发a的单击事件
         a.dispatchEvent(event);
     }
-    const obj = JSON.parse(handlerStorage('imgObj'))
-    image.src = obj.url
+    image.src = photoUrl
 }
+
+// 下载函数
+function downloadMp4(mp4Url){
+    fetch(mp4Url)
+    .then(res => res.blob())
+    .then(blob => {
+        const a = document.createElement("a");
+        const objectUrl = window.URL.createObjectURL(blob);
+        a.download = 'video' + Date.now();
+        a.href = objectUrl;
+        a.click();
+        window.URL.revokeObjectURL(objectUrl);
+        a.remove();
+    })
+}
+
 /**
  * 主题设置
  */
@@ -1546,10 +1585,7 @@ function uploadImg () {
         handlerStorage('imgObj', JSON.stringify(obj))
         // 清除选中效果
         const length = getEleByClass('jingtaiImg').length
-        for (let y = 0; y < length; y++) {
-            getEleByClass('greenRight')[y].style.zIndex = -1
-            getEleByClass('imgBack')[y].style.filter = ''
-        }
+        getEleById('greenRight').style.visibility = 'hidden'
     })
     document.querySelector('input[type="file"]').addEventListener('change', function() {
         var file = this.files[0];
@@ -1571,12 +1607,21 @@ function createObjectURL (blob){
 };
 
 function imgHandlerPhoto(url) {
+    const backGroundVedio = getEleById('backGroundVedio')
     const bgImg = getEleById('backGroundImg');
-    bgImg.style.backgroundImage = `url(${url})`;
-    animateCSS('#backGroundImg', 'fadeIn')
-    bgImg.style.backgroundSize = 'cover';
-    bgImg.style.width = '100%';
-    bgImg.style.height = '100%';
+    if (url.indexOf('mp4') === -1 || url.indexOf('base64') !== -1) {
+        backGroundVedio.style.display = 'none'
+        bgImg.style.display = 'block'
+        bgImg.style.backgroundImage = `url(${url})`;
+        animateCSS('#backGroundImg', 'fadeIn')
+        bgImg.style.backgroundSize = 'cover';
+        bgImg.style.width = '100%';
+        bgImg.style.height = '100%';
+    } else {
+        backGroundVedio.style.display = 'block'
+        bgImg.style.display = 'none'
+        backGroundVedio.src = url
+    }
 }
 
 
@@ -1732,29 +1777,63 @@ function loadPhoto () {
     if (img && img !== 'null') {
         const imgObj = JSON.parse(img)
         const url = imgObj.url
+        const greenDom = getEleById('greenRight')
         // base64转新的blob地址(当前为本地上传的图片处理)
         if (url.indexOf('data:image') !== -1) {
             var newBlob = dataURLtoBlob(url)
             var blob = new Blob([newBlob], {type: "image/*"});
             var newUrl = URL.createObjectURL(blob);
             imgHandlerPhoto(newUrl)
+            greenDom.style.visibility = 'hidden'
         } else {
             // 选中静态的 或者 随机图片 加载的处理
-            getEleById('backGroundImg').style.background = "url(" + imgObj.url +")";
-            getEleById('backGroundImg').style.backgroundSize = "cover";
+            imgHandlerPhoto(url)
             // 如果是静态，则选中(效果)
-            if (imgObj.url.indexOf('chrome-extension') !== -1) {
-                const index = getItem(imgObj.url).index
-                getEleByClass('greenRight')[index].style.zIndex = 1
-                getEleByClass('imgBack')[index].style.filter = 'blur(1px)'
+            if (url.indexOf('chrome-extension') !== -1) {
+                const index = getItem(url).index
+                greenDom.style.visibility = 'visible'
+                handlerPhotoNumber(index)
             }
         }
     } else {
         // 如果没有缓存图片，则默认第一张静态图
         getEleById('backGroundImg').style.background = "url('../icons/firstPhoto.png')";
         getEleById('backGroundImg').style.backgroundSize = "cover";
-        getEleByClass('greenRight')[0].style.zIndex = 1
-        getEleByClass('imgBack')[0].style.filter = 'blur(1px)'
+        getEleById('greenRight').style.visibility = 'visible'
+        handlerPhotoNumber(0)
+        const imgObj = {
+            url: getEleByClass('jingtaiImg')[0].src,
+        }
+        handlerStorage('imgObj', JSON.stringify(imgObj))
+    }
+}
+
+function handlerPhotoNumber(index) {
+    const dom = getEleById('greenRight').style
+    if (index === 0) {
+        dom.bottom = '150px'
+        dom.left = '63px'
+    } else if (index === 1) {
+        dom.bottom = '150px'
+        dom.left = '224px'
+    } else if (index === 2) {
+        dom.bottom = '60px'
+        dom.left = '64px'
+    } else if (index === 3) {
+        dom.bottom = '60px'
+        dom.left = '224px'
+    } else if (index === 4) {
+        dom.bottom = '-60px'
+        dom.left = '64px'
+    } else if (index === 5) {
+        dom.bottom = '-60px'
+        dom.left = '224px'
+    } else if (index === 6) {
+        dom.bottom = '-150px'
+        dom.left = '64px'
+    } else if (index === 7) {
+        dom.bottom = '-150px'
+        dom.left = '224px'
     }
 }
 
@@ -2047,11 +2126,7 @@ function setGalleryContent (rsp) {
                 handlerStorage('imgObj', JSON.stringify(obj))
                 imgHandlerPhoto(item.url)
                 // 清除掉选中效果
-                const length = getEleByClass('jingtaiImg').length
-                for (let y = 0; y < length; y++) {
-                    getEleByClass('greenRight')[y].style.zIndex = -1
-                    getEleByClass('imgBack')[y].style.filter = ''
-                }
+                getEleById('greenRight').style.visibility = 'hidden'
             }
         })
         content.style.display = 'none'

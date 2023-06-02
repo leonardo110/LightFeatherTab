@@ -1,11 +1,18 @@
 
+#backGroundVedio{
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+    z-index: -1;
+    position: absolute;
+}
 #welcomePage{
     width: 100%;
     height: 100%;
     z-index: 2;
     position: absolute;
     display: none;
-    background-image: linear-gradient(45deg, #c2fff4 10%, #b746fb 100%);
+    background-image: linear-gradient(45deg, #c2fff4 35%, #b746fb 100%);
 }
 .welcomeText{
     position: absolute;
@@ -72,7 +79,7 @@
 }
 @keyframes fadeSeconds{
     0% {
-        opacity: 0;
+        opacity: 0.2;
     }
     100% {
         opacity: 1;
@@ -80,7 +87,7 @@
 }
 #updateDiv{
     background: white;
-    padding: 10px;
+    padding: 15px 20px;
     width: 220px;
     position: absolute;
     right: 75px;
@@ -133,6 +140,7 @@
     display: none;
     color: #393939;
     padding: 5px;
+    z-index: 1;
     animation-name: rightMenu;
     animation-duration: 0.05s;
 }
@@ -881,13 +889,13 @@ header img{
     align-content: space-around;
     justify-content: space-around;
 }
-.greenRight{
+#greenRight{
     width: 145px;
     text-align: center;
     position: relative;
-    bottom: 180px;
-    z-index: -1;
+    z-index: 1;
     cursor: pointer;
+    visibility: hidden;
 }
 #deleteIcon{
     width: 16px;
