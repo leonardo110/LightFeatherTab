@@ -191,6 +191,12 @@ function registFunc () {
         const menuDom = getEleById('rightMenu')
         menuDom.style.display = 'none'
     })
+    // 鼠标中键打开新标签页
+    document.onmousedown = (e) => {
+        if (e.button === 1) {
+            chrome.tabs.create({url: '../popup/homePage.html', active: true})
+        }
+    }
     getEleById('welcomeBtn').onclick = () => {
         const welcomePageDom = getEleById('welcomePage')
         animateCSS('#welcomePage', 'fadeOut')
@@ -288,37 +294,38 @@ function registFunc () {
     }
     // 联系我
     getEleById('linkMe').onclick = () => {
-        setTimeout(() => {
-            animateCSS('#emailDialog', 'fadeIn')
-            getEleById('emailDialog').style.display = 'block'
-        }, 5);
-        getEleById('emailDialog').style.zIndex = 1
-        setTimeout(() => {
-            if (!showLink) {
-                getEleById('nameInput').value = ''
-                getEleById('textArea').value = ''
-            }
-            if (showLogDialog) {
-                getEleById('appDialog').style.display = 'none'
-                showLogDialog = false
-            }
-            if (showGallery) {
-                getEleById('tukuDialog').style.display = 'none'
-                showGallery = false
-            }
-            if (showAddons) {
-                getEleById('addonsAddress').style.display = 'none'
-                showAddons = false
-            }
-            const searchTab = getEleById('searchTab')
-            searchTab.style.zIndex = -1
-            const typeDom = getEleById('typeSelect')
-            typeDom.style.zIndex = -1
-            getEleById('mask').style.opacity = 0.3
-            getEleById('mask').style.zIndex = 1
-            setLinkMeTheme()
-            showLink = true
-        }, 0);
+        // setTimeout(() => {
+        //     animateCSS('#emailDialog', 'fadeIn')
+        //     getEleById('emailDialog').style.display = 'block'
+        // }, 5);
+        // getEleById('emailDialog').style.zIndex = 1
+        // setTimeout(() => {
+        //     if (!showLink) {
+        //         getEleById('nameInput').value = ''
+        //         getEleById('textArea').value = ''
+        //     }
+        //     if (showLogDialog) {
+        //         getEleById('appDialog').style.display = 'none'
+        //         showLogDialog = false
+        //     }
+        //     if (showGallery) {
+        //         getEleById('tukuDialog').style.display = 'none'
+        //         showGallery = false
+        //     }
+        //     if (showAddons) {
+        //         getEleById('addonsAddress').style.display = 'none'
+        //         showAddons = false
+        //     }
+        //     const searchTab = getEleById('searchTab')
+        //     searchTab.style.zIndex = -1
+        //     const typeDom = getEleById('typeSelect')
+        //     typeDom.style.zIndex = -1
+        //     getEleById('mask').style.opacity = 0.3
+        //     getEleById('mask').style.zIndex = 1
+        //     setLinkMeTheme()
+        //     showLink = true
+        // }, 0);
+        window.open('https://support.qq.com/products/595677', '_blank')
     }
     getEleById('emailClose').onclick = () => {
         closeEmail()
@@ -710,8 +717,8 @@ function registFunc () {
     // 极简模式开关
     let simpleDom = getEleById('checkSimple')
     if (simpleDom) {
-        getEleById('checkSimple').onclick = () => {
-            if (getEleById('checkSimple').checked) {
+        simpleDom.onclick = () => {
+            if (simpleDom.checked) {
                 handlerStorage('simpleCheck', true)
             } else {
                 handlerStorage('simpleCheck', false)
@@ -1609,6 +1616,7 @@ function createObjectURL (blob){
 function imgHandlerPhoto(url) {
     const backGroundVedio = getEleById('backGroundVedio')
     const bgImg = getEleById('backGroundImg');
+    const fuzzinessDom = getEleById('fuzziness').style
     if (url.indexOf('mp4') === -1 || url.indexOf('base64') !== -1) {
         backGroundVedio.style.display = 'none'
         bgImg.style.display = 'block'
@@ -1617,10 +1625,12 @@ function imgHandlerPhoto(url) {
         bgImg.style.backgroundSize = 'cover';
         bgImg.style.width = '100%';
         bgImg.style.height = '100%';
+        fuzzinessDom.display = 'block'
     } else {
         backGroundVedio.style.display = 'block'
         bgImg.style.display = 'none'
         backGroundVedio.src = url
+        fuzzinessDom.display = 'none'
     }
 }
 

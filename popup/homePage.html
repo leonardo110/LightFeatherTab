@@ -115,11 +115,13 @@
                         <span class="displayClass">一言诗词</span>
                         <input class="mui-switch mui-switch-anim" id="checkPoem" type="checkbox" checked>
                     </div>
-                    <span class="lineBottomCss"></span>
-                </div>
-                <div class="labelDiv">
-                    <span class="displayClass">模糊度</span>
-                    <input type="range" max="20" min="0" id="glassRange" step="0.01">
+                    <div id="fuzziness">
+                        <span class="lineBottomCss"></span>
+                        <div class="labelDiv">
+                            <span class="displayClass">模糊度</span>
+                            <input type="range" max="20" min="0" id="glassRange" step="0.01">
+                        </div>
+                    </div>
                 </div>
             </div>
             <span class="shezhiTitle">背景设置</span>
@@ -232,6 +234,10 @@
                 </div>
             </div>
             <div id="searchHistory">
+                <!-- <div class="allDelete">
+                    <img src="../icons/deleteAll.svg" style="vertical-align: middle;padding-bottom: 3px;">
+                    全部删除
+                </div> -->
                 <div id="historyText">
                 </div>
             </div>
