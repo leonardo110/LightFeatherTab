@@ -8,7 +8,6 @@ let musicIdList = []
 let upMusicId = ''
 let showLogDialog = false
 let showGallery = false
-let showLink = false
 let showAddons = false
 let curPage = 1
 let galleryList = []
@@ -58,42 +57,42 @@ const imgList = [
     {
         index: 0,
         src: '../icons/firstPhoto.png',
-        dis: 'firstPhoto.png'
+        dis: 'firstPhoto'
     },
     {
         index: 1,
         src: '../icons/secondPhoto.png',
-        dis: 'secondPhoto.png'
+        dis: 'secondPhoto'
     },
     {
         index: 2,
         src: '../icons/thirdPhoto.png',
-        dis: 'thirdPhoto.png'
+        dis: 'thirdPhoto'
     },
     {
         index: 3,
         src: '../icons/fourPhoto.png',
-        dis: 'fourPhoto.png'
+        dis: 'fourPhoto'
     },
     {
         index: 4,
         src: '../icons/fengche.mp4',
-        dis: 'fengche.mp4'
+        dis: 'fengche'
     },
     {
         index: 5,
         src: '../icons/cat.mp4',
-        dis: 'cat.mp4'
+        dis: 'cat'
     },
     {
         index: 6,
         src: '../icons/window.mp4',
-        dis: 'window.mp4'
+        dis: 'window'
     },
     {
         index: 7,
         src: '../icons/caoyuan.mp4',
-        dis: 'caoyuan.mp4'
+        dis: 'caoyuan'
     }
 ]
 const cardUrlList = [
@@ -294,71 +293,7 @@ function registFunc () {
     }
     // 联系我
     getEleById('linkMe').onclick = () => {
-        // setTimeout(() => {
-        //     animateCSS('#emailDialog', 'fadeIn')
-        //     getEleById('emailDialog').style.display = 'block'
-        // }, 5);
-        // getEleById('emailDialog').style.zIndex = 1
-        // setTimeout(() => {
-        //     if (!showLink) {
-        //         getEleById('nameInput').value = ''
-        //         getEleById('textArea').value = ''
-        //     }
-        //     if (showLogDialog) {
-        //         getEleById('appDialog').style.display = 'none'
-        //         showLogDialog = false
-        //     }
-        //     if (showGallery) {
-        //         getEleById('tukuDialog').style.display = 'none'
-        //         showGallery = false
-        //     }
-        //     if (showAddons) {
-        //         getEleById('addonsAddress').style.display = 'none'
-        //         showAddons = false
-        //     }
-        //     const searchTab = getEleById('searchTab')
-        //     searchTab.style.zIndex = -1
-        //     const typeDom = getEleById('typeSelect')
-        //     typeDom.style.zIndex = -1
-        //     getEleById('mask').style.opacity = 0.3
-        //     getEleById('mask').style.zIndex = 1
-        //     setLinkMeTheme()
-        //     showLink = true
-        // }, 0);
         window.open('https://support.qq.com/products/595677', '_blank')
-    }
-    getEleById('emailClose').onclick = () => {
-        closeEmail()
-    }
-    getEleById('emailCloseWhite').onclick = () => {
-        closeEmail()
-    }
-    getEleById('cancleBtn').onclick = () => {
-        getEleById('nameInput').value = ''
-        getEleById('textArea').value = ''
-        closeEmail()
-    }
-    // 发送邮件
-    getEleById('sendBtn').onclick = () => {
-        const nameInput = getEleById('nameInput').value
-        const textArea = getEleById('textArea').value
-        if (!nameInput) {
-            popTip('请输入昵称', 3000, '#d52a2a')
-            return
-        }
-        if (!textArea) {
-            popTip('请输入问题或者建议', 3000, '#d52a2a')
-            return
-        }
-        const time = handlerStorage('emailTime')
-        if (time) {
-            const mm = Date.now() - Number(time)
-            if (mm < 60000 * 5) {
-                popTip('请5分钟后再重新发送', 3000 ,'#d52a2a')
-                return
-            }
-        }
-        sendEmailNew(nameInput, textArea)
     }
     // 壁纸广场
     getEleById('galleryBtn').onclick = () => {
@@ -382,10 +317,6 @@ function registFunc () {
         getEleById('mask').style.opacity = 0.6
         const addonsLogoList = getEleByClass('addonsLogo')
         setAddonsTheme()
-        if (showLink) {
-            getEleById('emailDialog').style.display = 'none'
-            showLink = false
-        }
         if (showLogDialog) {
             getEleById('appDialog').style.display = 'none'
             showLogDialog = false
@@ -484,10 +415,6 @@ function registFunc () {
             getEleById('tukuDialog').style.display = 'none'
             showGallery = false
         }
-        if (showLink) {
-            getEleById('emailDialog').style.display = 'none'
-            showLink = false
-        }
         if (showAddons) {
             getEleById('addonsAddress').style.display = 'none'
             showAddons = false
@@ -495,7 +422,7 @@ function registFunc () {
     }
     // 遮罩层点击事件
     getEleById('mask').onclick = () => {
-        if ((!showLogDialog && !showGallery && !showLink) || (showAddons)) {
+        if ((!showLogDialog && !showGallery) || (showAddons)) {
             closeView()
         }
         showAddons = false
@@ -799,10 +726,6 @@ function openGalleryDialog () {
         getEleById('appDialog').style.display = 'none'
         showLogDialog = false
     }
-    if (showLink) {
-        getEleById('emailDialog').style.display = 'none'
-        showLink = false
-    }
     if (showAddons) {
         getEleById('addonsAddress').style.display = 'none'
         showAddons = false
@@ -918,19 +841,6 @@ function switchSimple () {
         weatherDom.style.display = 'inline-block'
         showPoemFunc()
     }
-}
-
-function closeEmail () {
-    getEleById('emailDialog').style.display = 'none'
-    if (showLink) {
-        getEleById('mask').style.opacity = 0
-        getEleById('mask').style.zIndex = 0
-        const searchTab = getEleById('searchTab')
-        searchTab.style.zIndex = 1
-        const typeDom = getEleById('typeSelect')
-        typeDom.style.zIndex = 1
-    }
-    showLink = false
 }
 
 // 查询新一页或者新类型的图片数据
@@ -1146,9 +1056,6 @@ function setTheme () {
             if (showGallery) {
                 setGalleryTheme()
             }
-            if (showLink) {
-                setLinkMeTheme()
-            }
             if (showAddons) {
                 setAddonsTheme()
             }
@@ -1167,13 +1074,10 @@ function initTheme () {
     const iconDom = getEleById('selectIcon')
     let settingView = getEleById('settingView')
     const themeCardDiv = getEleByClass('themeCardDiv')[0]
-    // const noticeCardDiv = getEleByClass('noticeCardDiv')[0]
     const shezhiCard = getEleByClass('shezhiCard')
     const btnHoverCss = getEleByClass('btnHoverCss')
     const uploadBlue = getEleById('uploadBlue').style
     const uploadWhite = getEleById('uploadWhite').style
-    // const refreshBlue = getEleById('refreshBlue').style
-    // const refreshWhite = getEleById('refreshWhite').style
     const tukuBlue = getEleById('tukuBlue').style
     const tukuWhite = getEleById('tukuWhite').style
     const greetDom = getEleById('greetingCss').style
@@ -1181,8 +1085,6 @@ function initTheme () {
     // tip图标
     getEleById('showTipIcon1').style.display = themeVal === 'default' ? 'none' : 'inline-block'
     getEleById('showTipIcon2').style.display = themeVal === 'default' ? 'inline-block' : 'none'
-    // getEleById('showTipIcon3').style.display = themeVal === 'default' ? 'none' : 'inline-block'
-    // getEleById('showTipIcon4').style.display = themeVal === 'default' ? 'inline-block' : 'none'
     // 切换字体颜色防止刺眼
     getEleById('myselfBlue').style.color = themeVal === 'default' ? '#409eff' : '#ffe643'
     getEleById('updateLog').style.color = themeVal === 'default' ? '#409eff' : '#ffe643'
@@ -1205,8 +1107,6 @@ function initTheme () {
         settingView.removeAttribute('class', 'thirdTheme')
         uploadBlue.display = 'inline-block'
         uploadWhite.display = 'none'
-        // refreshBlue.display = 'inline-block'
-        // refreshWhite.display = 'none'
         tukuBlue.display = 'inline-block'
         tukuWhite.display = 'none'
         greetDom.color = '#5a5858'
@@ -1225,8 +1125,6 @@ function initTheme () {
         settingView.style.color = 'white'
         uploadBlue.display = 'none'
         uploadWhite.display = 'inline-block'
-        // refreshBlue.display = 'none'
-        // refreshWhite.display = 'inline-block'
         tukuBlue.display = 'none'
         tukuWhite.display = 'inline-block'
         greetDom.color = 'white'
@@ -1347,42 +1245,6 @@ function setGalleryTheme () {
     }
 }
 
-// 联系我 弹框主题样式
-function setLinkMeTheme () {
-    const emailDialog = getEleById('emailDialog')
-    const themeVal = handlerStorage('theme') || 'default'
-    const emailClose = getEleById('emailClose').style
-    const emailCloseWhite = getEleById('emailCloseWhite').style
-    const galleryBtnCss = getEleByClass('galleryBtnCss')
-    const nameInput = getEleById('nameInput').style
-    const textArea = getEleById('textArea').style
-    for (let a = 0; a < galleryBtnCss.length; a++) {
-        galleryBtnCss[a].style.border = themeVal === 'default' ? '1px solid #409eff' : '1px solid white'
-        galleryBtnCss[a].style.color = themeVal === 'default' ? '#409eff': 'white'
-    }
-    if (themeVal === 'default') {
-        emailDialog.style.background = 'white'
-        emailDialog.style.color = '#3a3a3a'
-        emailDialog.removeAttribute('class', 'thirdTheme')
-        emailClose.display = 'inline-block'
-        emailCloseWhite.display = 'none'
-        nameInput.color = '#1c1b1b'
-        textArea.color = '#1c1b1b'
-        nameInput.border = '1px solid #c4c4c4'
-        textArea.border = '1px solid #c4c4c4'
-        emailDialog.style['backdrop-filter'] = ''
-    } else {
-        emailDialog.style.color = 'white'
-        emailCloseWhite.display = 'inline-block'
-        emailClose.display = 'none'
-        nameInput.border = '1px solid white'
-        textArea.border = '1px solid white'
-        nameInput.color = 'white'
-        textArea.color = 'white'
-        assembleCode(themeVal, emailDialog)
-    }
-}
-
 // 插件商店地址
 function setAddonsTheme () {
     const addonsAddress = getEleById('addonsAddress')
@@ -1453,7 +1315,6 @@ function closeView () {
     getEleById('navBar').style.zIndex = 0
     const menuDom = getEleById('rightMenu')
     menuDom.style.display = 'none'
-    getEleById('emailDialog').style.display = 'none'
     hiddenSettingView()
 }
 
@@ -2191,58 +2052,4 @@ function getDataInfo(urlStr, flag) {
     };
     //第三步：发送请求
     httpRequest.send(null);
-}
-
-/**
- * 发送邮件
- * @param {*} name 
- * @param {*} msg 
- */
-function sendEmailNew(name, msg) {
-    const emailLoading = getEleById('emailLoading')
-    emailLoading.style.display = 'inline-block'
-    const emailContentPage = getEleById('emailContentPage')
-    emailContentPage.style.display = 'none'
-    //第一步：建立所需的对象
-    let httpRequest = new XMLHttpRequest();
-    const urlStr = 'https://api.emailjs.com/api/v1.0/email/send'
-    httpRequest.open('POST', urlStr, true);
-    httpRequest.setRequestHeader("Content-Type", "application/json")
-    httpRequest.setRequestHeader("accessToken", 'pvs-WoCFVPrHTVP2yXQ0a')
-    var data = {
-        service_id: 'service_1zz86vm',
-        template_id: 'template_rky5kdc',
-        user_id: '4TTOyipOWaFt3nIgq',
-        template_params: {
-            'from_name': name,
-            'from_message': msg
-        }
-    };
-    httpRequest.onreadystatechange = () => {
-        if (httpRequest.readyState === 4) {
-            if (httpRequest.status === 200) {
-                var result = httpRequest.responseText; //获取到json字符串，还需解析
-                if (result === 'OK') {
-                    getEleById('nameInput').value = ''
-                    getEleById('textArea').value = ''
-                    getEleById('emailDialog').style.display = 'none'
-                    if (showLink) {
-                        getEleById('mask').style.opacity = 0
-                        getEleById('mask').style.zIndex = 0
-                    }
-                    showLink = false
-                    popTip('邮件已发送', 3000, '#32bc37')
-                    handlerStorage('emailTime', Date.now())
-                }
-            } else {
-                popTip('邮件发送失败', 3000, '#d52a2a')
-            }
-        } else {
-            popTip('邮件发送失败', 3000, '#d52a2a')
-        }
-        emailContentPage.style.display = 'inline-block'
-        emailLoading.style.display = 'none'
-    }
-    //第三步：发送请求
-    httpRequest.send(JSON.stringify(data));
 }
